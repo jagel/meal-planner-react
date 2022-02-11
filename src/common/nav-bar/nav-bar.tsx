@@ -33,7 +33,7 @@ export default function NavBar(){
           <Navbar.Brand className='me-auto' href="#home">
             <img
               alt=""
-              src="/src/img/logo.png"
+              src="/src/img/logo.svg"
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -42,18 +42,18 @@ export default function NavBar(){
           </Navbar.Brand>
           
           <Navbar.Offcanvas
-          id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel"
-          placement="start">
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              {navRequest.map((data)=>PrintLink(data))}
-            </Nav>
-          </Offcanvas.Body>
-        </Navbar.Offcanvas>
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="start">
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                {navRequest.map((navBarItem)=>PrintLink(navBarItem))}
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
 
         </Container>
       </Navbar>
