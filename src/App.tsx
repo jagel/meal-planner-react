@@ -8,9 +8,9 @@ import {
   useLocation,
   Link
 } from "react-router-dom";
-import MainApp from './pages/globals/main';
+import MainApp from './pages/main';
 import Login from './pages/auth/login/login';
-import Dashboard from './pages/globals/dashboard/dashboard';
+import Dashboard from './pages/dashboard/dashboard';
 import { Container } from 'react-bootstrap';
 import NavBar from './common/nav-bar/nav-bar';
 
