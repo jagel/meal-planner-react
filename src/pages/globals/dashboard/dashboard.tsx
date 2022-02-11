@@ -2,5 +2,5 @@ import './dashboard.css'
 
 export default function Dashboard(){
 
-    return <label className='dashboard-main'>Dashboard</label>
+    return <h1 className='dashboard-main'>Dashboard</h1>
 }

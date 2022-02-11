@@ -10,20 +10,76 @@ import {
   useLocation,
   Link
 } from "react-router-dom";
+import Navbar from 'react-bootstrap/esm/Navbar';
+import { Button, Container, Form, FormControl, Nav, NavDropdown, Offcanvas } from 'react-bootstrap';
+import { NavBarRequest } from "../../utils/NavBarCollection";
+import { INavBarItems } from "../models/navbar.model";
 
 export default function NavBar(){
-    return <nav>
-        <ul>
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li>Four</li>
-        </ul>
-        <Example />
-    </nav>
+    let navRequest =NavBarRequest();
+    return <>
+    <Navbar bg="light" variant="light" expand={false}>
+    <Container fluid> 
+      <Navbar.Toggle className='me-3' />
+      <Navbar.Brand className='me-auto' href="#home">
+        <img
+          alt=""
+          src="/src/img/logo.png"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />{' '}
+      Meal planner
+      </Navbar.Brand>
+      
+      <Navbar.Offcanvas
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+      placement="start">
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body>
+        <Nav className="justify-content-end flex-grow-1 pe-3">
+          {navRequest.map((data)=>PrintLink(data))}
+           {/* {navRequest.map((data)=>
+           <Nav.Link key={data.name} as={Link} to="{data.route}" data-bs-dismiss="offcanvas">{data.name}</Nav.Link>
+           )} */}
+          <Nav.Link as={Link} to="/" onClick={(r)=>console.log(r)} data-bs-dismiss="offcanvas">Demoww</Nav.Link>
+          <Nav.Link href="#action2">Link</Nav.Link>
+          {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
+            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action5">
+              Something else here
+            </NavDropdown.Item>
+          </NavDropdown> */}
+        </Nav>
+        {/* <Form className="d-flex">
+          <FormControl
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+          <Button variant="outline-success">Search</Button>
+        </Form> */}
+      </Offcanvas.Body>
+    </Navbar.Offcanvas>
+
+    </Container>
+  </Navbar>
+  </>
 }
 
-
+function PrintLink(data:INavBarItems) {
+  
+  if(data.navBarChilds.length>0)
+    return  <label key={data.name}>Childs</label>;
+  else
+    return  <Nav.Link key={data.name} as={Link} to="{data.route}" data-bs-dismiss="offcanvas">{data.name}</Nav.Link>
+}
 
  function Example() {
   return (
