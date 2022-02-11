@@ -11,30 +11,39 @@ import {
 import MainApp from './pages/globals/main';
 import Login from './pages/auth/login/login';
 import Dashboard from './pages/globals/dashboard/dashboard';
+import { Container } from 'react-bootstrap';
+import NavBar from './common/nav-bar/nav-bar';
+
+
 
  export default function App() {
    return <div>
      <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/home/dashbaord">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        </nav>
+      <NavBar/>
+      <Container>
         <Routes>
-          <Route path="home/*" element={<MainApp/>}/>
+          {/* Static Routes */}
+          <Route path="/" element={<Dashboard/>} />
           <Route path="/login" element={<Login/>} />
+
+          {/* Dynamic Routes */}
         </Routes>
-      </div>
+      </Container>
     </Router>
     
    </div>;
  }
+
+//  <nav>
+//  <ul>
+//    <li>
+//      <Link to="/home/dashbaord">Home</Link>
+//    </li>
+//    <li>
+//      <Link to="/login">Login</Link>
+//    </li>
+//  </ul>
+// </nav>
 // import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';

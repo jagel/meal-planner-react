@@ -1,133 +1,61 @@
 
-import React from "react";
 import './nav-bar.css'
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useMatch,
-  useParams,
-  useLocation,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Navbar from 'react-bootstrap/esm/Navbar';
+import { Container, Nav, Offcanvas } from 'react-bootstrap';
+import { NavBarRequest } from "../../utils/NavBarCollection";
+import { INavBarItems } from "../models/navbar.model";
 
 export default function NavBar(){
-    return <nav>
-        <ul>
-            <li>One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li>Four</li>
-        </ul>
-        <Example />
-    </nav>
-}
+    let navRequest =NavBarRequest();
 
-
-
- function Example() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-            <li>
-              <Link to="/topics/me">Topics</Link>
-            </li>
+    function PrintLink(data:INavBarItems) {
+      if(data.navBarChilds.length>0)
+        return <label key={data.name}>
+          {data.name}
+          <ul key={data.name}>
+            {data.navBarChilds.map((navChildCollection) => 
+              <li key={navChildCollection.name}>
+                <Nav.Link key={navChildCollection.route} as={Link} to={navChildCollection.route} data-bs-dismiss="offcanvas">{navChildCollection.name}</Nav.Link>
+              </li>
+            )}
           </ul>
-        </nav>
-        <Routes>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/users" element={<Users/>} />
-          <Route path='topics/*' element={<Topics/>} />
-          <Route path='/' element={<Home/>} />
+        </label>
+      else
+        return  <Nav.Link key={data.name} as={Link} to={data.route} data-bs-dismiss="offcanvas">{data.name}</Nav.Link>
+    }
+
+    return <>
+      <Navbar bg="light" variant="light" expand={false}>
+        <Container fluid> 
+
+          <Navbar.Toggle className='me-3' />
+          <Navbar.Brand className='me-auto' href="#home">
+            <img
+              alt=""
+              src="/src/img/logo.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+           Meal planner
+          </Navbar.Brand>
           
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+          <Navbar.Offcanvas
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+          placement="start">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              {navRequest.map((data)=>PrintLink(data))}
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
-
-
-function Topics() {
-  return (
-    <div>
-      <nav>
-        <Link to="me">My Profile</Link>
-      </nav>
-
-      <Routes>
-        <Route path=":id" element={<UserProfile />} />
-        <Route path="me" element={<OwnUserProfile />} />
-      </Routes>
-    </div>
-  );
-}
-
-function UserProfile() {
-  let {id} = useParams();
-  let location = useLocation();
-
-  console.log(id, location); return (
-    <div>
-      <h2>
-        {/* This links to /users - the parent route */}
-        <Link to="..">All Users</Link>
-      </h2>
-
-      <h2>
-        {/* This links to /users/:id - the current route */}
-        <Link to=".">User Profile</Link>
-      </h2>
-
-      <h2>
-        {/* This links to /users/mj - a "sibling" route */}
-        <Link to="../mj">MJ</Link>
-      </h2>
-    </div>
-  );
-}
-
-function OwnUserProfile() {
-  
-  return (
-    <div>
-      <h2>
-        {/* This links to /users - the parent route */}
-        <Link to="..">All Users</Link>
-      </h2>
-
-      <h2>
-        {/* This links to /users/:id - the current route */}
-        <Link to=".">User Profile</Link>
-      </h2>
-
-      <h2>
-        {/* This links to /users/mj - a "sibling" route */}
-        <Link to="../mj">MJ</Link>
-      </h2>
-    </div>
-  );
+        </Container>
+      </Navbar>
+  </>
 }
