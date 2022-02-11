@@ -1,6 +1,7 @@
 export interface INavBarItems {
+    code:string;
     name: string;
-    route?:string;
+    route:string;
     hasRoute:boolean;
     isCurrentPage: boolean;
     navBarChilds: INavBarItems[]

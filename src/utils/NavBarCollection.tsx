@@ -4,6 +4,7 @@ export function NavBarRequest(){
     let navegation : INavBarItems[] = [];
   
     let dashboard : INavBarItems = {
+        code:'home',
         name:'Home',
         route:'/',
         hasRoute:true,
@@ -12,17 +13,21 @@ export function NavBarRequest(){
     };
 
     let meals:INavBarItems = {
+        code:'meals',
         name:'Meals',
         hasRoute:false,
+        route:'',
         isCurrentPage:false,
         navBarChilds:[{
+            code:'meals.search',
             name:'Search',
             route:'/meals/search',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]
         },{
-            name:'Search',
+            code:'meals.manager',
+            name:'Manager',
             route:'/meals/manager',
             hasRoute:true,
             isCurrentPage:false,
@@ -32,7 +37,5 @@ export function NavBarRequest(){
 
     navegation.push(dashboard);
     navegation.push(meals);
-    // INavBarItems[] 
-   
     return navegation;
 }
