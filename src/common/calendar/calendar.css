@@ -1,11 +1,15 @@
+:root {
+  --main-color: #39CB75;
+  --secondary-color: #ffffff;
+}
+
 * {box-sizing: border-box;}
 ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
 
 .month {
   padding: 70px 25px;
   width: 100%;
-  background: #39CB75;
+  background: var(--main-color);
   text-align: center;
 }
 
@@ -15,7 +19,7 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .month ul li {
-  color: white;
+  color: var(--secondary-color);
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -57,25 +61,66 @@ body {font-family: Verdana, sans-serif;}
   text-align: center;
   margin-bottom: 5px;
   font-size:12px;
-  color: #777;
+  color:  #777;
 }
 
-.days li .active {
+
+
+
+.calendar-month{
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+}
+
+
+
+ul.calendar-weekdays{
+  display: flex;
+  padding: 10px 0px;
+  justify-content: stretch;
+  width: 100%;
+  background-color: #ddd;
+  margin: 0px;
+}
+
+.calendar-weekdays li{
+  text-align: center;
+  width: 100%;
+  flex: 1 0 13%;  
+}
+
+ul.calendar-days{
+  display: flex;
+  padding: 10px 0px;
+  justify-content: stretch;
+  width: 100%;
+  margin: 0px;
+  flex-wrap: wrap;
+}
+
+.calendar-days li{
+  text-align: center;
+  width: 100%;
+  flex: 1 0 13%;  
+}
+
+.calendar-days li.active {
   padding: 5px;
-  background: #1abc9c;
-  color: white !important
+  border-radius: 5px;
+  background: var(--main-color);
+  color: var(--secondary-color) !important
 }
 
-/* Add media queries for smaller screens */
+/* Add media queries for smaller screens
 @media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
 }
 
 @media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
 }
 
 @media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
 }
+ */
