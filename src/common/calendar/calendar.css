@@ -1,0 +1,126 @@
+:root {
+  --main-color: #39CB75;
+  --secondary-color: #ffffff;
+}
+
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: var(--main-color);
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: var(--secondary-color);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color:  #777;
+}
+
+
+
+
+.calendar-month{
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+}
+
+
+
+ul.calendar-weekdays{
+  display: flex;
+  padding: 10px 0px;
+  justify-content: stretch;
+  width: 100%;
+  background-color: #ddd;
+  margin: 0px;
+}
+
+.calendar-weekdays li{
+  text-align: center;
+  width: 100%;
+  flex: 1 0 13%;  
+}
+
+ul.calendar-days{
+  display: flex;
+  padding: 10px 0px;
+  justify-content: stretch;
+  width: 100%;
+  margin: 0px;
+  flex-wrap: wrap;
+}
+
+.calendar-days li{
+  text-align: center;
+  width: 100%;
+  flex: 1 0 13%;  
+}
+
+.calendar-days li.active {
+  padding: 5px;
+  border-radius: 5px;
+  background: var(--main-color);
+  color: var(--secondary-color) !important
+}
+
+/* Add media queries for smaller screens
+@media screen and (max-width:720px) {
+}
+
+@media screen and (max-width: 420px) {
+}
+
+@media screen and (max-width: 290px) {
+}
+ */
