@@ -1,83 +1,95 @@
 import './calendar.css'
+import React, { useState } from 'react';
+
+let dateSelected = new Date();
+let dayActive : number = 0;
+
 export default function JGLCalendar(props:any){
+  console.log("loading",dayActive)
 
-  let daysOfWeek = DayOfWeedkData(props.lang??'es')
+  let lang = props.lang??'es';
+
+  let daysOfWeek = DayOfWeedkData(lang)
+  let currentMonthName = GetMonthData(dateSelected.getMonth() ,lang);
+  
+  let firstDayMonth = new Date(dateSelected.getFullYear(),dateSelected.getMonth(),1);
+  let emptyItems = firstDayMonth.getDay();
+
+  let lastDayMonth = new Date(dateSelected.getFullYear(),(dateSelected.getMonth()+1),1);
+  lastDayMonth.setDate(lastDayMonth.getDate()-1);
+  let lastDay = lastDayMonth.getDate();
+  let lastEmptyItems = 6 - lastDayMonth.getDay();
+
+  const [currentDate, setCurrentDate] = useState({date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName, day:dateSelected.getDate()});
+
+  const changeMonth = (numberOfMonths:number) => {
+    dateSelected = new Date(dateSelected.setMonth(dateSelected.getMonth()+numberOfMonths));
+    setCurrentDate({...currentDate, date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName,day:dateSelected.getDate()})
+  }
+
+  const changeDay = (day:number) => {
+    dateSelected = new Date(dateSelected.setDate(day));
+    setCurrentDate({...currentDate, date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName,day:dateSelected.getDate()})
+  }
+
+  const getClassNamme = (day : number)=>{
+    return (day+1)==currentDate.day? 'active':''
+  }
+
     return <>
-      <div className="month">
-        <ul>
-          <li className="prev">&#10094;</li>
-          <li className="next">&#10095;</li>
-          <li>
-            August<br />
-            {/* <span style="font-size:18px">2021</span> */}
-            <span>2021</span>
-          </li>
-        </ul>
-      </div>
-
       <div className="calendar-month">
-        <div>&#10094;</div>
-        <div>&#10095;</div>
-        <div>
-          <p>August</p>
-          <p>2022</p>
+        <div className='page' onClick={()=>changeMonth(-1)}><label>&#10094;</label></div>
+        <div className='month-name'>
+          <label>
+            {currentDate.month}<br/>
+            {currentDate.year}
+          </label>
         </div>
+        <div className='page' onClick={()=>changeMonth(1)}><label>&#10095;</label></div>
       </div>
 
       <ul className="calendar-weekdays">
         {daysOfWeek.map((day) => <li key={day}>{day}</li>)}
       </ul>
-
-      <ul className="calendar-days">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li className="active">10</li>
-        <li>11</li>
-        <li>12</li>
-        <li>13</li>
-        <li>14</li>
-        <li>15</li>
-        <li>16</li>
-        <li>17</li>
-        <li>18</li>
-        <li>19</li>
-        <li>20</li>
-        <li>21</li>
-        <li>22</li>
-        <li>23</li>
-        <li>24</li>
-        <li>25</li>
-        <li>26</li>
-        <li>27</li>
-        <li>28</li>
-        <li>29</li>
-        <li>30</li>
-        <li>31</li>
-        <li></li>
+        <ul className="calendar-days">
+          {populateEmptyListItems(emptyItems)}
+          {Array.apply(0, Array(lastDay)).map(function (x, i) {
+          return <li key={i} className={getClassNamme(i)} onClick={()=>changeDay(i+1)}>{i+1}</li>;
+          })}
+          {populateEmptyListItems(lastEmptyItems)}
       </ul>
     </>
 }
+
+const populateEmptyListItems = (numberOfItems : number) => Array.apply(0, Array(numberOfItems)).map((x:any, i:number) => <li key={i}></li>);
+
 
 function DayOfWeedkData(lang:string){
   let daysOfWeek: string[] = [];
   switch(lang){
     case 'es':
-      daysOfWeek = ['Lu', 'Ma', 'Mi','Ju','Vi','Sa','Do']
+      daysOfWeek = ['Do','Lu', 'Ma', 'Mi','Ju','Vi','Sa'];
     break
     
     default:
-      daysOfWeek = ['Mo', 'Tu', 'We','Th','Fr','Sa','Su']
+      daysOfWeek = ['Su','Mo', 'Tu', 'We','Th','Fr','Sa'];
     break
   }
   return daysOfWeek;
+}
+
+function GetMonthData(numberMonth:number, lang:string){
+  let month = [];
+
+  switch(lang){
+    case 'es':
+      month = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    break
+    
+    default:
+      month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    break
+  }
+
+    return month[numberMonth];
 }
