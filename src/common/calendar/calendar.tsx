@@ -1,95 +1,79 @@
+//https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
+
 import './calendar.css'
 import React, { useState } from 'react';
+import { GetMonthAndYearData, I18nSetDaysOfWeek } from './calendar.i18n';
 
 let dateSelected = new Date();
-let dayActive : number = 0;
+let currentDateData = new Date();
 
 export default function JGLCalendar(props:any){
-  console.log("loading",dayActive)
-
   let lang = props.lang??'es';
-
-  let daysOfWeek = DayOfWeedkData(lang)
-  let currentMonthName = GetMonthData(dateSelected.getMonth() ,lang);
-  
-  let firstDayMonth = new Date(dateSelected.getFullYear(),dateSelected.getMonth(),1);
-  let emptyItems = firstDayMonth.getDay();
-
-  let lastDayMonth = new Date(dateSelected.getFullYear(),(dateSelected.getMonth()+1),1);
-  lastDayMonth.setDate(lastDayMonth.getDate()-1);
-  let lastDay = lastDayMonth.getDate();
-  let lastEmptyItems = 6 - lastDayMonth.getDay();
-
-  const [currentDate, setCurrentDate] = useState({date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName, day:dateSelected.getDate()});
+  const [dateData, setDateData] = useState({current:currentDateData, selected:dateSelected});
 
   const changeMonth = (numberOfMonths:number) => {
-    dateSelected = new Date(dateSelected.setMonth(dateSelected.getMonth()+numberOfMonths));
-    setCurrentDate({...currentDate, date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName,day:dateSelected.getDate()})
+    currentDateData = new Date(dateData.current.setMonth(dateData.current.getMonth()+numberOfMonths));
+    setDateData({...dateData, current:currentDateData, selected: dateData.selected})
   }
 
-  const changeDay = (day:number) => {
-    dateSelected = new Date(dateSelected.setDate(day));
-    setCurrentDate({...currentDate, date:dateSelected, year:dateSelected.getFullYear(), month:currentMonthName,day:dateSelected.getDate()})
+  const onDayClick = (day:number) => {
+    dateSelected = new Date(dateData.current.setDate(day));
+    setDateData({...dateData, current:dateData.current, selected:dateSelected})
   }
 
-  const getClassNamme = (day : number)=>{
-    return (day+1)==currentDate.day? 'active':''
-  }
-
-    return <>
-      <div className="calendar-month">
-        <div className='page' onClick={()=>changeMonth(-1)}><label>&#10094;</label></div>
-        <div className='month-name'>
-          <label>
-            {currentDate.month}<br/>
-            {currentDate.year}
-          </label>
-        </div>
-        <div className='page' onClick={()=>changeMonth(1)}><label>&#10095;</label></div>
+  return <div>
+    <div className='calendar-month'>
+      <div className='page' onClick={()=>changeMonth(-1)}><label>&#10094;</label></div>
+      <div className='month-name'>
+        <GetMonthAndYearData lang={lang} date={dateData.current} />
       </div>
-
-      <ul className="calendar-weekdays">
-        {daysOfWeek.map((day) => <li key={day}>{day}</li>)}
-      </ul>
-        <ul className="calendar-days">
-          {populateEmptyListItems(emptyItems)}
-          {Array.apply(0, Array(lastDay)).map(function (x, i) {
-          return <li key={i} className={getClassNamme(i)} onClick={()=>changeDay(i+1)}>{i+1}</li>;
-          })}
-          {populateEmptyListItems(lastEmptyItems)}
-      </ul>
-    </>
+      <div className='page' onClick={()=>changeMonth(1)}><label>&#10095;</label></div>
+    </div>
+    <I18nSetDaysOfWeek lang={lang} />
+    <SetCalendarDays current={dateData.current} selected={dateData.selected} onDayClick={onDayClick}  />
+  </div>
 }
 
-const populateEmptyListItems = (numberOfItems : number) => Array.apply(0, Array(numberOfItems)).map((x:any, i:number) => <li key={i}></li>);
 
+const SetCalendarDays = (props: {current:Date, selected:Date, onDayClick(day:number): void}) => {
+  const getDateSplit = (date : Date) : {day:number, month: number, year: number} => {return {day:date.getDate(),month:date.getMonth(), year:date.getFullYear()}};
+  let currentDate = getDateSplit(props.current);
+  let selectedDate = getDateSplit(props.selected);
 
-function DayOfWeedkData(lang:string){
-  let daysOfWeek: string[] = [];
-  switch(lang){
-    case 'es':
-      daysOfWeek = ['Do','Lu', 'Ma', 'Mi','Ju','Vi','Sa'];
-    break
-    
-    default:
-      daysOfWeek = ['Su','Mo', 'Tu', 'We','Th','Fr','Sa'];
-    break
-  }
-  return daysOfWeek;
-}
-
-function GetMonthData(numberMonth:number, lang:string){
-  let month = [];
-
-  switch(lang){
-    case 'es':
-      month = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-    break
-    
-    default:
-      month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    break
+  const getFisrtEmpySpaces = () : number => {
+    let firstDayMonth = new Date(currentDate.year , currentDate.month , 1);
+    let emptyItems = firstDayMonth.getDay();
+    return emptyItems;
   }
 
-    return month[numberMonth];
+  const getLastEmpySpacesAndLastDate = () : {lastDay : number, lastEmptyItems:number } => {
+    let lastDayMonth = new Date(currentDate.year , (currentDate.month + 1) , 1 );
+    lastDayMonth.setDate(lastDayMonth.getDate()-1);
+    let lastEmptyDays = 6 - lastDayMonth.getDay();
+    let lastDay = lastDayMonth.getDate();
+    return {lastDay : lastDay, lastEmptyItems: lastEmptyDays };
+  }
+  
+  const getClassNamme = (day : number)=>{
+    day++;
+    let className = '';
+    if(currentDate.month === selectedDate.month && currentDate.year === selectedDate.year && selectedDate.day === day)
+      className = 'active';
+
+    return className;
+  }
+
+  let firstEmptyItems = getFisrtEmpySpaces();
+  let endMonthData = getLastEmpySpacesAndLastDate();
+
+  const populateEmptyListItems = (numberOfItems : number) => Array.apply(0, Array(numberOfItems)).map((x:any, i:number) => <li key={i}></li>);
+
+  return <ul className='calendar-days'>
+    {populateEmptyListItems(firstEmptyItems)}
+    {Array.apply(0, Array(endMonthData.lastDay)).map(function (x, i) {
+      return <li key={i} className={getClassNamme(i)} onClick={()=>props.onDayClick(i+1)}>{i+1}</li>;
+    })}
+    {populateEmptyListItems(endMonthData.lastEmptyItems)}
+  </ul>
 }
+
