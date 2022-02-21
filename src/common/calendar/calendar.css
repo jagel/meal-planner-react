@@ -70,12 +70,12 @@ ul.calendar-days{
 .calendar-days li{
   text-align: center;
   width: 100%;
-  flex: 1 0 13%;  
+  flex: 1 0 13%;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .calendar-days li.active {
-  padding: 5px;
-  border-radius: 5px;
   background: var(--main-color);
   color: var(--secondary-color) !important
 }
