@@ -1,9 +1,13 @@
 import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
-import Text118n from "../../../common/i18-text";
+import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+
+import 'draft-js/dist/Draft.css';
 
 export default function RecipeCreate(){
+    const textValue = SetLocalizationText;
+
     return <Container>
-        <h1><Text118n text='Create Recipe'></Text118n></h1>
+        <h1>{textValue('New Recipe')}</h1>
 
         <Breadcrumb>
             <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
@@ -15,8 +19,8 @@ export default function RecipeCreate(){
 
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Label>{textValue('Name')}</Form.Label>
+                <Form.Control type="text" placeholder={textValue('Recipe Name')} />
                 <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
                 </Form.Text>
@@ -29,9 +33,18 @@ export default function RecipeCreate(){
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
+            <MyEditor />;
             <Button variant="primary" type="submit">
                 Submit
             </Button>
         </Form>
     </Container>
 }
+
+function MyEditor() {
+    const [editorState, setEditorState] = React.useState(
+      () => EditorState.createEmpty(),
+    );
+  
+    return <Editor editorState={editorState} onChange={setEditorState} />;
+  }
