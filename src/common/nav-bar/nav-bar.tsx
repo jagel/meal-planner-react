@@ -7,7 +7,7 @@ import { NavBarRequest } from "../../utils/NavBarCollection";
 import { INavBarItems } from "../models/navbar.model";
 
 export default function NavBar(){
-    let navRequest =NavBarRequest();
+    let navRequest = NavBarRequest();
 
     function PrintLink(data:INavBarItems) {
       if(data.navBarChilds.length>0)

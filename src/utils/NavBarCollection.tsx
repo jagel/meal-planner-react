@@ -13,22 +13,29 @@ export function NavBarRequest(){
     };
 
     let meals:INavBarItems = {
-        code:'meals',
-        name:'Meals',
+        code:'recipe',
+        name:'Recipe',
         hasRoute:false,
         route:'',
-        isCurrentPage:false,
+        isCurrentPage:false,    
         navBarChilds:[{
-            code:'meals.search',
+            code:'recipe.search',
             name:'Search',
-            route:'/meals/search',
+            route:'/recipe/search',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]
         },{
-            code:'meals.manager',
+            code:'recipe.create',
+            name:'New Recipe',
+            route:'/meals/create',
+            hasRoute:true,
+            isCurrentPage:false,
+            navBarChilds:[]
+        },{
+            code:'recipe.manager',
             name:'Manager',
-            route:'/meals/manager',
+            route:'/recipe/manager',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]

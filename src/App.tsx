@@ -13,6 +13,7 @@ import Login from './pages/auth/login/login';
 import Dashboard from './pages/dashboard/dashboard';
 import { Container } from 'react-bootstrap';
 import NavBar from './common/nav-bar/nav-bar';
+import RecipeCreate from './pages/recipes/create/recipe.create';
 
 
 
@@ -25,6 +26,8 @@ import NavBar from './common/nav-bar/nav-bar';
           {/* Static Routes */}
           <Route path="/" element={<Dashboard/>} />
           <Route path="/login" element={<Login/>} />
+          
+          <Route path="/recipe/create" element={<RecipeCreate/>} />
 
           {/* Dynamic Routes */}
         </Routes>
