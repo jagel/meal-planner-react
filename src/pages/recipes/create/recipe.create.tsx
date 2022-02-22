@@ -1,8 +1,6 @@
 import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { SetLocalizationText } from "../../../utils/i18n/languageManager";
 
-import 'draft-js/dist/Draft.css';
-
 export default function RecipeCreate(){
     const textValue = SetLocalizationText;
 
@@ -33,18 +31,9 @@ export default function RecipeCreate(){
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <MyEditor />;
             <Button variant="primary" type="submit">
                 Submit
             </Button>
         </Form>
     </Container>
 }
-
-function MyEditor() {
-    const [editorState, setEditorState] = React.useState(
-      () => EditorState.createEmpty(),
-    );
-  
-    return <Editor editorState={editorState} onChange={setEditorState} />;
-  }
