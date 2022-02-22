@@ -13,7 +13,7 @@ export default function JGLCalendar(props:any){
 
   const changeMonth = (numberOfMonths:number) => {
     currentDateData = new Date(dateData.current.setMonth(dateData.current.getMonth()+numberOfMonths));
-    setDateData({...dateData, current:currentDateData, selected: dateData.selected})
+    setDateData((prevState) =>  {return { current:currentDateData, selected: prevState.selected}  });
   }
 
   const onDayClick = (day:number) => {
