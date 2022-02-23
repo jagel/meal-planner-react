@@ -13,7 +13,8 @@ import Login from './pages/auth/login/login';
 import Dashboard from './pages/dashboard/dashboard';
 import { Container } from 'react-bootstrap';
 import NavBar from './common/nav-bar/nav-bar';
-import RecipeCreate from './pages/recipes/create/recipe.create';
+import RecipeCreate from './pages/recipes/recipe-create/recipe.create';
+import RecipeUpdate from './pages/recipes/recipe-update/recipe.update';
 
 
 
@@ -21,17 +22,17 @@ import RecipeCreate from './pages/recipes/create/recipe.create';
    return <div>
      <Router>
       <NavBar/>
-      <Container>
-        <Routes>
-          {/* Static Routes */}
-          <Route path="/" element={<Dashboard/>} />
-          <Route path="/login" element={<Login/>} />
-          
-          <Route path="/recipe/create" element={<RecipeCreate/>} />
+      <Routes>
+        {/* Static Routes */}
+        <Route path="/" element={<Dashboard/>} />
+        <Route path="/login" element={<Login/>} />
+        
+        <Route path="/recipe/create" element={<RecipeCreate/>} />
+        <Route path="/recipe/update/:recipeId" element={<RecipeUpdate/>} />
 
-          {/* Dynamic Routes */}
-        </Routes>
-      </Container>
+        {/* Dynamic Routes */}
+        
+      </Routes>
     </Router>
     
    </div>;
