@@ -22,17 +22,19 @@ import RecipeUpdate from './pages/recipes/recipe-update/recipe.update';
    return <div>
      <Router>
       <NavBar/>
-      <Routes>
-        {/* Static Routes */}
-        <Route path="/" element={<Dashboard/>} />
-        <Route path="/login" element={<Login/>} />
-        
-        <Route path="/recipe/create" element={<RecipeCreate/>} />
-        <Route path="/recipe/update/:recipeId" element={<RecipeUpdate/>} />
+      <Container>
+        <Routes>
+          {/* Static Routes */}
+          <Route path="/" element={<Dashboard/>} />
+          <Route path="/login" element={<Login/>} />
+          
+          <Route path="/recipe/create" element={<RecipeCreate/>} />
+          <Route path="/recipe/update/:recipeId" element={<RecipeUpdate/>} />
 
-        {/* Dynamic Routes */}
-        
-      </Routes>
+          {/* Dynamic Routes */}
+          
+        </Routes>
+      </Container>
     </Router>
     
    </div>;

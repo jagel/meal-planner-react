@@ -9,7 +9,7 @@ export default function RecipeCreate(){
         console.log(event)
     }
 
-    return <Container>
+    return <div>
         <h1>{textValue('New Recipe')}</h1>
         <Breadcrumb>
             <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
@@ -36,5 +36,5 @@ export default function RecipeCreate(){
                 {textValue('save')}
             </Button>
         </Form>
-    </Container>
+    </div>
 }
