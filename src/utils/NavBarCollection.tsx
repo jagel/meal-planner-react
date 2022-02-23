@@ -5,7 +5,6 @@ export function NavBarRequest(){
   
     let dashboard : INavBarItems = {
         code:'home',
-        name:'Home',
         route:'/',
         hasRoute:true,
         isCurrentPage:false,
@@ -13,22 +12,25 @@ export function NavBarRequest(){
     };
 
     let meals:INavBarItems = {
-        code:'meals',
-        name:'Meals',
+        code:'recipe',
         hasRoute:false,
         route:'',
-        isCurrentPage:false,
+        isCurrentPage:false,    
         navBarChilds:[{
-            code:'meals.search',
-            name:'Search',
-            route:'/meals/search',
+            code:'recipe.search',
+            route:'/recipe/search',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]
         },{
-            code:'meals.manager',
-            name:'Manager',
-            route:'/meals/manager',
+            code:'recipe.create',
+            route:'/recipe/create',
+            hasRoute:true,
+            isCurrentPage:false,
+            navBarChilds:[]
+        },{
+            code:'recipe.manager',
+            route:'/recipe/manager',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]

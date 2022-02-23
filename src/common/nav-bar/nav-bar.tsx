@@ -5,24 +5,26 @@ import Navbar from 'react-bootstrap/esm/Navbar';
 import { Container, Nav, Offcanvas } from 'react-bootstrap';
 import { NavBarRequest } from "../../utils/NavBarCollection";
 import { INavBarItems } from "../models/navbar.model";
+import { SetLocalizationText } from '../../utils/i18n/languageManager';
 
 export default function NavBar(){
-    let navRequest =NavBarRequest();
+    let navRequest = NavBarRequest();
+    let localization = SetLocalizationText;
 
     function PrintLink(data:INavBarItems) {
       if(data.navBarChilds.length>0)
-        return <label key={data.name}>
-          {data.name}
-          <ul key={data.name}>
+        return <label key={data.code}>
+          {localization(data.code)}
+          <ul key={data.code}>
             {data.navBarChilds.map((navChildCollection) => 
-              <li key={navChildCollection.name}>
-                <Nav.Link key={navChildCollection.route} as={Link} to={navChildCollection.route} data-bs-dismiss="offcanvas">{navChildCollection.name}</Nav.Link>
+              <li key={navChildCollection.code}>
+                <Nav.Link key={navChildCollection.route} as={Link} to={navChildCollection.route} data-bs-dismiss="offcanvas">{localization(navChildCollection.code)}</Nav.Link>
               </li>
             )}
           </ul>
         </label>
       else
-        return  <Nav.Link key={data.name} as={Link} to={data.route} data-bs-dismiss="offcanvas">{data.name}</Nav.Link>
+        return  <Nav.Link key={data.code} as={Link} to={data.route} data-bs-dismiss="offcanvas">{localization(data.code)}</Nav.Link>
     }
 
     return <>
