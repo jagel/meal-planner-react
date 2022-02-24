@@ -7,18 +7,19 @@ import { IRecipeModel } from "../../../common/models/recipe.form";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
 import { ROUTESCODE } from "../../../utils/NavBarCollection";
+import { RecipeViewer } from "../../../components/recipes/recipe.view";
 
-export default function RecipeUpdate(){
+export default function RecipeView(){
     const textValue = SetLocalizationText;
     let routeCode = ROUTESCODE.RECIPE_UPDATE;
     let { recipeId } = useParams();
 
-    const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
+    const [recipe, setRecipeState] = useState({} as IRecipeModel);
 
     useEffect(()=>{
-        getData(ROUTES.RECIPE.UPDATE, {recipeId:recipeId}).then(response => {
+        getData(ROUTES.RECIPE.GETBYRECIPEID, {recipeId:recipeId}).then(response => {
             console.log(response.data);
-            setRecipeFormState(response.data)
+            setRecipeState(response.data)
         });
     },[])
 
@@ -29,11 +30,6 @@ export default function RecipeUpdate(){
     let dynamicParams : string[]= [`/${recipeId}`];
     return <div>
         <PageRoute currenRoute={routeCode} dynamicParams={dynamicParams}  />
-        <Form>
-            <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />
-            <Button variant="primary" type="submit">
-                {textValue('save')}
-            </Button>
-        </Form>
+        <RecipeViewer recipe={recipe}  />
     </div>
 }

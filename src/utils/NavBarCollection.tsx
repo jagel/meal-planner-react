@@ -4,7 +4,7 @@ export function NavBarRequest(){
     let navegation : INavBarItems[] = [];
   
     let dashboard : INavBarItems = {
-        code:'home',
+        code:ROUTESCODE.HOME,
         route:'/',
         hasRoute:true,
         isCurrentPage:false,
@@ -17,20 +17,14 @@ export function NavBarRequest(){
         route:'',
         isCurrentPage:false,    
         navBarChilds:[{
-            code:'recipe.search',
-            route:'/recipe/search',
+            code: ROUTESCODE.RECIPE_SEARCH,
+            route:'/recipes',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]
         },{
-            code:'recipe.create',
-            route:'/recipe/create',
-            hasRoute:true,
-            isCurrentPage:false,
-            navBarChilds:[]
-        },{
-            code:'recipe.manager',
-            route:'/recipe/manager',
+            code:ROUTESCODE.RECIPE_CREATE,
+            route:'/recipes/create',
             hasRoute:true,
             isCurrentPage:false,
             navBarChilds:[]
@@ -40,4 +34,12 @@ export function NavBarRequest(){
     navegation.push(dashboard);
     navegation.push(meals);
     return navegation;
+}
+
+export const ROUTESCODE = {
+    HOME : 'home',
+    RECIPE : 'recipe',
+    RECIPE_SEARCH : 'recipe.search',
+    RECIPE_CREATE : 'recipe.create',
+    RECIPE_UPDATE : 'recipe.update',
 }
