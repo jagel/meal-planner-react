@@ -1,7 +1,8 @@
 export const ROUTES = {
   RECIPE : {
     CREATE : 'Recipe/CreateRecipe',
-    UPDATE : 'Recipe/UpdateRecipe/:recipeId'
+    UPDATE : 'Recipe/UpdateRecipe/:recipeId',
+    GETBYRECIPEID : 'Recipe/GetRecipeByRecipeId/:recipeId'
   }
 }
 
