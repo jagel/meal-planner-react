@@ -1,12 +1,29 @@
 import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
+import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+import { IRecipeModel } from "../../../common/models/recipe.form";
+import { postDataAsync } from "../../../utils/api-request";
+import { useState } from "react";
+
 
 export default function RecipeCreate(){
     const textValue = SetLocalizationText;
-  
+    const [recipeForm, setCreateFormSetState] = useState({validated:false, newRecipe: {} as IRecipeModel});
+    
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(event)
+        event.stopPropagation(); 
+        
+        const form = event.currentTarget;
+        let isValid = form.checkValidity();
+
+        if (isValid) {
+            console.log(recipeForm.newRecipe)
+            postDataAsync<IRecipeModel>('https://localhost:7242/api/Recipe/CreateRecipe',recipeForm.newRecipe)
+        }
+        else{
+            setCreateFormSetState({validated:false, newRecipe: recipeForm.newRecipe});
+        }
     }
 
     return <div>
@@ -19,22 +36,12 @@ export default function RecipeCreate(){
             <Breadcrumb.Item active>Data</Breadcrumb.Item>
         </Breadcrumb>
 
-        <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>{textValue('Name')}</Form.Label>
-                <Form.Control type="text" placeholder={textValue('Recipe Name')} />
-                {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text> */}
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>{textValue('Recipe Description')}</Form.Label>
-                <Form.Control type="text" placeholder={textValue('Recipe Description')} />
-            </Form.Group>
+        <Form noValidate validated={recipeForm.validated} onSubmit={onSubmit}>
+            <RecipeForm recipe={recipeForm.newRecipe} />
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>
         </Form>
     </div>
 }
+

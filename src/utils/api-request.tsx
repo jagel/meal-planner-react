@@ -42,6 +42,28 @@ export function getData(url:string){
     });
 }
 
+export async function postDataAsync<TModelRequest>(url:string, data : TModelRequest){
+  return fetch( url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.          
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data) 
+  })
+  .then(function(response){
+      console.log('first data',response)
+      return response.json();
+  })
+  // .then(function(myJson) {
+  //     console.log('second data',myJson);
+  //     console.log('second data response',myJson.data);
+  // })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
+
+
   // async function postData(url = '', data = {}) {
   //   // Default options are marked with *
   //   const response = await fetch(url, {
