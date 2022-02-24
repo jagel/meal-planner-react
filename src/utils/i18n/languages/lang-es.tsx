@@ -4,9 +4,9 @@ import { ILanguageModel } from "./lang-model";
 export const LanguageData : ILanguageModel[] = [
     { code: 'home', value : 'Inicio' },
     { code: 'recipe', value : 'Recetario' },
-    { code: 'recipe.search', value : 'Buscar' },
-    { code: 'recipe.create', value : 'Crear' },
-    { code: 'recipe.manager', value : 'Administrar' },
+    { code: 'recipe.search', value : 'Buscar Receta' },
+    { code: 'recipe.create', value : 'Nueva Receta' },
+    { code: 'recipe.update', value : 'Actualizar Receta' },
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },
