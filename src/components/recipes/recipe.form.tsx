@@ -1,54 +1,39 @@
 import { createRef, useState } from "react";
-import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
 import { IRecipeModel } from "../../common/models/recipe.form";
 import { SetLocalizationText } from "../../utils/i18n/languageManager";
+import { Breadcrumb, Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
-export const RecipeForm = (props : {recipe:IRecipeModel}) => {
+export const RecipeForm = (
+    props : {
+        recipe:IRecipeModel, 
+        onTextChange(event:React.ChangeEvent<HTMLInputElement>):void
+    }) => {
     const textValue = SetLocalizationText;
-
-    const [recipe, setRecipeState] = useState(props.recipe);
-    const input = createRef();
-
-    const textChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        let name = event.target.name;
-        let value = event.target.value;
-          switch(name){
-            case  'name':
-                recipe.name = value;
-            break;
-            case 'description':
-                recipe.description = value;
-            break
-        }
-
-        setRecipeState(recipe);
-    }
-    return <>
-         <Form.Group className="mb-3" controlId="recipe.name">
-            <Form.Label>{textValue('Name')}</Form.Label>
-            <Form.Control 
-                name="name"
-                type="text" 
-                placeholder={textValue('Recipe Name')} 
-                value={recipe.name}
-                onChange={textChange.bind(this)}
-                required
-                />
-                <Form.Control.Feedback type="invalid">
-                    Field is required.
-                </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="recipe.description">
-            <Form.Label>{textValue('Recipe Description')}</Form.Label>
-            <Form.Control 
-                name="description"
-                type="text" 
-                placeholder={textValue('Recipe Description')} 
-                value={recipe.description}
-                onChange={textChange.bind(this)}
-                isValid={false}
-                />
-        </Form.Group> 
-    </>
-};
+   
+   return <Row className="mb-3">
+      <Form.Group as={Col} md="12" controlId="name">
+      <Form.Label>{textValue('Name')}</Form.Label>
+      <Form.Control
+        required
+        name="name"  type="text"
+        placeholder={textValue('Recipe Name')}
+        onChange={props.onTextChange}
+        defaultValue={props.recipe.name}
+      />
+       <Form.Control.Feedback type="invalid">
+        Please provide a valid city.
+      </Form.Control.Feedback>
+        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" controlId="description">
+        <Form.Label>{textValue('Recipe Description')}</Form.Label>
+        <Form.Control
+            type="text"
+            placeholder={textValue('Recipe Description')} 
+            onChange={props.onTextChange}
+            defaultValue={props.recipe.description}
+        />
+        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+    </Form.Group>
+    </Row>
+  }
