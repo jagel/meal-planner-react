@@ -1,40 +1,43 @@
-import { Breadcrumb, Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
+import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+import { IRecipeModel } from "../../../common/models/recipe.form";
+import { postDataAsync, ROUTES } from "../../../utils/api-request";
+import { useState } from "react";
 
 export default function RecipeCreate(){
+    const [validated, setValidated] = useState(false);
+    const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
     const textValue = SetLocalizationText;
-  
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(event)
-    }
+        event.stopPropagation();
+        
+      const form = event.currentTarget;
+      let isValid = form.checkValidity();
 
-    return <div>
-        <h1>{textValue('New Recipe')}</h1>
-        <Breadcrumb>
-            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                Library
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
-        </Breadcrumb>
+      if (isValid) 
+        postDataAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
+            .then((data:any) => console.log('completed'))
+      else
+        setValidated(true);
+    };
 
-        <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>{textValue('Name')}</Form.Label>
-                <Form.Control type="text" placeholder={textValue('Recipe Name')} />
-                {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text> */}
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>{textValue('Recipe Description')}</Form.Label>
-                <Form.Control type="text" placeholder={textValue('Recipe Description')} />
-            </Form.Group>
+    const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
+        setRecipeFormState({
+            ...recipeForm,
+            [event.target.id]: event.target.value
+          });
+    } 
+  
+    return (
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>
-        </Form>
-    </div>
-}
+      </Form>
+    );
+  }
+
