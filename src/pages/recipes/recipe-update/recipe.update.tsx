@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 import { getData, ROUTES } from "../../../utils/api-request";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
+import { PageRoute } from "../../../components/navigation/page-routes/page-route";
+import { ROUTESCODE } from "../../../utils/NavBarCollection";
 
 export default function RecipeUpdate(){
     const textValue = SetLocalizationText;
+    let routeCode = ROUTESCODE.RECIPE_UPDATE;
     let { recipeId } = useParams();
 
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
@@ -23,16 +26,9 @@ export default function RecipeUpdate(){
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
     }
   
+    let dynamicParams : string[]= [`/${recipeId}`];
     return <div>
-        <h1>{textValue('New Recipe')}</h1>
-        <Breadcrumb>
-            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                Library
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
-        </Breadcrumb>
-
+        <PageRoute currenRoute={routeCode} dynamicParams={dynamicParams}  />
         <Form>
             <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />
             <Button variant="primary" type="submit">

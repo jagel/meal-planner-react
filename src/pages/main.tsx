@@ -1,5 +1,5 @@
 import './main.css'
-import NavBar from '../common/nav-bar/nav-bar'
+import NavBar from '../components/navigation/nav-bar/nav-bar'
 import {
     BrowserRouter as Router,
     Route,
