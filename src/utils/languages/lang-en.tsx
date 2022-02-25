@@ -1,4 +1,4 @@
-import { ILanguageModel } from "./lang-model";
+import { ILanguageModel } from "../../common/models/lang.model";
 
 
 export const LanguageData : ILanguageModel[] = [

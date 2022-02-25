@@ -1,6 +1,6 @@
 import { createRef, useState } from "react";
 import { IRecipeModel } from "../../common/models/recipe.form";
-import { SetLocalizationText } from "../../utils/i18n/languageManager";
+import { SetLocalizationText } from "../../services/i18n/languageManager";
 import { Breadcrumb, Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
 export const RecipeForm = (
