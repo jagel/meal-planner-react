@@ -1,7 +1,7 @@
 import { LocalStorageService, LOC_SOTRAGE } from "../localStorage/localStorage"
-import { LanguageData as LangageDataEn } from "./languages/lang-en"
-import { LanguageData as LangageDataEs } from "./languages/lang-es"
-import { ILanguageModel } from "./languages/lang-model"
+import { LanguageData as LangageDataEn } from "../../utils/languages/lang-en"
+import { LanguageData as LangageDataEs } from "../../utils/languages/lang-es"
+import { ILanguageModel } from "../../common/models/lang.model"
 
 export const SetLocalizationText = (text : string) => {
 

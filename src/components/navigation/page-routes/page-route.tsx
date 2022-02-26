@@ -1,6 +1,6 @@
 import { Breadcrumb, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+import { SetLocalizationText } from "../../../services/i18n/languageManager";
 
 export const PageRoute = (props : {
     currenRoute:string,

@@ -1,12 +1,12 @@
 import { Breadcrumb, Button, Container, Form } from "react-bootstrap"
 import { useParams } from "react-router-dom";
-import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+import { SetLocalizationText } from "../../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
-import { getData, ROUTES } from "../../../utils/api-request";
+import { getData, ROUTES } from "../../../services/requests/api-request";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
-import { ROUTESCODE } from "../../../utils/NavBarCollection";
+import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 import { RecipeViewer } from "../../../components/recipes/recipe.view";
 
 export default function RecipeView(){

@@ -1,11 +1,11 @@
 import { Button, Form } from "react-bootstrap";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
-import { SetLocalizationText } from "../../../utils/i18n/languageManager";
+import { SetLocalizationText } from "../../../services/i18n/languageManager";
 import { IRecipeModel } from "../../../common/models/recipe.form";
-import { postDataAsync, ROUTES } from "../../../utils/api-request";
+import { postDataAsync, ROUTES } from "../../../services/requests/api-request";
 import { useState } from "react";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
-import { ROUTESCODE } from "../../../utils/NavBarCollection";
+import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 
 export default function RecipeCreate(){
     let routeCode = ROUTESCODE.RECIPE_CREATE;

@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom"
-import Login from "../../../pages/auth/login/login"
-import Dashboard from "../../../pages/dashboard/dashboard"
-import RecipeCreate from "../../../pages/recipes/recipe-create/recipe.create"
-import RecipeUpdate from "../../../pages/recipes/recipe-update/recipe.update"
-import RecipeSearch from './../../../pages/recipes/recipe-search/recipe-search';
-import RecipeView from './../../../pages/recipes/recipe-view/recipe.view';
+import Login from "../../pages/auth/login/login"
+import Dashboard from "../../pages/dashboard/dashboard"
+import RecipeCreate from "../../pages/recipes/recipe-create/recipe.create"
+import RecipeUpdate from "../../pages/recipes/recipe-update/recipe.update"
+import RecipeSearch from '../../pages/recipes/recipe-search/recipe-search';
+import RecipeView from '../../pages/recipes/recipe-view/recipe.view';
 
 export const RoutingItems = () => {
     return <Routes>

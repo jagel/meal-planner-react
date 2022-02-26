@@ -3,9 +3,9 @@ import './nav-bar.css'
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/esm/Navbar';
 import { Container, Nav, Offcanvas } from 'react-bootstrap';
-import { NavBarRequest } from "../../../utils/NavBarCollection";
+import { NavBarRequest } from "../../../utils/data/navigation.collection";
 import { INavBarItems } from "../../../common/models/navbar.model";
-import { SetLocalizationText } from '../../../utils/i18n/languageManager';
+import { SetLocalizationText } from '../../../services/i18n/languageManager';
 
 export default function NavBar(){
     let navRequest = NavBarRequest();

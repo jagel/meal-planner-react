@@ -1,4 +1,4 @@
-import { INavBarItems } from "../common/models/navbar.model";
+import { INavBarItems } from "../../common/models/navbar.model";
 
 export function NavBarRequest(){
     let navegation : INavBarItems[] = [];

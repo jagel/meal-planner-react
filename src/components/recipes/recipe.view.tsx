@@ -1,5 +1,5 @@
 import { IRecipeModel } from "../../common/models/recipe.form";
-import { SetLocalizationText } from "../../utils/i18n/languageManager";
+import { SetLocalizationText } from "../../services/i18n/languageManager";
 
 export const RecipeViewer = (
     props : {
