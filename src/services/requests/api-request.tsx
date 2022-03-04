@@ -1,53 +1,77 @@
+import axios, { AxiosResponse } from "axios";
+
 export const ROUTES = {
   RECIPE : {
     CREATE : 'Recipe/CreateRecipe',
-    UPDATE : 'Recipe/UpdateRecipe/:recipeId',
-    GETBYRECIPEID : 'Recipe/GetRecipeByRecipeId/:recipeId'
+    UPDATE : 'Recipe/UpdateRecipe/{recipeId}',
+    GETBYRECIPEID : 'Recipe/getRecipeById/{recipeId}'
   }
 }
 
-export function getData(url:string, ...params:any){
-  let hostUrl = getHostURL();
+class HttpRequestService{
+
+  constructor() {
+  }
+
+  async httpGetAsync<TResponse>(endpoint:string, params?:any) : Promise<TResponse|undefined> {
+    endpoint = this.replaceUrl(endpoint, params);
+    var callRequest = this.getBaseAPI_URL() + endpoint;
+   
+    var responseData : TResponse | undefined = undefined;
+    await axios.get<any,AxiosResponse<TResponse,any>,any>(callRequest)
+        .then(response => {
+          responseData = response.data;
+        }).catch(x => {
+          console.error(x);
+        });
+    return responseData;
+  }
+
+  async httpPostAsync<TResponse>(endpoint:string, data:any, params?:any) : Promise<TResponse|undefined> {
+    endpoint = this.replaceUrl(endpoint, params);
+    var endpointCall = this.getBaseAPI_URL() + endpoint;
+   
+    console.log(endpoint);
+
+    var responseData : TResponse | undefined = undefined;
+
+    await axios.post<any,AxiosResponse<TResponse,any>,any>(endpointCall, data)
+        .then(response => {
+          responseData = response.data;
+        }).catch(x => {
+          console.error(x);
+        });
+    return responseData;
+  }
+
+  getBaseAPI_URL = () : string => {
+    var url = process.env.REACT_APP_ROOT_URL;
+
+    if(url == undefined)
+      throw "URL Root not defined";
+
+      return url
+  }
+
+  replaceUrl = (endpoint :string, params? :any) : string => {
+
+    for (var prop in params??[]) 
+      endpoint = endpoint.replace(`{${prop}}`,params[prop])
+    
+    if(endpoint.includes("{") || endpoint.includes("}"))
+      throw `Parameters no defined correctly in endpoint ${endpoint}`;
+    
+    return endpoint;
+  }
+
+  getHostURL = () : string =>{
+    var url = process.env.REACT_APP_ROOT_URL;
   
-  return fetch( url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.          
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(function(response){
-        console.log('first data',response)
-        return response.json();
-    })
-    // .then(function(myJson) {
-    //     console.log('second data',myJson);
-    //     console.log('second data response',myJson.data);
-    // })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    if(url == undefined)
+      throw "URL Root not defined";
+  
+      return url
+  }
 }
 
-export async function postDataAsync<TModelRequest>(pathRoute:string, data : TModelRequest){
-  let hostUrl = getHostURL();
-  return fetch( hostUrl+ pathRoute, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.          
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) 
-  })
-  .then(function(response){
-      console.log('first data',response)
-      return response.json();
-  })
-  // .then(function(myJson) {
-  //     console.log('second data',myJson);
-  //     console.log('second data response',myJson.data);
-  // })
-  .catch(error => {
-      console.error('Error:', error);
-  });
-}
-
-const getHostURL = () : string =>  process.env.API_URL??'https://localhost:7242/api/';
+export const requestService = new HttpRequestService();

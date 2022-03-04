@@ -7,10 +7,16 @@ import RecipeCreate from "../../pages/recipes/recipe-create/recipe.create"
 import RecipeUpdate from "../../pages/recipes/recipe-update/recipe.update"
 import RecipeSearch from '../../pages/recipes/recipe-search/recipe-search';
 import RecipeView from '../../pages/recipes/recipe-view/recipe.view';
+import React from "react";
 
 export const RoutesItems : RouteObject[] = [{
     path: "/",
-    element: <MainComponent />,
+    element: 
+    //lazy load
+        <React.Suspense fallback={<>...</>}> 
+            <MainComponent />
+        </React.Suspense>
+    ,
     children: [
         {
             index:true,
@@ -28,13 +34,13 @@ export const RoutesItems : RouteObject[] = [{
             children:[
                 {index:true, element: <RecipeCreate />}
             ]
-        },{
-            path:"*", 
-            element: <NoMatch />
         }]
 },{
     path:"/login",
     element: <Login />
+},{
+    path:"*", 
+    element: <NoMatch />
 }];
 
 export default RoutesItems;
