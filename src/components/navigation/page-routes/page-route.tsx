@@ -6,7 +6,7 @@ export const PageRoute = (props : {
     currenRoute:string,
     dynamicParams?:string[],
     }) => {
-    
+
     const textValue = SetLocalizationText;
     let location = useLocation();
     let pathname = location.pathname;

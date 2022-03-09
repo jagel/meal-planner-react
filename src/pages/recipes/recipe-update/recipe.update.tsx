@@ -2,11 +2,12 @@ import { Breadcrumb, Button, Container, Form } from "react-bootstrap"
 import { useParams } from "react-router-dom";
 import { SetLocalizationText } from "../../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
-import { getData, ROUTES } from "../../../services/requests/api-request";
+import { ROUTES } from "../../../utils/data/api-routes";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
 import { ROUTESCODE } from "../../../utils/data/navigation.collection";
+import { requestService } from "../../../services/api-service";
 
 export default function RecipeUpdate(){
     const textValue = SetLocalizationText;
@@ -16,10 +17,11 @@ export default function RecipeUpdate(){
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
 
     useEffect(()=>{
-        getData(ROUTES.RECIPE.UPDATE, {recipeId:recipeId}).then(response => {
-            console.log(response.data);
-            setRecipeFormState(response.data)
-        });
+        requestService.httpGetAsync<IRecipeModel>(ROUTES.RECIPE.GETBYRECIPEID, {recipeId})
+            .then(response => {
+                console.log(response);
+                setRecipeFormState(response??recipeForm);
+            });
     },[])
 
 

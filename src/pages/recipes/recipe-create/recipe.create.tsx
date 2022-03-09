@@ -2,10 +2,11 @@ import { Button, Form } from "react-bootstrap";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
 import { SetLocalizationText } from "../../../services/i18n/languageManager";
 import { IRecipeModel } from "../../../common/models/recipe.form";
-import { postDataAsync, ROUTES } from "../../../services/requests/api-request";
+import { ROUTES } from "../../../utils/data/api-routes";
 import { useState } from "react";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
 import { ROUTESCODE } from "../../../utils/data/navigation.collection";
+import { requestService } from "../../../services/api-service";
 
 export default function RecipeCreate(){
     let routeCode = ROUTESCODE.RECIPE_CREATE;
@@ -22,8 +23,8 @@ export default function RecipeCreate(){
       let isValid = form.checkValidity();
 
       if (isValid) 
-        postDataAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
-            .then((data:any) => console.log('completed'))
+        requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
+            .then((data) => console.log('completed',data))
       else
         setValidated(true);
     };
