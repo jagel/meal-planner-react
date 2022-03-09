@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ILoginModel } from "../../common/models/login.model";
+import { UserRequestType } from "../../common/models/auth-user.types";
 import { LocalStorageService, LOC_SOTRAGE } from "../localStorage/localStorage";
 
 class AuthService {  
-    login(loginData :ILoginModel ) {
+    login(loginData : UserRequestType ) {
       let API_URL = 'tmp:/url';
       return axios
         .post(API_URL + "signin", loginData)

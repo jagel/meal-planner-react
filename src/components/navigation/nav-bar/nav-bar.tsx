@@ -8,8 +8,10 @@ import { INavBarItems } from "../../../common/models/navbar.model";
 import { SetLocalizationText } from '../../../services/i18n/languageManager';
 
 export default function NavBar(){
+
     let navRequest = NavBarRequest();
     let localization = SetLocalizationText;
+
 
     function PrintLink(data:INavBarItems) {
       if(data.navBarChilds.length>0)
@@ -61,3 +63,27 @@ export default function NavBar(){
       </Navbar>
   </>
 }
+
+//function AuthStatus() {
+  //     let auth = useAuth();
+  //     let navigate = useNavigate();
+    
+  //     if (!auth.user) {
+  //       return <p>You are not logged in.</p>;
+  //     }
+    
+  //     return (
+  //       <p>
+  //         Welcome {auth.user}!{" "}
+  //         <button
+  //           onClick={() => {
+  //             auth.signout(() => navigate("/"));
+  //           }}
+  //         >
+  //           Sign out
+  //         </button>
+  //       </p>
+  //     );
+     //}
+  
+    //export default AuthStatus;

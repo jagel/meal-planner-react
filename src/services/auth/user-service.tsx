@@ -1,20 +1,38 @@
 import axios from 'axios';
+import { UserRequestType, UserSessioResponeType } from '../../common/models/auth-user.types';
+import { EnvironmentRequests } from '../../utils/data/environment-request';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/test/';
 
-class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + 'all');
-  }
-  getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
-  }
-  getModeratorBoard() {
-    return axios.get(API_URL + 'mod', { headers: authHeader() });
-  }
-  getAdminBoard() {
-    return axios.get(API_URL + 'admin', { headers: authHeader() });
-  }
+const UserService = {
+  isAuthenticated : false,
+  singInAsync(userModel :UserRequestType, callBack : (userResponse? : UserSessioResponeType) => void){
+    const myPromise = new Promise((resolve, reject) => {
+      //dispose myPromise
+    });
+
+
+    let API_URL = EnvironmentRequests.AuthUrl;
+    API_URL = API_URL + "";
+
+    return axios.post(API_URL,userModel)
+      .then(response => { 
+        var dataResponse = response.data as UserSessioResponeType;
+        callBack(dataResponse);
+      })
+      .catch(e => {
+        callBack();
+      })
+      .finally(() => console.log("finished"));
+
+  },
+  signOutAsync(callBack:VoidFunction){
+    let API_URL = EnvironmentRequests.AuthUrl;
+    API_URL = API_URL + "";
+    //let API_URL = EnvironmentRequests.AuthUrl;
+
+    return axios.get("").then(callBack);
+  },
 }
-export default new UserService();
+
+export { UserService };
