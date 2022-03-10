@@ -1,5 +1,5 @@
 export interface IAuthContext{
-  userSession: UserSessionType | null;
+  userSession: ApplicationDataType;
   signinAsync: (userModel: UserRequestType) => Promise<boolean>;
   signoutAsync: (callback: VoidFunction) => Promise<boolean>;
 };
@@ -18,4 +18,9 @@ export type UserSessionType = {
 
 export type UserSessioResponeType = UserSessionType & {
   jwt:string;
+}
+
+export type ApplicationDataType = {
+  isLoading: boolean;
+  isAuthenticated:boolean;
 }

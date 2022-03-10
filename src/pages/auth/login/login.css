@@ -1,8 +1,50 @@
-.form-container{
-    margin: 100px;
+.form-page{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.image-login{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 
-.login-main{
-    background-color: black;
-    color: white;
+ /* Descriptive container */
+.descriptive-container{
+    display: flex;
+    width: 100%;
+    background-color: #f1ad63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.descriptive-item{
+    width: 90%;
+    border-radius: 35px;
+}
+
+/* form container */
+.form-container{
+    background-color: #e9c362;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    width: 80%;
+    height: 80%;
+    background: #d8d8d8;
+    border-radius: 35px;
+}
+
+@media screen and (max-width: 900px){
+    .descriptive-container{
+        display: none;
+    }
+  
 }

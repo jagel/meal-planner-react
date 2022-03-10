@@ -4,7 +4,7 @@ import RoutesItems from './utils/data/routingItems';
 import { AuthProvider } from './common/auth/auth-provider.context';
 
 export default function App(){
-   return <AuthProvider>{useRoutes(RoutesItems)}</AuthProvider>;
+    return <AuthProvider>{useRoutes(RoutesItems)}</AuthProvider>;
 }
 
 
