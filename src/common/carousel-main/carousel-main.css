@@ -1,0 +1,15 @@
+.text{
+    background-color: rgba(240, 240, 240,0.5);
+    border-radius: 10px;
+}
+
+.text-black{
+    background-color: rgba(240, 240, 240,0.5);
+    border-radius: 10px;
+}
+
+.carousel-component{
+    border-radius: 35px;
+    border: solid;
+    border-color: rgb(247, 247, 247);
+}

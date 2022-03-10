@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserService } from "../../services/auth/user-service";
-import { UserRequestType, UserSessionType, UserSessioResponeType } from "../models/auth-user.types";
+import { ApplicationDataType, UserRequestType, UserSessionType, UserSessioResponeType } from "../models/auth-user.types";
 import { AuthContext } from "./auth.context";
+import { EnvironmentRequests } from "../../utils/data/environment-request";
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-    let [userSession, setUserSession] = useState<UserSessionType|null>(null)
+    let [userSession, setUserSession] = useState<ApplicationDataType>({
+      isLoading:false,
+      isAuthenticated:false
+    })
+
+    useEffect(() => {
+      console.log("demo");
+    });
   
+    
     const signinAsync  = async (userModel: UserRequestType) => {
       //await UserService.singInAsync(userModel, response => {
       //  setUserSession(response);
       //});
       setUserSession({
-        language:"en",
-        email:"example@mail.com",
-        username:"example mail",
-        pictureEmail:"no pic"});
+        isAuthenticated:true,
+        isLoading:false
+       });
       return true;
     };
   
@@ -23,7 +31,10 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         //setUser(null);
       //  callback();
       //});
-      setUserSession(null);
+      setUserSession({
+        isAuthenticated:false,
+        isLoading:false
+       });
       return true;
     };
   
