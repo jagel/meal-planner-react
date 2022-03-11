@@ -1,6 +1,6 @@
 import { createRef, useState } from "react";
 import { IRecipeModel } from "../../common/models/recipe.form";
-import { SetLocalizationText } from "../../services/i18n/languageManager";
+import { SetLanguageText } from "../../services/i18n/languageManager";
 import { Breadcrumb, Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
 export const RecipeForm = (
@@ -8,7 +8,7 @@ export const RecipeForm = (
         recipe:IRecipeModel, 
         onTextChange(event:React.ChangeEvent<HTMLInputElement>):void
     }) => {
-    const textValue = SetLocalizationText;
+    const textValue = SetLanguageText;
    
    return <Row className="mb-3">
       <Form.Group as={Col} md="12" controlId="name">

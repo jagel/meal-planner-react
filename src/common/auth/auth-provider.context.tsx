@@ -37,8 +37,12 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
        });
       return true;
     };
+
+    let changeLanguage = (datacode:string) => {
+
+    }
   
-    let value = { userSession, signinAsync, signoutAsync };
+    let value = { userSession, signinAsync, signoutAsync, changeLanguage };
   
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
   }

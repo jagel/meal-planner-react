@@ -1,5 +1,6 @@
 import { CarouselMain } from '../../../common/carousel-main/carousel.main';
 import { LoginForm } from '../../../components/authentication/login.form';
+import LoginNavBar from '../../../components/navigation/login-nav-bar/login-nav-bar';
 import { HomeCarouselData } from '../../../utils/data/home-carousel';
 import './login.css'
 
@@ -7,9 +8,12 @@ export function Login(){
   let carouselData = HomeCarouselData;
   
   return (
+  <div>
+    
+    <LoginNavBar />
+
     <div className='form-page'>
-      
-      <div className='descriptive-container'>
+      <div className='descriptive-container'>      
         <div className='descriptive-item'>
           <CarouselMain carouselData={carouselData} />
         </div>
@@ -20,7 +24,12 @@ export function Login(){
           <LoginForm />
         </div>
       </div>
-
     </div>
+
+    <footer>
+      Footer
+    </footer>
+
+  </div>
   );
 }

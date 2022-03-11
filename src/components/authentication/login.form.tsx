@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../common/auth/auth.context";
 import { UserRequestType } from "../../common/models/auth-user.types";
-import { SetLocalizationText } from "../../services/i18n/languageManager";
+import { SetLanguageText } from "../../services/i18n/languageManager";
 import './login.form.css';
 
 const LoginForm = () => {
     const [validated, setValidated] = useState(false);
     const [loginForm, setLoginFormState] = useState({} as UserRequestType);
-
-    const textValue = SetLocalizationText;
+    const textValue = SetLanguageText;
+    
     let useAuth = useAuthContext();
     let navigate = useNavigate();
     
@@ -43,7 +43,6 @@ const LoginForm = () => {
         <img src="/src/img/login.svg" className="image-login" />
       </div>
       <Form noValidate validated={validated} onSubmit={handleSubmit} >
-
         <Form.Group as={Col} md="12" controlId="email">
           <Form.Label>{textValue('email')}</Form.Label>
           <Form.Control
@@ -66,6 +65,15 @@ const LoginForm = () => {
               defaultValue={loginForm.password}
           />
         </Form.Group>
+
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+          <FormControl
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </InputGroup>
 
         <div>
           <Button className="btn-login" variant="primary" type="submit">Login</Button>

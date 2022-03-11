@@ -1,6 +1,6 @@
 import { Button, Form } from "react-bootstrap";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
-import { SetLocalizationText } from "../../../services/i18n/languageManager";
+import { SetLanguageText } from "../../../services/i18n/languageManager";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { ROUTES } from "../../../utils/data/api-routes";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export default function RecipeCreate(){
    
     const [validated, setValidated] = useState(false);
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
-    const textValue = SetLocalizationText;
+    const textValue = SetLanguageText;
 
     const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

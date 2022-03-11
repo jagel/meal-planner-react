@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { SetLocalizationText } from "../../../services/i18n/languageManager";
+import { SetLanguageText } from "../../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { PageRoute } from "../../../components/navigation/page-routes/page-route";
@@ -7,7 +7,7 @@ import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 import { RecipeViewer } from "../../../components/recipes/recipe.view";
 
 export default function RecipeView(){
-    const textValue = SetLocalizationText;
+    const textValue = SetLanguageText;
     let routeCode = ROUTESCODE.RECIPE_UPDATE;
     let { recipeId } = useParams();
 

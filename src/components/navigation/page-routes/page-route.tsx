@@ -1,13 +1,13 @@
 import { Breadcrumb, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { SetLocalizationText } from "../../../services/i18n/languageManager";
+import { SetLanguageText } from "../../../services/i18n/languageManager";
 
 export const PageRoute = (props : {
     currenRoute:string,
     dynamicParams?:string[],
     }) => {
 
-    const textValue = SetLocalizationText;
+    const textValue = SetLanguageText;
     let location = useLocation();
     let pathname = location.pathname;
 
