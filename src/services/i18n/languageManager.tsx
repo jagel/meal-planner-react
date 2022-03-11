@@ -1,9 +1,9 @@
-import { LocalStorageService, LOC_SOTRAGE } from "../localStorage/localStorage"
+import { localStorageService, LOC_SOTRAGE } from "../localStorage/localStorage"
 import { LanguageData as LangageDataEn } from "../../utils/languages/lang-en"
 import { LanguageData as LangageDataEs } from "../../utils/languages/lang-es"
 import { ILanguageModel } from "../../common/models/lang.model"
 
-export const SetLocalizationText = (text : string) => {
+export const SetLanguageText = (text : string) => {
 
     const findMessage = (data : ILanguageModel[]) => {
         let displayText = data.find(x=>x.code === text);
@@ -11,7 +11,7 @@ export const SetLocalizationText = (text : string) => {
             console.warn(`Value: ${text} does not have internationalization`);
         return displayText?.value ?? text;
     }
-    let lang = LocalStorageService.getLocalStorage(LOC_SOTRAGE.LANGUAGE)??LANG_DATA.EN;
+    let lang = localStorageService.getLocalStorage(LOC_SOTRAGE.LANGUAGE)??LANG_DATA.EN;
     
     if(lang === LANG_DATA.EN){
         return findMessage(LangageDataEn);

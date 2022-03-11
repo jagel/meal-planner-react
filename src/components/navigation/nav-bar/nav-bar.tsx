@@ -5,12 +5,12 @@ import Navbar from 'react-bootstrap/esm/Navbar';
 import { Container, Nav, Offcanvas } from 'react-bootstrap';
 import { NavBarRequest } from "../../../utils/data/navigation.collection";
 import { INavBarItems } from "../../../common/models/navbar.model";
-import { SetLocalizationText } from '../../../services/i18n/languageManager';
+import { SetLanguageText } from '../../../services/i18n/languageManager';
 
 export default function NavBar(){
 
     let navRequest = NavBarRequest();
-    let localization = SetLocalizationText;
+    let localization = SetLanguageText;
 
 
     function PrintLink(data:INavBarItems) {

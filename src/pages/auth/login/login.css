@@ -1,7 +1,7 @@
 .form-page{
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 72px);
 }
 .image-login{
     display: block;
@@ -30,6 +30,7 @@
     background-color: #e9c362;
     width: 100%;
     height: 100%;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,6 +46,5 @@
 @media screen and (max-width: 900px){
     .descriptive-container{
         display: none;
-    }
-  
+    } 
 }

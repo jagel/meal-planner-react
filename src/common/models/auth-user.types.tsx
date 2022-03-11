@@ -1,5 +1,6 @@
 export interface IAuthContext{
   userSession: ApplicationDataType;
+  changeLanguage: (datacode:string) => void;
   signinAsync: (userModel: UserRequestType) => Promise<boolean>;
   signoutAsync: (callback: VoidFunction) => Promise<boolean>;
 };
