@@ -11,7 +11,6 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     })
 
     useEffect(() => {
-      console.log("demo");
     });
   
     
