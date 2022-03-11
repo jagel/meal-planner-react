@@ -1,17 +1,17 @@
 
 import './nav-bar.css'
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/esm/Navbar';
 import { Container, Nav, Offcanvas } from 'react-bootstrap';
 import { NavBarRequest } from "../../../utils/data/navigation.collection";
 import { NavLinkItem } from './nav-link';
+import LanguageSelector from '../language-component/language-selector';
 
 export default function NavBar(){
   let navRequest = NavBarRequest();
 
   return <>
-    <Navbar bg="light" variant="light" expand={false}>
-      <Container fluid> 
+    <Navbar bg="light" variant="light" expand="lg"  >
+      <Container> 
 
         <Navbar.Toggle className='me-3' />
         <Navbar.Brand className='me-auto' href="#home">
@@ -24,6 +24,10 @@ export default function NavBar(){
           />{' '}
           Meal planner
         </Navbar.Brand>
+
+        <Navbar className="justify-content-end">
+          <LanguageSelector />
+        </Navbar>
 
         <Navbar.Offcanvas
           id="offcanvasNavbar"
@@ -43,27 +47,3 @@ export default function NavBar(){
     </Navbar>
 </>
 }
-
-//function AuthStatus() {
-  //     let auth = useAuth();
-  //     let navigate = useNavigate();
-    
-  //     if (!auth.user) {
-  //       return <p>You are not logged in.</p>;
-  //     }
-    
-  //     return (
-  //       <p>
-  //         Welcome {auth.user}!{" "}
-  //         <button
-  //           onClick={() => {
-  //             auth.signout(() => navigate("/"));
-  //           }}
-  //         >
-  //           Sign out
-  //         </button>
-  //       </p>
-  //     );
-     //}
-  
-    //export default AuthStatus;

@@ -3,6 +3,8 @@ export interface IAuthContext{
   changeLanguage: (datacode:string) => void;
   signinAsync: (userModel: UserRequestType) => Promise<boolean>;
   signoutAsync: (callback: VoidFunction) => Promise<boolean>;
+  enableLoading: () => void;
+  disableLoading: () => void;
 };
 
 export type UserRequestType = {
@@ -24,4 +26,6 @@ export type UserSessioResponeType = UserSessionType & {
 export type ApplicationDataType = {
   isLoading: boolean;
   isAuthenticated:boolean;
+  language:string;
+  loadingCounter:number;
 }
