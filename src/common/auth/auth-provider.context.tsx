@@ -4,28 +4,33 @@ import { AuthContext } from "./auth.context";
 import { localStorageService, LOC_SOTRAGE } from "../../services/localStorage/localStorage";
 import { LanguageAvailable } from "../../services/i18n/languageAvailable";
 import { ILanguageAvailable } from "../models/lang.model";
+import { UserService } from "../../services/auth/user-service";
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   let languageSelector = LanguageAvailable;
   let [userSession, setUserSession] = useState<ApplicationDataType>({
-      isLoading:false,
+      isLoading:true,
       isAuthenticated:true,
       language:"",
       loadingCounter:0,
+      name:"",
+      email:""
     })
 
-    useEffect(() => {
-      let datacode = localStorageService.getLocalStorage(LOC_SOTRAGE.LANGUAGE);
-
-      if(!datacode){
-        let languageItem = languageSelector[0];
-        changeLanguage(languageItem.datacode);
-        localStorageService.setLocalStorage(LOC_SOTRAGE.LANGUAGE, languageItem.datacode);
-      }else{
-        let currentLanguage = languageSelector.find(x => x.datacode == datacode)?? {} as ILanguageAvailable;
-        changeLanguage(currentLanguage.datacode);
+ useEffect(() => {
+  (
+     async () => {
+      let response = await UserService.getUserDataAsync();
+      if(response){
+        setUserSession({...userSession, language:response?.language??"", isLoading:false, isAuthenticated:true, name: response.displayName, email: response.displayName });
+        localStorageService.setLocalStorage(LOC_SOTRAGE.LANGUAGE, response.language);
       }
-    }, []);
+      else
+        setUserSession({...userSession, isLoading:false, isAuthenticated:false });
+        localStorageService.removeLocalStorage(LOC_SOTRAGE.LANGUAGE);
+      }
+   )()
+}, []);
   
     
     const signinAsync  = async (userModel: UserRequestType) => {

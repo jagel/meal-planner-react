@@ -28,4 +28,13 @@ export type ApplicationDataType = {
   isAuthenticated:boolean;
   language:string;
   loadingCounter:number;
+  name:string,
+  email:string
+}
+
+
+export interface IUserSessionResponse{
+  email:string,
+  displayName:string,
+  language:string
 }

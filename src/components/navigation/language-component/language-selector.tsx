@@ -7,12 +7,15 @@ import { useAuthContext } from "../../../common/auth/auth.context";
 
 const LanguageSelector = () => {
   let [language, setLanguageState] = useState({} as ILanguageAvailable);
+  let [name,setName] = useState("");
+
   let languageSelector = LanguageAvailable;
   let auth = useAuthContext();
 
   useEffect(() => {
     let currentLanguage = languageSelector.find(x => x.datacode == auth.userSession.language)?? {} as ILanguageAvailable;
     setLanguageState(currentLanguage);
+    setName(auth.userSession.name);
   });
 
   return (
@@ -28,6 +31,11 @@ const LanguageSelector = () => {
         </NavDropdown.Item>) 
       }
       </NavDropdown>
+      <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          {name}
+        </Nav.Link>
+      </Nav.Item>
   </Nav>
   );
 }

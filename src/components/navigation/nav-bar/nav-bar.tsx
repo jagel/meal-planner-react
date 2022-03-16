@@ -10,8 +10,8 @@ export default function NavBar(){
   let navRequest = NavBarRequest();
 
   return <>
-    <Navbar bg="light" variant="light" expand="lg"  >
-      <Container> 
+    <Navbar bg="light" variant="light" expand={false}>
+      <Container fluid> 
 
         <Navbar.Toggle className='me-3' />
         <Navbar.Brand className='me-auto' href="#home">
@@ -28,6 +28,8 @@ export default function NavBar(){
         <Navbar className="justify-content-end">
           <LanguageSelector />
         </Navbar>
+
+        <Navbar className='space'></Navbar>
 
         <Navbar.Offcanvas
           id="offcanvasNavbar"

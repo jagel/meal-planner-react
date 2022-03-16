@@ -10,7 +10,7 @@ export function Login(){
   return (
   <div>
     
-    <LoginNavBar />
+    {/* <LoginNavBar /> */}
 
     <div className='form-page'>
       <div className='descriptive-container'>      
