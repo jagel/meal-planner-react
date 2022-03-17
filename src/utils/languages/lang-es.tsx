@@ -2,7 +2,7 @@ import { ILanguageModel } from "../../common/models/lang.model";
 
 
 export const LanguageData : ILanguageModel[] = [
-    { code: 'email', value : 'Email' },
+    { code: 'email', value : 'Correo Electrónico' },
     { code: 'password', value : 'Contraseña' },
 
     { code: 'home', value : 'Inicio' },

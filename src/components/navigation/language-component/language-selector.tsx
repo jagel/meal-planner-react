@@ -1,31 +1,32 @@
 import { Nav, NavDropdown } from "react-bootstrap";
-import { LanguageAvailable } from "../../../services/i18n/languageAvailable";
+import { LanguageAvailable } from "../../../utils/data/languageAvailable";
 import { ILanguageAvailable } from "../../../common/models/lang.model";
 import { useEffect, useState } from 'react';
 import './language-selector.css';
-import { useAuthContext } from "../../../common/auth/auth.context";
+import { useAppContext } from "../../../common/app/app-context";
+
 
 const LanguageSelector = () => {
-  let [language, setLanguageState] = useState({} as ILanguageAvailable);
-  let [name,setName] = useState("");
+  let [language, setLanguageState] = useState<ILanguageAvailable>({ code : '', languageCode : '', name : ''});
+  let [name, setName] = useState<string>();
 
-  let languageSelector = LanguageAvailable;
-  let auth = useAuthContext();
+  let languagesAvailable = LanguageAvailable;
+  const appContext = useAppContext();
 
   useEffect(() => {
-    let currentLanguage = languageSelector.find(x => x.datacode == auth.userSession.language)?? {} as ILanguageAvailable;
+    let currentLanguage = languagesAvailable.find(x => x.languageCode == appContext.language)?? {} as ILanguageAvailable;
     setLanguageState(currentLanguage);
-    setName(auth.userSession.name);
-  });
+  },[appContext]);
+
 
   return (
   <Nav>
       <NavDropdown title={<label><span className="lng-icon material-icons">language</span> {language.code}</label>} id="collasible-nav-dropdown">
-      {languageSelector.map(lang => 
+      {languagesAvailable.map(lang => 
         <NavDropdown.Item 
           key={lang.code} 
-          onClick={() => auth.changeLanguage(lang.datacode)}
-          className={lang.datacode == language.datacode? "lng-active":""}
+          onClick={() => appContext.changeLanguage(lang.languageCode)}
+          className={lang.languageCode == language.languageCode? "lng-active":""}
         >
           {lang.name}
         </NavDropdown.Item>) 
@@ -39,5 +40,6 @@ const LanguageSelector = () => {
   </Nav>
   );
 }
+
 
 export default LanguageSelector;

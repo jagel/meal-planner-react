@@ -5,6 +5,6 @@ export interface ILanguageModel {
 
 export interface ILanguageAvailable {
     code: string;
-    datacode: string;
+    languageCode: string;
     name: string;
 }

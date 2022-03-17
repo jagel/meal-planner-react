@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../common/auth/auth.context";
 import { UserRequestType } from "../../common/models/auth-user.types";
 import { UserService } from "../../services/auth/user-service";
 import { SetLanguageText } from "../../services/i18n/languageManager";
@@ -12,7 +11,6 @@ const LoginForm = () => {
     const [loginForm, setLoginFormState] = useState({} as UserRequestType);
     const textValue = SetLanguageText;
     
-    let useAuth = useAuthContext();
     let navigate = useNavigate();
     
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{

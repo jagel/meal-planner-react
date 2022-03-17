@@ -1,12 +1,13 @@
 import { LanguageData as LangageDataEn } from "../../utils/languages/lang-en"
 import { LanguageData as LangageDataEs } from "../../utils/languages/lang-es"
 import { ILanguageModel } from "../../common/models/lang.model"
-import { useAuthContext } from "../../common/auth/auth.context"
+import { useAppContext } from "../../common/app/app-context";
+import { LANG_DATA } from "../../utils/data/languageAvailable";
 
 export const SetLanguageText = (text : string) => {
-    let auth = useAuthContext();
+    let appContext = useAppContext();
 
-    if(!auth.userSession.language)
+    if(!appContext.language)
         return text;
         
     const findMessage = (data : ILanguageModel[]) => {
@@ -15,18 +16,14 @@ export const SetLanguageText = (text : string) => {
             console.warn(`Value: ${text} does not have internationalization`);
         return displayText?.value ?? text;
     }
-    if(auth.userSession.language === LANG_DATA.EN){
+    if(appContext.language === LANG_DATA.EN){
         return findMessage(LangageDataEn);
     }
-    if(auth.userSession.language === LANG_DATA.ES){
+    if(appContext.language === LANG_DATA.ES){
         return findMessage(LangageDataEs);
     }
 
-    console.warn(`Language: ${auth.userSession.language} does not exist`);
+    console.warn(`Language: ${appContext.language} does not exist`);
     return text;
 }
 
-export const LANG_DATA = {
-    ES : 'es',
-    EN : 'en',
-}
