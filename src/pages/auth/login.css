@@ -3,6 +3,7 @@
     width: 100%;
     height: calc(100vh - 72px);
 }
+
 .image-login{
     display: block;
     margin-left: auto;
@@ -41,10 +42,23 @@
     height: 80%;
     background: #d8d8d8;
     border-radius: 35px;
-}
+    max-width: 400px;
+}  
+
+
 
 @media screen and (max-width: 900px){
+    .form-page{
+        display: flex;
+        width: 100%;
+        height: calc(100vh - 72px);
+    }
+
     .descriptive-container{
         display: none;
-    } 
+    }
+
+    .form-container{
+        max-width: 900px;
+    }
 }
