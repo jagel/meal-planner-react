@@ -1,8 +1,13 @@
 import { EnvironmentRequests } from "./environment-request";
 
+
+const CONTROLLERS ={
+  AUTHCONTROLLER:'auth'
+}
 const AUTHROUTES = {
-  GOOGLE_LOGIN : `Auth/signin-google?returnUrl=${EnvironmentRequests.AppUrl}`,
-  
+  LOGIN : `${CONTROLLERS.AUTHCONTROLLER}/login`,
+  GOOGLE_LOGIN : `${CONTROLLERS.AUTHCONTROLLER}/signin-google?returnUrl=${EnvironmentRequests.AppUrl}`,
+  GETUSER: `${CONTROLLERS.AUTHCONTROLLER}/getUser`,
 }
 
 const ROUTES = {

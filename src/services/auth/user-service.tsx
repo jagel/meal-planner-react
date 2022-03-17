@@ -1,38 +1,39 @@
 import axios from 'axios';
-import { UserRequestType, UserSessioResponeType } from '../../common/models/auth-user.types';
+import { IUserSessionResponse, UserRequestType } from '../../common/models/auth-user.types';
+import { ModelResponse } from '../../common/models/model.response';
+import { AUTHROUTES } from '../../utils/data/api-routes';
 import { EnvironmentRequests } from '../../utils/data/environment-request';
 import authHeader from './auth-header';
 
 
 const UserService = {
   isAuthenticated : false,
-  singInAsync(userModel :UserRequestType, callBack : (userResponse? : UserSessioResponeType) => void){
-    const myPromise = new Promise((resolve, reject) => {
-      //dispose myPromise
-    });
-
-
-    let API_URL = EnvironmentRequests.AuthUrl;
-    API_URL = API_URL + "";
-
-    return axios.post(API_URL,userModel)
-      .then(response => { 
-        var dataResponse = response.data as UserSessioResponeType;
-        callBack(dataResponse);
-      })
-      .catch(e => {
-        callBack();
-      })
-      .finally(() => console.log("finished"));
-
+  axiosInstance : axios.create({
+    withCredentials:true,
+    baseURL:EnvironmentRequests.AuthUrl
+  }),
+  async singInAsync(userModel :UserRequestType){
+    let httpResponse = await this.axiosInstance.post<ModelResponse<IUserSessionResponse>>(AUTHROUTES.LOGIN, userModel);
+    return httpResponse.data.hasErrors;
   },
   signOutAsync(callBack:VoidFunction){
-    let API_URL = EnvironmentRequests.AuthUrl;
-    API_URL = API_URL + "";
-    //let API_URL = EnvironmentRequests.AuthUrl;
-
-    return axios.get("").then(callBack);
+   
   },
+  async getUserDataAsync(){
+    try{
+      let httpResponse = await this.axiosInstance.get<ModelResponse<IUserSessionResponse>>(AUTHROUTES.GETUSER);
+      let response : ModelResponse<IUserSessionResponse> = httpResponse.data;
+      if(!response.hasErrors)
+        return response.data;
+      else
+        return null;
+    }catch{
+      return null;
+    }
+  },
+  generateAuthUrl(endpoint:string): string{
+    return `${EnvironmentRequests.AuthUrl}${endpoint}`;;
+  }
 }
 
 export { UserService };

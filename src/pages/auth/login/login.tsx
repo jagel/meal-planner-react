@@ -8,11 +8,12 @@ export function Login(){
   let carouselData = HomeCarouselData;
   
   return (
-  <div>
+  <>
     
     <LoginNavBar />
 
     <div className='form-page'>
+      
       <div className='descriptive-container'>      
         <div className='descriptive-item'>
           <CarouselMain carouselData={carouselData} />
@@ -24,12 +25,13 @@ export function Login(){
           <LoginForm />
         </div>
       </div>
+      
     </div>
 
     <footer>
       Footer
     </footer>
 
-  </div>
+  </>
   );
 }
