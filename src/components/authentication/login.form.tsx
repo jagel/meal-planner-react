@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button, Col, Form, FormControl, InputGroup, Row, Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Button, Col, Form, InputGroup, Spinner } from "react-bootstrap";
 import { UserRequestType } from "../../common/models/auth-user.types";
 import { UserService } from "../../services/auth/user-service";
 import { SetLanguageText } from "../../services/i18n/languageManager";
+import { EnvironmentRequests } from "../../utils/data/environment-request";
 import './login.form.css';
 
 const LoginForm = () => {
@@ -11,8 +11,6 @@ const LoginForm = () => {
     const [loading, setLoadingState] = useState<boolean>(false);
     const [errorResponse, setErrorResponseState] = useState<boolean>(false);
     const textValue = SetLanguageText;
-    
-    let navigate = useNavigate();
     
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{  
       if(errorResponse){
@@ -24,6 +22,7 @@ const LoginForm = () => {
           [event.target.id]: event.target.value
         });
     }
+    
 
     const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -34,14 +33,12 @@ const LoginForm = () => {
         setLoadingState(true);
         UserService.singInAsync(loginForm)
           .then(() => {
-            navigate("/", { replace: true });
+            window.location.replace(EnvironmentRequests.AppUrl);
           })
           .catch(() => { 
             setErrorResponseState(true);
-          })
-          .finally(() => {
             setLoadingState(false)
-          });
+          })
       }
       else{
         setErrorResponseState(true);
