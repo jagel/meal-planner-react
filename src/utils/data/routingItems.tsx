@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom"
 import { NoMatch } from "../../pages/no-match/no-match"
 import { Layout } from '../../common/layout/layout-component';
-import { Login } from "../../pages/auth/login/login"
+import { Login } from "../../pages/auth/login"
 import Dashboard from "../../pages/dashboard/dashboard"
 import RecipeCreate from "../../pages/recipes/recipe-create/recipe.create"
 import RecipeUpdate from "../../pages/recipes/recipe-update/recipe.update"

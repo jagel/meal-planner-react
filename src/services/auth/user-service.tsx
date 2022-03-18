@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { IUserSessionResponse, UserRequestType } from '../../common/models/auth-user.types';
+import {  IUserSessionResponse, UserRequestType } from '../../common/models/auth-user.types';
 import { ModelResponse } from '../../common/models/model.response';
 import { AUTHROUTES } from '../../utils/data/api-routes';
 import { EnvironmentRequests } from '../../utils/data/environment-request';
-import authHeader from './auth-header';
 
 
 const UserService = {

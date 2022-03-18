@@ -1,7 +1,7 @@
-import { CarouselMain } from '../../../common/carousel-main/carousel.main';
-import { LoginForm } from '../../../components/authentication/login.form';
-import LoginNavBar from '../../../components/navigation/login-nav-bar/login-nav-bar';
-import { HomeCarouselData } from '../../../utils/data/home-carousel';
+import { CarouselMain } from '../../common/carousel-main/carousel.main';
+import { LoginForm } from '../../components/authentication/login.form';
+import LoginNavBar from '../../components/navigation/login-nav-bar/login-nav-bar';
+import { HomeCarouselData } from '../../utils/data/home-carousel';
 import './login.css'
 
 export function Login(){

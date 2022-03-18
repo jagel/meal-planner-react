@@ -2,6 +2,7 @@
 docker-compose -f docker-compose.yml -p front-end up
 Open [http://localhost:8085](http://localhost:8085) to view it in the browser.
 ($env:HTTPS = "true") -and (npm start)
+chrome://flags/#allow-insecure-localhost
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
