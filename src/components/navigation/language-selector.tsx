@@ -1,15 +1,13 @@
 import { Nav, NavDropdown } from "react-bootstrap";
-import { LanguageAvailable } from "../../../utils/data/languageAvailable";
-import { ILanguageAvailable } from "../../../common/models/lang.model";
+import { LanguageAvailable } from "../../utils/data/languageAvailable";
+import { ILanguageAvailable } from "../../common/models/lang.model";
 import { useEffect, useState } from 'react';
 import './language-selector.css';
-import { useAppContext } from "../../../common/app/app-context";
+import { useAppContext } from "../../common/app/app-context";
 
 
 const LanguageSelector = () => {
   let [language, setLanguageState] = useState<ILanguageAvailable>({ code : '', languageCode : '', name : ''});
-  let [name, setName] = useState<string>();
-
   let languagesAvailable = LanguageAvailable;
   const appContext = useAppContext();
 
@@ -20,7 +18,6 @@ const LanguageSelector = () => {
 
 
   return (
-  <Nav>
       <NavDropdown title={<label><span className="lng-icon material-icons">language</span> {language.code}</label>} id="collasible-nav-dropdown">
       {languagesAvailable.map(lang => 
         <NavDropdown.Item 
@@ -32,12 +29,6 @@ const LanguageSelector = () => {
         </NavDropdown.Item>) 
       }
       </NavDropdown>
-      <Nav.Item>
-        <Nav.Link eventKey="disabled" disabled>
-          {name}
-        </Nav.Link>
-      </Nav.Item>
-  </Nav>
   );
 }
 

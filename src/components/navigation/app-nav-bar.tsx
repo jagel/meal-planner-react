@@ -1,12 +1,13 @@
 
-import './nav-bar.css'
 import Navbar from 'react-bootstrap/esm/Navbar';
 import { Container, Nav, Offcanvas } from 'react-bootstrap';
-import { NavBarRequest } from "../../../utils/data/navigation.collection";
+import { NavBarRequest } from "../../utils/data/navigation.collection";
 import { NavLinkItem } from './nav-link';
-import LanguageSelector from '../language-component/language-selector';
+import LanguageSelector from './language-selector';
+import { UserDropdown } from './user-dropdown';
+import './app-nav-bar.css'
 
-export default function NavBar(){
+export default function AppNavBar(){
   let navRequest = NavBarRequest();
 
   return <>
@@ -26,7 +27,10 @@ export default function NavBar(){
         </Navbar.Brand>
 
         <Navbar className="justify-content-end">
-          <LanguageSelector />
+          <Nav>
+              <LanguageSelector />
+              <UserDropdown />
+          </Nav>
         </Navbar>
 
         <Navbar className='space'></Navbar>

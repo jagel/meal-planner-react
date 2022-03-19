@@ -1,14 +1,14 @@
 import React from "react"
 import Container from "react-bootstrap/esm/Container"
 import { Outlet } from "react-router-dom"
-import NavBar from "../../components/navigation/nav-bar/nav-bar"
+import AppNavBar from "../../components/navigation/app-nav-bar"
 import { Authentication } from "../app/authentication"
 import './loading.css';
 
 export const Layout = () => {
 return <Authentication>
     <React.Suspense fallback={<>...</>}> 
-    <NavBar/>
+    <AppNavBar/>
     <Container>
         <Outlet />
     </Container>
