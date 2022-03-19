@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ROUTES } from "../../../utils/data/api-routes";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { RecipeForm } from "../../../components/recipes/recipe.form";
-import { PageRoute } from "../../../components/navigation/page-routes/page-route";
+import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
 import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 import { requestService } from "../../../services/api-service";
 
@@ -30,7 +30,7 @@ export default function RecipeUpdate(){
   
     let dynamicParams : string[]= [`/${recipeId}`];
     return <div>
-        <PageRoute currenRoute={routeCode} dynamicParams={dynamicParams}  />
+        <BreadcrumbRoutes currenRoute={routeCode} dynamicParams={dynamicParams}  />
         <Form>
             <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />
             <Button variant="primary" type="submit">

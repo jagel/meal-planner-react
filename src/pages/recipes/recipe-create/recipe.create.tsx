@@ -4,7 +4,7 @@ import { SetLanguageText } from "../../../services/i18n/languageManager";
 import { IRecipeModel } from "../../../common/models/recipe.form";
 import { ROUTES } from "../../../utils/data/api-routes";
 import { useState } from "react";
-import { PageRoute } from "../../../components/navigation/page-routes/page-route";
+import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
 import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 import { requestService } from "../../../services/api-service";
 
@@ -37,7 +37,7 @@ export default function RecipeCreate(){
     } 
   
     return (<div>
-        <PageRoute currenRoute={routeCode} />
+        <BreadcrumbRoutes currenRoute={routeCode} />
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />

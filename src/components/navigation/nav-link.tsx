@@ -1,6 +1,6 @@
 import { Nav } from "react-bootstrap";
-import { INavBarItems } from "../../../common/models/navbar.model"
-import { SetLanguageText } from "../../../services/i18n/languageManager";
+import { INavBarItems } from "../../common/models/navbar.model"
+import { SetLanguageText } from "../../services/i18n/languageManager";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 const NavLinkItem = (props : {

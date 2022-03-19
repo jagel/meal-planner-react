@@ -1,6 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import LanguageSelector from "../language-component/language-selector";
-import "./login-nav-bar.css";
+import LanguageSelector from "./language-selector";
 
 function LoginNavBar(){
     return(
@@ -18,7 +17,9 @@ function LoginNavBar(){
             </Navbar.Brand>
 
             <Navbar className="justify-content-end">
-                <LanguageSelector />
+                <Nav>
+                    <LanguageSelector />
+                </Nav>
             </Navbar>
             
         </Container>

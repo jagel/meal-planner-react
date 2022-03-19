@@ -1,8 +1,8 @@
 import { Breadcrumb, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { SetLanguageText } from "../../../services/i18n/languageManager";
+import { SetLanguageText } from "../../services/i18n/languageManager";
 
-export const PageRoute = (props : {
+export const BreadcrumbRoutes = (props : {
     currenRoute:string,
     dynamicParams?:string[],
     }) => {

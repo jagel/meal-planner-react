@@ -1,5 +1,5 @@
 import { SetLanguageText } from "../../../services/i18n/languageManager";
-import { PageRoute } from "../../../components/navigation/page-routes/page-route";
+import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
 import { ROUTESCODE } from "../../../utils/data/navigation.collection";
 
 export default function RecipeSearch(){
@@ -7,7 +7,7 @@ export default function RecipeSearch(){
     let routeCode = ROUTESCODE.RECIPE_SEARCH;
 
     return <div>
-        <PageRoute currenRoute={routeCode} />
+        <BreadcrumbRoutes currenRoute={routeCode} />
 
         <div>
             
