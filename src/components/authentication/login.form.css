@@ -1,3 +1,10 @@
+form{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  row-gap: 20px;
+}
+
 .login-form-item{
   padding: 25px;
   width: 100%;
@@ -50,3 +57,6 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+
+

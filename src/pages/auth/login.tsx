@@ -16,7 +16,7 @@ export function Login(){
       
       <div className='descriptive-container'>      
         <div className='descriptive-item'>
-          <CarouselMain carouselData={carouselData} />
+          {/* <CarouselMain carouselData={carouselData} /> */}
         </div>
       </div>
 
