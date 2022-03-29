@@ -7,6 +7,8 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'invalid email or password', value : 'Email or password invalid' },
     { code: 'login', value : 'Login' },
     
+    { code: 'required field', value : 'Field is required' },
+   
     { code: 'home', value : 'Home' },
     { code: 'recipe', value : 'Recipe' },
     { code: 'recipe.search', value : 'Search Recipe' },
@@ -18,9 +20,11 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'New Recipe', value : 'New Recipe' },
     { code: 'Manage', value : 'Manage' },
 
+    { code: 'Cuisine', value : 'Cuisine' },
     { code: 'Name', value : 'Name' },
     { code: 'Recipe Name', value : 'Recipe Name' },
     { code: 'Recipe Description', value : 'Recipe Description' },
-
+    { code: 'ingredients', value : 'Ingredients' },
+    
     { code: 'save', value:'Save' },
 ]

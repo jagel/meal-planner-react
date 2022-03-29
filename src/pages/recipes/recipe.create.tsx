@@ -1,12 +1,12 @@
 import { Button, Form } from "react-bootstrap";
-import { RecipeForm } from "../../../components/recipes/recipe.form";
-import { SetLanguageText } from "../../../services/i18n/languageManager";
-import { IRecipeModel } from "../../../common/models/recipe.form";
-import { ROUTES } from "../../../utils/data/api-routes";
+import { RecipeForm } from "../../components/recipes/recipe.form";
+import { SetLanguageText } from "../../services/i18n/languageManager";
+import { IRecipeModel } from "../../common/models/recipe.form";
+import { ROUTES } from "../../utils/data/api-routes";
 import { useState } from "react";
-import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
-import { ROUTESCODE } from "../../../utils/data/navigation.collection";
-import { requestService } from "../../../services/api-service";
+import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
+import { ROUTESCODE } from "../../utils/data/navigation.collection";
+import { requestService } from "../../services/api-service";
 
 export default function RecipeCreate(){
     let routeCode = ROUTESCODE.RECIPE_CREATE;
@@ -34,13 +34,24 @@ export default function RecipeCreate(){
             ...recipeForm,
             [event.target.id]: event.target.value
           });
-    } 
+    }
+
+    const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
+      setRecipeFormState({
+        ...recipeForm,
+        [event.target.id]: event.target.value
+      });
+    }
   
     return (<div>
         <BreadcrumbRoutes currenRoute={routeCode} />
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <RecipeForm recipe={recipeForm} onTextChange={onTextChange} />
+          <RecipeForm 
+            recipe={recipeForm} 
+            onTextChange={onTextChange} 
+            onDropDownChange={onDropDownChange} 
+          />
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>

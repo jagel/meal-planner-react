@@ -3,10 +3,10 @@ import { NoMatch } from "../../pages/no-match/no-match"
 import { Layout } from '../../common/layout/layout-component';
 import { Login } from "../../pages/auth/login"
 import Dashboard from "../../pages/dashboard/dashboard"
-import RecipeCreate from "../../pages/recipes/recipe-create/recipe.create"
-import RecipeUpdate from "../../pages/recipes/recipe-update/recipe.update"
-import RecipeSearch from '../../pages/recipes/recipe-search/recipe-search';
-import RecipeView from '../../pages/recipes/recipe-view/recipe.view';
+import RecipeCreate from "../../pages/recipes/recipe.create"
+import RecipeUpdate from "../../pages/recipes/recipe.update"
+import RecipeSearch from '../../pages/recipes/recipe-search';
+import RecipeView from '../../pages/recipes/recipe.view';
 
 export const RoutesItems : RouteObject[] = [{
     path:"/login",
