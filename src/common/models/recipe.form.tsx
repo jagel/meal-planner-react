@@ -3,9 +3,19 @@ export interface CreateRecipe {
     description:string;
 }
 
+export type IRecipeProduct = {
+    productId:number;
+    name: string;
+    quantity:number;
+    fraction:string;
+    meassure:string;
+}
+
 
 export type IRecipeModel = {
-    recipeId:number
+    cuisineId: number;
+    recipeId: number;
     name: string;
-    description:string;
+    description: string;
+    ingredients:IRecipeProduct[];
 }

@@ -1,6 +1,6 @@
-import { SetLanguageText } from "../../../services/i18n/languageManager";
-import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
-import { ROUTESCODE } from "../../../utils/data/navigation.collection";
+import { SetLanguageText } from "../../services/i18n/languageManager";
+import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
+import { ROUTESCODE } from "../../utils/data/navigation.collection";
 
 export default function RecipeSearch(){
     const textValue = SetLanguageText;

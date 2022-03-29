@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { SetLanguageText } from "../../../services/i18n/languageManager";
+import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
-import { IRecipeModel } from "../../../common/models/recipe.form";
-import { BreadcrumbRoutes } from "../../../components/navigation/breadcrumb-routes";
-import { ROUTESCODE } from "../../../utils/data/navigation.collection";
-import { RecipeViewer } from "../../../components/recipes/recipe.view";
+import { IRecipeModel } from "../../common/models/recipe.form";
+import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
+import { ROUTESCODE } from "../../utils/data/navigation.collection";
+import { RecipeViewer } from "../../components/recipes/recipe.view";
 
 export default function RecipeView(){
     const textValue = SetLanguageText;
