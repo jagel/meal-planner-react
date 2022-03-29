@@ -1,4 +1,3 @@
-import { Button, Form } from "react-bootstrap";
 import { RecipeForm } from "../../components/recipes/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IRecipeModel } from "../../common/models/recipe.form";
@@ -45,7 +44,13 @@ export default function RecipeCreate(){
   
     return <div>
         <BreadcrumbRoutes currenRoute={routeCode} />
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      
+    </div>;
+  }
+
+
+  /*
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <RecipeForm 
             recipe={recipeForm} 
             onTextChange={onTextChange} 
@@ -55,6 +60,4 @@ export default function RecipeCreate(){
                 {textValue('save')}
             </Button>
         </Form>
-    </div>;
-  }
-
+  */

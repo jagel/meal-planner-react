@@ -1,4 +1,3 @@
-import { Breadcrumb, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 
@@ -18,7 +17,12 @@ export const BreadcrumbRoutes = (props : {
     let pathItems = pathname.split('/');
     pathItems[0] = 'home'
     return <div>
-            <h1>{textValue(props.currenRoute)}</h1>
+            
+        </div>
+}
+
+/*
+<h1>{textValue(props.currenRoute)}</h1>
             <Breadcrumb>
                 {pathItems.map((item,index) => 
                     <Breadcrumb.Item key={item} linkAs={Link} linkProps={{ to: "/" }}>
@@ -26,5 +30,4 @@ export const BreadcrumbRoutes = (props : {
                     </Breadcrumb.Item>)
                 }         
             </Breadcrumb>
-        </div>
-}
+ */

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
 import { IRecipeProduct } from "../../common/models/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 
@@ -8,10 +7,11 @@ interface IRecipeFormIngredientsProps {
     onTextChange(event:React.ChangeEvent<HTMLInputElement>):void;
 };
 
+
 const RecipeFormIngredients = (props: IRecipeFormIngredientsProps) => {
     return <label>space</label>;
 }
-
+/*
 const RecipeFormIngredientsTest = (props: IRecipeFormIngredientsProps) => {
     const textValue = SetLanguageText;
     const fractions = ['1/2','1/3','2/3','1/4','3/4','1/8'];
@@ -82,5 +82,5 @@ const RecipeFormIngredientsTest = (props: IRecipeFormIngredientsProps) => {
     </Col>
     </>;
   }
-
+*/
   export { RecipeFormIngredients };

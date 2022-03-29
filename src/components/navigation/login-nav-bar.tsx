@@ -1,9 +1,15 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
 import LanguageSelector from "./language-selector";
 
 function LoginNavBar(){
     return(
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <></>
+    );
+}
+
+export default LoginNavBar
+
+/*
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
             <Navbar.Brand href="#home">
                 <img
@@ -24,7 +30,4 @@ function LoginNavBar(){
             
         </Container>
     </Navbar>  
-    );
-}
-
-export default LoginNavBar
+ */

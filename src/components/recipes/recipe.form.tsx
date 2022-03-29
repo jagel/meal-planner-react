@@ -1,11 +1,11 @@
 import { createRef, useState, VoidFunctionComponent } from "react";
 import { IRecipeModel, IRecipeProduct } from "../../common/models/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
-import { Col, Form, InputGroup, Row } from "react-bootstrap";
 import './recipe.form.css';
 import { RecipeFormIngredients } from "./recipe.form.ingredients";
 
-export const RecipeForm = (
+export const RecipeForm = () => <></>;
+/*
     props : {
         recipe:IRecipeModel, 
         onTextChange(event:React.ChangeEvent<HTMLInputElement>):void,
@@ -71,3 +71,4 @@ export const RecipeForm = (
     {InstructionsGroupItem}
   </Row>);
   }
+*/

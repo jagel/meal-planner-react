@@ -1,4 +1,3 @@
-import { Nav, NavDropdown } from "react-bootstrap";
 import { LanguageAvailable } from "../../utils/data/languageAvailable";
 import { ILanguageAvailable } from "../../common/models/lang.model";
 import { useEffect, useState } from 'react';
@@ -18,7 +17,15 @@ const LanguageSelector = () => {
 
 
   return (
-      <NavDropdown title={<label><span className="lng-icon material-icons">language</span> {language.code}</label>} id="collasible-nav-dropdown">
+     <></>
+  );
+}
+
+
+export default LanguageSelector;
+
+/*
+ <NavDropdown title={<label><span className="lng-icon material-icons">language</span> {language.code}</label>} id="collasible-nav-dropdown">
       {languagesAvailable.map(lang => 
         <NavDropdown.Item 
           key={lang.code} 
@@ -29,8 +36,4 @@ const LanguageSelector = () => {
         </NavDropdown.Item>) 
       }
       </NavDropdown>
-  );
-}
-
-
-export default LanguageSelector;
+ */

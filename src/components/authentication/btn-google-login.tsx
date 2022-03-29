@@ -1,8 +1,8 @@
-import { Button } from "react-bootstrap";
 import { userSessionService } from "../../services/auth/user-session.service";
+import { Button } from '@mui/material';
 
 function BtnGoogleLogin(){
-    <Button variant="success" type="button" onClick={() => userSessionService.loginGoogleAuth()}>
+    <Button type="button" onClick={() => userSessionService.loginGoogleAuth()}>
         Login Google
     </Button>;
 }

@@ -1,6 +1,3 @@
-
-import Navbar from 'react-bootstrap/esm/Navbar';
-import { Container, Nav, Offcanvas } from 'react-bootstrap';
 import { NavBarRequest } from "../../utils/data/navigation.collection";
 import { NavLinkItem } from './nav-link';
 import LanguageSelector from './language-selector';
@@ -11,7 +8,12 @@ export default function AppNavBar(){
   let navRequest = NavBarRequest();
 
   return <>
-    <Navbar bg="light" variant="light" expand={false}>
+  
+</>
+}
+
+/*
+  <Navbar bg="light" variant="light" expand={false}>
       <Container fluid> 
 
         <Navbar.Toggle className='me-3' />
@@ -51,5 +53,4 @@ export default function AppNavBar(){
 
       </Container>
     </Navbar>
-</>
-}
+*/

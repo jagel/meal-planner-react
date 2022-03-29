@@ -1,4 +1,3 @@
-import { Breadcrumb, Button, Container, Form } from "react-bootstrap"
 import { useParams } from "react-router-dom";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
@@ -31,11 +30,15 @@ export default function RecipeUpdate(){
     let dynamicParams : string[]= [`/${recipeId}`];
     return <div>
         <BreadcrumbRoutes currenRoute={routeCode} dynamicParams={dynamicParams}  />
-        <Form>
+        
+    </div>
+}
+
+/*
+<Form>
             <RecipeForm recipe={recipeForm} onTextChange={onTextChange} onDropDownChange={onDropDownChange} />
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>
         </Form>
-    </div>
-}
+ */

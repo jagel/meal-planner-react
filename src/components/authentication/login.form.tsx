@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button, Col, Form, InputGroup, Spinner } from "react-bootstrap";
 import { UserRequestType } from "../../common/models/auth-user.types";
 import { UserService } from "../../services/auth/user-service";
 import { SetLanguageText } from "../../services/i18n/languageManager";
@@ -49,7 +48,17 @@ const LoginForm = () => {
       <div>
         <img src="/src/img/login.svg" className="image-login" />
       </div>
-      <Form noValidate onSubmit={handleSubmit} >
+      
+     
+    </div>
+
+    );
+}
+
+export { LoginForm }
+
+/*
+ <Form noValidate onSubmit={handleSubmit} >
         <fieldset disabled={loading} >
         <Form.Group as={Col} md="12" controlId="email">
           <Form.Label>{textValue('email')}</Form.Label>
@@ -90,9 +99,4 @@ const LoginForm = () => {
         </div>
       </fieldset>
       </Form>
-    </div>
-
-    );
-}
-
-export { LoginForm }
+ */
