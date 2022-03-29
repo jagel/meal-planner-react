@@ -30,10 +30,10 @@ export default function RecipeCreate(){
     };
 
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
-        setRecipeFormState({
-            ...recipeForm,
-            [event.target.id]: event.target.value
-          });
+      setRecipeFormState({
+          ...recipeForm,
+          [event.target.id]: event.target.value
+        });
     }
 
     const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,9 +43,8 @@ export default function RecipeCreate(){
       });
     }
   
-    return (<div>
+    return <div>
         <BreadcrumbRoutes currenRoute={routeCode} />
-
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <RecipeForm 
             recipe={recipeForm} 
@@ -56,9 +55,6 @@ export default function RecipeCreate(){
                 {textValue('save')}
             </Button>
         </Form>
-
-    </div>
-      
-    );
+    </div>;
   }
 

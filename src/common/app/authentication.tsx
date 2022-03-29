@@ -8,7 +8,7 @@ function Authentication({ children }: { children: JSX.Element }) {
 
     if(!appContext.appManager.userValidated)
         return <label>Loading ...</label>
-        
+
     return  appContext.appManager.authenticated ?
         children :
         <Navigate to="/login" state={{ from: location }} replace /> 

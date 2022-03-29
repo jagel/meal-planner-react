@@ -34,16 +34,15 @@ function ApplicationManager({children} : {children : React.ReactNode}){
                     setAppManagerState({...appManager, userValidated:true, authenticated: true });
                     setUserState({...user, displayname: response.displayName, email: response.email });
                     localStorageService.setLocalStorage(LOC_SOTRAGE.LANGUAGE, response.language);
+                    
                 }
                 else
-                    logOut();
+                    setAppManagerState({...appManager, userValidated:true, authenticated: false });
             }
         )().catch((error) => {
             logOut();
         })
         }, []);
-
-   
 
     function logOut(){
         setAppManagerState({...appManager, userValidated:true, authenticated: false });

@@ -6,12 +6,14 @@ import { Authentication } from "../app/authentication"
 import './loading.css';
 
 export const Layout = () => {
-return <Authentication>
-    <React.Suspense fallback={<>...</>}> 
-    <AppNavBar/>
-    <Container>
-        <Outlet />
-    </Container>
-    </React.Suspense>
-</Authentication>
+return (
+    <Authentication>
+        <React.Suspense fallback={<>...</>}>
+            <AppNavBar/>
+            <Container>
+                <Outlet />
+            </Container>
+        </React.Suspense>
+    </Authentication>
+    );
 };
