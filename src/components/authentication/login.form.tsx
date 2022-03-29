@@ -16,7 +16,7 @@ import { EnvironmentRequests } from "../../utils/data/environment-request";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
 
 import './login.form.css';
-import { GoogleIcons, Icons } from "../../common/app/google.icon";
+import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
 
 const LoginForm = () => {
     const [loginForm, setLoginFormState] = useState({} as UserRequestType);
@@ -121,7 +121,7 @@ const PasswordInput = (props:{
           onMouseDown={(evt) => {evt.stopPropagation()}}
           edge="end"
         >
-          {passwordInput.showPassword ?  <GoogleIcons iconName={Icons.visibility} />:   <GoogleIcons iconName={Icons.visibility_off} />}
+          {passwordInput.showPassword ?  <GoogleIconsInheritance iconName={Icons.visibility} />:   <GoogleIconsInheritance iconName={Icons.visibility_off} />}
         </IconButton>
       </InputAdornment>
     }
