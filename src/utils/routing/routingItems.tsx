@@ -13,7 +13,7 @@ export const RoutesItems : RouteObject[] = [{
     path:APP_ROUTES.LOGIN.path,
     element: <Login />
     },{
-    path: APP_ROUTES.DASHBOARD.path,
+    path: APP_ROUTES.HOME.path,
     element: <Layout />,
     children: [
     {

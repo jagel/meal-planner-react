@@ -1,42 +1,46 @@
-interface RouteItem {
+export interface RouteItem {
     path:string,
     code:string,
     title:string
 }
 
-const APP_ROUTES = {
-    DASHBOARD:{
+const APP_ROUTES : { [key:string] : RouteItem} = {
+    HOME:{
         path: "/",
         code: "",
-        title: "dashboard"
-    } as RouteItem,
+        title: "home"
+    },
     RECIPES:{
         path: "/recipes",
-        code: "recipes",
-        title: "search"
-    } as RouteItem,
+        code: ".recipes",
+        title: "recipes"
+    },
     RECIPES_CREATE:{
         path:"/recipes/create",
-        code: "recipes.create",
+        code: ".recipes.create",
         title: "Create Recipe"
-    } as RouteItem,
+    },
     RECIPES_UPDATE:{
         path:"/recipes/update/:recipeId",
-        code: "recipes.update",
+        code: ".recipes.update",
         title: "Update Recipe"
-    } as RouteItem,
+    },
     RECIPES_VIEW:{
         path:"/recipes/view/:recipeId",
-        code: "recipes.view",
+        code: ".recipes.view",
         title: "Update Recipe"
-    } as RouteItem,
+    },
     LOGIN : {
-        path:"/login"        
-    } as RouteItem 
+        path:"/login",
+        code:"login",
+        title:"login"
+    } 
 }
 
 const EXTERNALROUTES = [
     APP_ROUTES.LOGIN.path
 ]
 
-export { APP_ROUTES, EXTERNALROUTES };
+const RoutesList : RouteItem[] = Object.keys(APP_ROUTES).map(key => APP_ROUTES[key])
+
+export { APP_ROUTES, EXTERNALROUTES, RoutesList };

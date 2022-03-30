@@ -10,10 +10,15 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'required field', value : 'Field is required' },
    
     { code: 'home', value : 'Home' },
+    { code: 'recipes', value : 'Recipes' },
     { code: 'recipe', value : 'Recipe' },
-    { code: 'recipe.search', value : 'Search Recipe' },
-    { code: 'recipe.create', value : 'Create Recipe' },
-    { code: 'recipe.update', value : 'Update Recipe' },
+    { code: 'update', value : 'Update' },
+    { code: 'view', value : 'View' },
+    { code: 'create', value : 'Create' },
+
+    { code: 'Recipes', value : 'Recipes' },
+    { code: 'Create Recipe', value : 'Create Recipe' },
+    { code: 'Update Recipe', value : 'Update Recipe' },
 
     { code: 'Home', value : 'Home' },
     { code: 'Search', value : 'Search' },

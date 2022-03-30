@@ -4,12 +4,9 @@ import { IRecipeModel } from "../../common/models/recipe.form";
 import { ROUTES } from "../../utils/data/api-routes";
 import { useState } from "react";
 import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
-import { ROUTESCODE } from "../../utils/data/navigation.collection";
 import { requestService } from "../../services/api-service";
 
 export default function RecipeCreate(){
-    let routeCode = ROUTESCODE.RECIPE_CREATE;
-   
     const [validated, setValidated] = useState(false);
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
     const textValue = SetLanguageText;
@@ -43,7 +40,7 @@ export default function RecipeCreate(){
     }
   
     return <div>
-        <BreadcrumbRoutes currenRoute={routeCode} />
+        <BreadcrumbRoutes />
       
     </div>;
   }
