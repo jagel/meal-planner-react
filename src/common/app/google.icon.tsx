@@ -10,8 +10,12 @@ export const Icons = {
     morevert:'more_vert'
 }
 
-export const GoogleIconsInheritance = (props:{iconName:string}) =>
-    <span className="material-icons">{props.iconName}</span>
+export const GoogleIconsInheritance = (props:{iconName:string, className?:string}) =>{
+    let className = `${props.className} material-icons`;
+    return <span className={className}>{props.iconName}</span>
+}
 
-export const GoogleIconComposition = (props : {iconName:string, children : React.ReactNode}) =>
-  <span className="material-icons">{props.iconName}{props.children}</span>
+export const GoogleIconComposition = (props : {iconName:string, className?:string, children : React.ReactNode}) =>{
+    let className = `${props.className} material-icons`;
+    return <span className={className}>{props.iconName}{props.children}</span>
+}

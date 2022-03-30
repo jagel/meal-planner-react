@@ -44,7 +44,7 @@ const LanguageSelector = () => {
       onClick={handleMenu}
       color="inherit"
     >
-      <GoogleIconComposition iconName={Icons.language}>{language.code}</GoogleIconComposition>
+      <GoogleIconComposition iconName={Icons.language} className="lng-icon">{language.code}</GoogleIconComposition>
     </IconButton>
     <Menu
       anchorEl={anchorEl}
