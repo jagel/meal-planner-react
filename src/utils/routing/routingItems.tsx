@@ -7,24 +7,25 @@ import RecipeCreate from "../../pages/recipes/recipe.create"
 import RecipeUpdate from "../../pages/recipes/recipe.update"
 import RecipeSearch from '../../pages/recipes/recipe-search';
 import RecipeView from '../../pages/recipes/recipe.view';
+import { APP_ROUTES } from "./app-routes";
 
 export const RoutesItems : RouteObject[] = [{
-    path:"/login",
+    path:APP_ROUTES.LOGIN.path,
     element: <Login />
     },{
-    path: "/",
+    path: APP_ROUTES.HOME.path,
     element: <Layout />,
     children: [
     {
         index:true,
         element: <Dashboard />
     },{
-        path:"/recipes",
+        path:  APP_ROUTES.RECIPES.path,
         children:[
             { index: true, element: <RecipeSearch />},
-            { path:"/recipes/create", element: <RecipeCreate />},
-            { path:"/recipes/view/:recipeId", element: <RecipeView />},
-            { path:"/recipes/update/:recipeId", element: <RecipeUpdate />}
+            { path: APP_ROUTES.RECIPES_CREATE.path, element: <RecipeCreate />},
+            { path: APP_ROUTES.RECIPES_UPDATE.path, element: <RecipeUpdate />},
+            { path: APP_ROUTES.RECIPES_VIEW.path, element: <RecipeView />}
         ]
     },{
         path:"/meal-planner",

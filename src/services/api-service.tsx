@@ -32,10 +32,6 @@ class HttpRequestService{
         return responseData;
     }
 
-
-
-    
-
     buildURLEndpoint = (endpoint:string, params?: any) : string => {
         var url = EnvironmentRequests.APIUrl;
 

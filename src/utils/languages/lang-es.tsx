@@ -10,10 +10,15 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'required field', value : 'Campo requerido' },
 
     { code: 'home', value : 'Inicio' },
-    { code: 'recipe', value : 'Recetario' },
-    { code: 'recipe.search', value : 'Buscar Receta' },
-    { code: 'recipe.create', value : 'Nueva Receta' },
-    { code: 'recipe.update', value : 'Actualizar Receta' },
+    { code: 'recipes', value : 'Recetas' },
+    { code: 'recipe', value : 'Receta' },
+    { code: 'update', value : 'Actualizar' },
+    { code: 'view', value : 'Ver' },
+    { code: 'create', value : 'Nuevo' },
+
+    { code: 'Recipes', value : 'Recetas' },
+    { code: 'Create Recipe', value : 'Nueva Receta' },
+    { code: 'Update Recipe', value : 'Editar Receta' },
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },
@@ -25,6 +30,10 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'Recipe Name', value : 'Nombre de la receta' },
     { code: 'Recipe Description', value : 'Descripcion' },
     { code: 'ingredients', value : 'Ingredientes' },
+    { code: 'units', value : 'Unidades' },
+
+    { code: 'name', value : 'Nombre' },
+    { code: 'add', value : 'Agregar' },
 
     { code: 'save', value:'Guardar' },
 ]

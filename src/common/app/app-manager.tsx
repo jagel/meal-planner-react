@@ -4,7 +4,7 @@ import { LanguageAvailable, LANG_DATA } from '../../utils/data/languageAvailable
 import { localStorageService, LOC_SOTRAGE } from '../../services/localStorage/localStorage';
 import { AppContext, AppManager, UserModel } from './app-context';
 import { useLocation } from 'react-router-dom';
-import { EXTERNALROUTES } from '../../utils/data/app-routes';
+import { EXTERNALROUTES } from '../../utils/routing/app-routes';
 
 function ApplicationManager({children} : {children : React.ReactNode}){
 
@@ -34,16 +34,15 @@ function ApplicationManager({children} : {children : React.ReactNode}){
                     setAppManagerState({...appManager, userValidated:true, authenticated: true });
                     setUserState({...user, displayname: response.displayName, email: response.email });
                     localStorageService.setLocalStorage(LOC_SOTRAGE.LANGUAGE, response.language);
+                    
                 }
                 else
-                    logOut();
+                    setAppManagerState({...appManager, userValidated:true, authenticated: false });
             }
         )().catch((error) => {
             logOut();
         })
         }, []);
-
-   
 
     function logOut(){
         setAppManagerState({...appManager, userValidated:true, authenticated: false });

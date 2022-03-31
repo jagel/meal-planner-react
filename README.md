@@ -4,8 +4,10 @@ Open [http://localhost:8085](http://localhost:8085) to view it in the browser.
 ($env:HTTPS = "true") -and (npm start)
 chrome://flags/#allow-insecure-localhost
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ui [MUI](https://mui.com/)
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+npm install @mui/material @emotion/react @emotion/styled
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,4 +1,3 @@
-import { Nav } from "react-bootstrap";
 import { INavBarItems } from "../../common/models/navbar.model"
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -9,7 +8,8 @@ const NavLinkItem = (props : {
     let text = SetLanguageText;
     
     const generateLink = (item : INavBarItems) =>
-        <Nav.Link key={`${item.code}.${item.hasRoute}`} as={Link} to={item.route} data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasTop">{text(item.code)}</Nav.Link>;
+        <>{item.code}</>
+        //<Nav.Link key={`${item.code}.${item.hasRoute}`} as={Link} to={item.route} data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasTop">{text(item.code)}</Nav.Link>;
     
     const generateMainLink = () => (
     <label key={props.linkItem.code}>

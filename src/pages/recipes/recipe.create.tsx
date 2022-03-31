@@ -1,16 +1,14 @@
-import { Button, Form } from "react-bootstrap";
 import { RecipeForm } from "../../components/recipes/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IRecipeModel } from "../../common/models/recipe.form";
 import { ROUTES } from "../../utils/data/api-routes";
-import { useState } from "react";
-import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
-import { ROUTESCODE } from "../../utils/data/navigation.collection";
+import { useEffect, useState } from "react";
 import { requestService } from "../../services/api-service";
+import { LayoutPage } from "../../common/layout/layout-page";
+import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+
 
 export default function RecipeCreate(){
-    let routeCode = ROUTESCODE.RECIPE_CREATE;
-   
     const [validated, setValidated] = useState(false);
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
     const textValue = SetLanguageText;
@@ -25,15 +23,18 @@ export default function RecipeCreate(){
       if (isValid) 
         requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
             .then((data) => console.log('completed',data))
-      else
+      else{
+        console.log("show erroes");
         setValidated(true);
+
+      }
     };
 
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
-        setRecipeFormState({
-            ...recipeForm,
-            [event.target.id]: event.target.value
-          });
+      setRecipeFormState({
+          ...recipeForm,
+          [event.target.id]: event.target.value
+        });
     }
 
     const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,22 +44,26 @@ export default function RecipeCreate(){
       });
     }
   
-    return (<div>
-        <BreadcrumbRoutes currenRoute={routeCode} />
+    return <LayoutPage>
+      <form onSubmit={handleSubmit} noValidate >
+        <RecipeForm 
+          recipe={recipeForm} 
+          onTextChange={onTextChange} 
+          onDropDownChange={onDropDownChange} 
+          displayError={validated}
+        />
+        <ButtonLoading text="save" fullWidth={false} />
 
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <RecipeForm 
-            recipe={recipeForm} 
-            onTextChange={onTextChange} 
-            onDropDownChange={onDropDownChange} 
-          />
+      </form>  
+    </LayoutPage>
+  }
+
+
+  /*
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+         
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>
         </Form>
-
-    </div>
-      
-    );
-  }
-
+  */
