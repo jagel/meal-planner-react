@@ -6,6 +6,7 @@ import { InputRequired } from "../form-items/input.required";
 import { TextArea } from "../form-items/textarea";
 import { SelecItemCatalogAsync } from "../form-items/seletitem.catalog.async";
 import { CatalogEnum } from "../../utils/data/catalog.enum";
+import { FormValidations } from "../../utils/data/form-defiinions";
 
 export const RecipeForm = (props : {
   recipe:IRecipeModel, 
@@ -15,11 +16,21 @@ export const RecipeForm = (props : {
 }) => {
 
       return <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <SelecItemCatalogAsync catalogName={CatalogEnum.cuisine} onChangeNumber={(number:number) => console.log(number) } />
-        <InputRequired value={props.recipe.name}  displayText="Name"
-          name="name" onTextChange={props.onTextChange} displayError={props.displayError}/>
-        <TextArea value={props.recipe.description}  displayText="Recipe Description"
-          name="description" onTextChange={props.onTextChange} displayError={props.displayError}/>
+        <InputRequired 
+          value={props.recipe.name}  
+          displayText="Name"
+          name="name" onTextChange={props.onTextChange} 
+          displayError={props.displayError}
+          inputProps={{ maxlength: FormValidations.maxNameLength }} 
+        />
+        <TextArea 
+          value={props.recipe.description}
+          displayText="Recipe Description"
+          name="description" 
+          onTextChange={props.onTextChange} 
+          displayError={props.displayError}
+          inputProps={{ maxlength: FormValidations.maxDescriptionLength }} 
+        />
     </Box>
       /*
     const CuisineGroupItem = <Form.Group as={Col} md="12" controlId="cuisine" className="form-item">
