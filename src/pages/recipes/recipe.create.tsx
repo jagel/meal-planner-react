@@ -2,9 +2,11 @@ import { RecipeForm } from "../../components/recipes/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IRecipeModel } from "../../common/models/recipe.form";
 import { ROUTES } from "../../utils/data/api-routes";
-import { useState } from "react";
-import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
+import { useEffect, useState } from "react";
 import { requestService } from "../../services/api-service";
+import { LayoutPage } from "../../common/layout/layout-page";
+import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+
 
 export default function RecipeCreate(){
     const [validated, setValidated] = useState(false);
@@ -21,8 +23,11 @@ export default function RecipeCreate(){
       if (isValid) 
         requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
             .then((data) => console.log('completed',data))
-      else
+      else{
+        console.log("show erroes");
         setValidated(true);
+
+      }
     };
 
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
@@ -39,20 +44,24 @@ export default function RecipeCreate(){
       });
     }
   
-    return <div>
-        <BreadcrumbRoutes />
-      
-    </div>;
+    return <LayoutPage>
+      <form onSubmit={handleSubmit} noValidate >
+        <RecipeForm 
+          recipe={recipeForm} 
+          onTextChange={onTextChange} 
+          onDropDownChange={onDropDownChange} 
+          displayError={validated}
+        />
+        <ButtonLoading text="save" fullWidth={false} />
+
+      </form>  
+    </LayoutPage>
   }
 
 
   /*
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <RecipeForm 
-            recipe={recipeForm} 
-            onTextChange={onTextChange} 
-            onDropDownChange={onDropDownChange} 
-          />
+         
             <Button variant="primary" type="submit">
                 {textValue('save')}
             </Button>

@@ -1,18 +1,27 @@
-import { createRef, useState, VoidFunctionComponent } from "react";
-import { IRecipeModel, IRecipeProduct } from "../../common/models/recipe.form";
-import { SetLanguageText } from "../../services/i18n/languageManager";
+import { IRecipeModel } from "../../common/models/recipe.form";
 import './recipe.form.css';
-import { RecipeFormIngredients } from "./recipe.form.ingredients";
 
-export const RecipeForm = () => <></>;
-/*
-    props : {
-        recipe:IRecipeModel, 
-        onTextChange(event:React.ChangeEvent<HTMLInputElement>):void,
-        onDropDownChange(event:React.ChangeEvent<HTMLSelectElement>):void
-    }) => {
-    const textValue = SetLanguageText;
+import Box from "@mui/material/Box";
+import { InputRequired } from "../form-items/input.required";
+import { TextArea } from "../form-items/textarea";
+import { SelecItemCatalogAsync } from "../form-items/seletitem.catalog.async";
+import { CatalogEnum } from "../../utils/data/catalog.enum";
 
+export const RecipeForm = (props : {
+  recipe:IRecipeModel, 
+  displayError:boolean,
+  onTextChange(event:React.ChangeEvent<HTMLInputElement>):void,
+  onDropDownChange(event:React.ChangeEvent<HTMLSelectElement>):void
+}) => {
+
+      return <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        <SelecItemCatalogAsync catalogName={CatalogEnum.cuisine} onChangeNumber={(number:number) => console.log(number) } />
+        <InputRequired value={props.recipe.name}  displayText="Name"
+          name="name" onTextChange={props.onTextChange} displayError={props.displayError}/>
+        <TextArea value={props.recipe.description}  displayText="Recipe Description"
+          name="description" onTextChange={props.onTextChange} displayError={props.displayError}/>
+    </Box>
+      /*
     const CuisineGroupItem = <Form.Group as={Col} md="12" controlId="cuisine" className="form-item">
     <Form.Label>{textValue('Cuisine')}</Form.Label>
       <Form.Select required 
@@ -69,6 +78,5 @@ export const RecipeForm = () => <></>;
     {DescriptionGroupItem}
     <RecipeFormIngredients ingredients={props.recipe.ingredients} onTextChange={props.onTextChange} />
     {InstructionsGroupItem}
-  </Row>);
+  </Row>);*/
   }
-*/

@@ -1,7 +1,8 @@
 import Button from '@mui/material/Button';
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect } from 'react';
-import './button.loader.css'
+import './button.loader.css';
+
 type ButtonLoadingProp = {
     text:string;
     fullWidth?:boolean;
