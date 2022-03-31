@@ -47,10 +47,10 @@ export const BreadcrumbRoutes = (props : {
       <LinkRouter key={index} underline="hover" color="inherit" to={currentItem.path}>{textValue(_pathItem)}</LinkRouter>;
    }
 
-  return <Box>
-    <h3 style={{textAlign:'center'}}>{textValue(currentLocation.title)}</h3>
+  return <Box sx={{ m: 2 }}>
     <Breadcrumbs aria-label="breadcrumb">
       { pathItems.map(printRoute) }
     </Breadcrumbs>
+    <h3 style={{textAlign:'center'}}>{textValue(currentLocation.title)}</h3>
   </Box>;
 }
