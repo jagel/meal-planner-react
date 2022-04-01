@@ -12,5 +12,11 @@ export const recipeEndpointsService = {
     let endpoint = APIROUTES.RECIPE.CREATE;
     let respone = await endpointService.postAsync<IRecipeModel,IRecipeModel>(endpoint,recipe);
     return respone.data;
+  },
+  async updateRecipeAsync(recipe:IRecipeModel, recipeId:string) : Promise<IRecipeModel>{
+    let endpoint = APIROUTES.RECIPE.UPDATE;
+
+    let respone = await endpointService.putAsync<IRecipeModel,IRecipeModel>(endpoint,recipe,{recipeId});
+    return respone.data;
   }
 };

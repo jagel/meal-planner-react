@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
 import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
 import { RecipeForm } from "../../components/recipes/recipe.form";
@@ -8,43 +7,59 @@ import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
 
 export default function RecipeUpdate(){
-    const [validated, setValidated] = useState(false);
-    const textValue = SetLanguageText;
-    let { recipeId } = useParams();
+  const [validated, setValidated] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  let { recipeId } = useParams();
 
-    const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
+  const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
 
-    useEffect(()=>{
-        recipeEndpointsService.getRecipeAsync(recipeId??'')
-            .then(response => {
-                console.log(response);
-                setRecipeFormState(response??recipeForm);
-            });
-    },[])
+  useEffect(()=>{
+      recipeEndpointsService.getRecipeAsync(recipeId??'')
+          .then(response => {
+            setRecipeFormState(response??recipeForm);
+            setInitialLoading(false);
+          });
+  },[])
 
-
-    const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{}
-    const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) =>{}
-  
-    const updateSteps = (steps : StepModel[]) => {
-        setRecipeFormState({
-          ...recipeForm,
-          steps: steps
-        });
-      }
-      
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     
-    return  <LayoutPage params={{recipeId}}>
-    <form onSubmit={() => console.log('')} noValidate >
-      <RecipeForm 
-        recipe={recipeForm} 
-        onTextChange={onTextChange} 
-        onDropDownChange={onDropDownChange} 
-        displayError={validated}
-        updateSteps={updateSteps}
-      />
-      <ButtonLoading text="save" fullWidth={false} />
+  const form = event.currentTarget;
+  let isValid = form.checkValidity();
 
-    </form>  
-  </LayoutPage>
+  if (isValid) 
+    recipeEndpointsService.updateRecipeAsync(recipeForm,recipeId??'')
+      .then( response => console.log(response.recipeId));
+  else
+    setValidated(true);      
+};  
+
+
+const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
+  setRecipeFormState({
+      ...recipeForm,
+      [event.target.id]: event.target.value
+    });
+}
+
+const updateSteps = (steps : StepModel[]) => {
+  setRecipeFormState({
+    ...recipeForm,
+    steps: steps
+  });
+}
+    
+  
+  return  <LayoutPage params={{recipeId}} loadingPage={initialLoading}>
+      <form onSubmit={handleSubmit} noValidate >
+        <RecipeForm 
+          recipe={recipeForm} 
+          onTextChange={onTextChange} 
+          displayError={validated}
+          updateSteps={updateSteps}
+        />
+        <ButtonLoading text="update" fullWidth={false} loading={false} />
+      </form>  
+</LayoutPage>
 }

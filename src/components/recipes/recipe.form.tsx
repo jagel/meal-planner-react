@@ -13,12 +13,11 @@ export const RecipeForm = (props : {
   recipe:IRecipeModel, 
   displayError:boolean,
   onTextChange(event:React.ChangeEvent<HTMLInputElement>):void,
-  onDropDownChange(event:React.ChangeEvent<HTMLSelectElement>):void,
   updateSteps(steps:StepModel[]):void,
 }) => {
       return <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <InputRequired 
-          value={props.recipe.name}  
+          value={props.recipe.name}
           displayText="Name"
           name="name" onTextChange={props.onTextChange} 
           displayError={props.displayError}

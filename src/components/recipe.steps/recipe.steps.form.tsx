@@ -17,7 +17,6 @@ export const RecipeFormSteps = (props :{
     updateSteps(steps:StepModel[]):void,
     displayError: boolean
 }) =>{
-  console.log(props)
   const [ editOrder, setEditOrder] = useState(0);
   const [ showDeleteMessage, setShowDeleteMessage] = useState(false);
   const steps = props.steps??[];

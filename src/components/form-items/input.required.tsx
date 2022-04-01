@@ -12,7 +12,6 @@ export const InputRequired = (props :{
     displayText:string,
     inputProps:InputProperties
   }) => {
-    
     const displayName = SetLanguageText(props.displayText);
     const errorMessage = SetLanguageText('required field');
     const displayError =  FormValidationservice.displayRequiredError(props.value, props.displayError);;
