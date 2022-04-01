@@ -1,3 +1,3 @@
 export interface InputProperties{
-    maxlength?:number
+    maxLength?:number
 }

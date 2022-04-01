@@ -1,13 +1,27 @@
 export const Icons = {
+    // A
+    account_circle: 'account_circle',
+    arrow_upward:'arrow_upward',
+    arrow_downward:'arrow_downward',
+    // C
+    check:'check',
+    // D
+    delete:'delete',
+    // E
+    edit:'edit',
+    // L
+    language:'language',
+    // M
     mail : 'mail',
+    menu: 'menu',
+    morevert:'more_vert',
+    // N
+    notifications:'notifications',
+    // S
+    search: 'search',
+    // V
     visibility_off : 'visibility_off',
     visibility: 'visibility',
-    account_circle: 'account_circle',
-    language:'language',
-    menu: 'menu',
-    search: 'search',
-    notifications:'notifications',
-    morevert:'more_vert'
 }
 
 export const GoogleIconsInheritance = (props:{iconName:string, className?:string}) =>{
