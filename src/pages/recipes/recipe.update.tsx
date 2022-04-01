@@ -5,13 +5,18 @@ import { RecipeForm } from "../../components/recipes/recipe.form";
 import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+import { RoutingServices } from "../../services/routing.service";
+import { APP_ROUTES } from "../../utils/routing/app-routes";
+import { useNavigate } from "react-router-dom";
 
 export default function RecipeUpdate(){
   const [validated, setValidated] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
-  let { recipeId } = useParams();
+  const { recipeId } = useParams();
 
   const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
+  const routingService = RoutingServices;
+  const navigate = useNavigate();
 
   useEffect(()=>{
       recipeEndpointsService.getRecipeAsync(recipeId??'')
@@ -30,7 +35,10 @@ export default function RecipeUpdate(){
 
   if (isValid) 
     recipeEndpointsService.updateRecipeAsync(recipeForm,recipeId??'')
-      .then( response => console.log(response.recipeId));
+      .then( response => {
+        let route = routingService.generateRoute(APP_ROUTES.RECIPES_VIEW, {recipeId:response.recipeId});
+        navigate(route);
+      });
   else
     setValidated(true);      
 };  
