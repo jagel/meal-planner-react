@@ -1,11 +1,10 @@
 import { RecipeForm } from "../../components/recipes/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
-import { ROUTES } from "../../utils/data/api-routes";
 import { useState } from "react";
-import { requestService } from "../../services/api-service";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
 
 
 export default function RecipeCreate(){
@@ -21,8 +20,8 @@ export default function RecipeCreate(){
       let isValid = form.checkValidity();
 
       if (isValid) 
-        requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
-            .then((data) => console.log('completed',data))
+        recipeEndpointsService.createRecipeAsync(recipeForm)
+          .then( response => console.log(response.recipeId));
       else
         setValidated(true);      
     };    

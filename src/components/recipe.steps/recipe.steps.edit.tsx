@@ -12,14 +12,19 @@ export const RecipeStepsEdit = (props:{
     step:StepModel,
     totalItems:number,
     editionCompleted:(step:StepModel)=>void,
-    replacePosition:(currentOrder : StepModel, newOrder : number)=>void
+    replacePosition:(currentOrder : StepModel, newOrder : number)=>void,
+    displayError:boolean,
   }) => {
     const [stepEditor, setStepEditor] = useState(props.step);
     const [displayError, setDisplayError] = useState(false);
+
     const onStepTextChanged = (event : React.ChangeEvent<HTMLInputElement>) => {
-      setDisplayError(false);
       setStepEditor({...stepEditor,  description: event.target.value });
     }
+
+    useEffect(()=>{
+      setDisplayError(props.displayError);
+    }, [props.displayError])
 
     const editorValidator = () => {
       if(stepEditor.description.length > 0){
@@ -38,15 +43,15 @@ export const RecipeStepsEdit = (props:{
       <IconButton type="button" sx={{ p: '10px' }} aria-label={Icons.arrow_downward} onClick={() =>props.replacePosition(stepEditor,(stepEditor.order+1))} >
       <GoogleIconsInheritance iconName={Icons.arrow_downward} />
     </IconButton> : undefined;
-    
     return (
       <ListItem>
         <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%" }}>
         {upwardButton()}
-        <FormDescriptionRequiredInput 
+        <FormDescriptionRequiredInput             
             value={stepEditor.description}
-            displayText="step"
-            name="description" 
+            displayText={`step {0}`}
+            displayTextParams={[`${stepEditor.order}`]}
+            name={`step.${stepEditor.order}`}
             onTextChange={onStepTextChanged} 
             displayError={displayError}
           />

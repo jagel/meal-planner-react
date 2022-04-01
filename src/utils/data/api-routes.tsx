@@ -2,7 +2,8 @@ import { EnvironmentRequests } from "./environment-request";
 
 
 const CONTROLLERS ={
-  AUTHCONTROLLER:'auth'
+  AUTHCONTROLLER:'auth',
+  RECIPECONTROLLER:'Recipe'
 }
 const AUTHROUTES = {
   LOGIN : `${CONTROLLERS.AUTHCONTROLLER}/login`,
@@ -10,12 +11,12 @@ const AUTHROUTES = {
   GETUSER: `${CONTROLLERS.AUTHCONTROLLER}/getUser`,
 }
 
-const ROUTES = {
+const APIROUTES = {
   RECIPE : {
-    CREATE : 'Recipe/CreateRecipe',
-    UPDATE : 'Recipe/UpdateRecipe/{recipeId}',
-    GETBYRECIPEID : 'Recipe/getRecipeById/{recipeId}'
+    CREATE : `${CONTROLLERS.RECIPECONTROLLER}/CreateRecipe`,
+    UPDATE : `${CONTROLLERS.RECIPECONTROLLER}/UpdateRecipe/{recipeId}`,
+    GETBYRECIPEID : `${CONTROLLERS.RECIPECONTROLLER}/getRecipeById/{recipeId}`
   }
 }
 
-export { AUTHROUTES, ROUTES };
+export { AUTHROUTES, APIROUTES };

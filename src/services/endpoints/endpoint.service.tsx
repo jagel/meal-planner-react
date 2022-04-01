@@ -7,21 +7,19 @@ const endpointService = {
         withCredentials:true,
         baseURL: EnvironmentRequests.APIUrl
     }),
-    getAsync: async <TmodelResponse,>(endpoint:string, params:any) : Promise<ModelResponse<TmodelResponse>> => {
+    getAsync: async <TmodelResponse,>(endpoint:string, params?:any) : Promise<ModelResponse<TmodelResponse>> => {
         let url = endpointService.interpolateParams(endpoint, params);
         
         let httpResponse = await endpointService.axiosInstance.get<ModelResponse<TmodelResponse>>(url);
 
         return httpResponse.data;
     },
-    postAsync: async <TmodelResponse,TmodelRequest>(endpoint:string, data: TmodelRequest, params:any) => {
-        let url = endpointService.interpolateParams(endpoint, params);
-
-        let httpResponse = await endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(url,data);
-
+    postAsync: async <TmodelResponse,TmodelRequest>(endpoint:string, data: TmodelRequest) => {
+        let httpResponse = await endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(endpoint,data);
         return httpResponse.data;
     },
     interpolateParams: (endpoint:string, params:any) : string => {
+        debugger
         for (var prop in params??[]) 
         endpoint = endpoint.replace(`{${prop}}`,params[prop])
         

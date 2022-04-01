@@ -22,6 +22,7 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'directions', value:'Instrucciones'},
     { code: 'add step', value:'Agregar paso'},
     { code: 'step', value:'Paso'},
+    { code: 'step {0}', value:'Paso {0}'},
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },

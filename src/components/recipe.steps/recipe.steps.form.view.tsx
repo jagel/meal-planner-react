@@ -12,6 +12,7 @@ export const RecipeStepsFormView = (props:{
     stepItem:StepModel,
     editMode:boolean,
     enableEditMode:(order:number) => void
+    onDeleteItemClick:(stepItem:StepModel) => void
 }) =>{
   const textValue = SetLanguageText;
 
@@ -20,17 +21,16 @@ export const RecipeStepsFormView = (props:{
       <Avatar>{props.stepItem.order}</Avatar>
     </ListItemAvatar>
     <ListItemText
-      primary={`${textValue('step')} ${props.stepItem.order}`}
+      primary={textValue('step {0}',[`${props.stepItem.order}`])}
       secondary={props.stepItem.description}
     />
     {!props.editMode ? <ListItemSecondaryAction>
         <IconButton aria-label={Icons.edit} onClick={() => props.enableEditMode(props.stepItem.order)}>
           <GoogleIconsInheritance iconName={Icons.edit} />
         </IconButton>
-        <IconButton edge="end" aria-label={Icons.delete}>
+        <IconButton edge="end" aria-label={Icons.delete} onClick={()=>props.onDeleteItemClick(props.stepItem)}>
             <GoogleIconsInheritance iconName={Icons.delete} />
         </IconButton>
     </ListItemSecondaryAction> : undefined}
-    
   </ListItem>
 }
