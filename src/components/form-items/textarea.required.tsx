@@ -2,13 +2,15 @@ import { SetLanguageText } from "../../services/i18n/languageManager";
 import { FormValidationservice } from "../../services/form.validation.service";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+import { InputProperties } from "../../common/models/form-models";
 
 export const TextAreaRequired = (props :{
     value:string,
     onTextChange(event : React.ChangeEvent<HTMLInputElement>):void,
     displayError:boolean,
     name:string,
-    displayText:string
+    displayText:string,
+    inputProps:InputProperties
   }) => {
     
     const displayName = SetLanguageText(props.displayText);
@@ -26,6 +28,7 @@ export const TextAreaRequired = (props :{
           defaultValue={props.value}
           helperText={helperText}
           onChange={props.onTextChange}
+          inputProps={props.inputProps}
           variant="standard"
         />
     </FormControl>

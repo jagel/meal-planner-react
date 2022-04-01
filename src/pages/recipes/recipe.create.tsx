@@ -1,8 +1,8 @@
 import { RecipeForm } from "../../components/recipes/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
-import { IRecipeModel } from "../../common/models/recipe.form";
+import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
 import { ROUTES } from "../../utils/data/api-routes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { requestService } from "../../services/api-service";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
@@ -23,12 +23,9 @@ export default function RecipeCreate(){
       if (isValid) 
         requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
             .then((data) => console.log('completed',data))
-      else{
-        console.log("show erroes");
-        setValidated(true);
-
-      }
-    };
+      else
+        setValidated(true);      
+    };    
 
     const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
       setRecipeFormState({
@@ -43,6 +40,13 @@ export default function RecipeCreate(){
         [event.target.id]: event.target.value
       });
     }
+
+    const updateSteps = (steps : StepModel[]) => {
+      setRecipeFormState({
+        ...recipeForm,
+        steps: steps
+      });
+    }
   
     return <LayoutPage>
       <form onSubmit={handleSubmit} noValidate >
@@ -51,6 +55,7 @@ export default function RecipeCreate(){
           onTextChange={onTextChange} 
           onDropDownChange={onDropDownChange} 
           displayError={validated}
+          updateSteps={updateSteps}
         />
         <ButtonLoading text="save" fullWidth={false} />
 

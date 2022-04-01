@@ -11,6 +11,10 @@ export type IRecipeProduct = {
     meassure:string;
 }
 
+export interface StepModel{
+    order:number;
+    description:string;
+}
 
 export type IRecipeModel = {
     cuisineId: number;
@@ -18,4 +22,6 @@ export type IRecipeModel = {
     name: string;
     description: string;
     ingredients:IRecipeProduct[];
+    steps:StepModel[]
 }
+
