@@ -1,18 +1,22 @@
 import { RecipeForm } from "../../components/recipes/recipe.form";
-import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
-import { ROUTES } from "../../utils/data/api-routes";
 import { useState } from "react";
-import { requestService } from "../../services/api-service";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
+import { useNavigate } from "react-router-dom";
+import { RoutingServices } from "../../services/routing.service";
+import { APP_ROUTES } from "../../utils/routing/app-routes";
 
 
 export default function RecipeCreate(){
     const [validated, setValidated] = useState(false);
     const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
-    const textValue = SetLanguageText;
-
+    const [loading, setLoading] = useState(false);
+ 
+    const routingService = RoutingServices;
+    const navigate = useNavigate();
+    
     const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         event.stopPropagation();
@@ -20,9 +24,16 @@ export default function RecipeCreate(){
       const form = event.currentTarget;
       let isValid = form.checkValidity();
 
-      if (isValid) 
-        requestService.httpPostAsync<IRecipeModel>(ROUTES.RECIPE.CREATE,recipeForm)
-            .then((data) => console.log('completed',data))
+      if (isValid) {
+        setLoading(true);
+        recipeEndpointsService.createRecipeAsync(recipeForm)
+          .then( response => {
+            let route = routingService.generateRoute(APP_ROUTES.RECIPES_VIEW, {recipeId:response.recipeId});
+            navigate(route);
+          })
+          .finally(() => setLoading(false));
+      }
+        
       else
         setValidated(true);      
     };    
@@ -32,13 +43,6 @@ export default function RecipeCreate(){
           ...recipeForm,
           [event.target.id]: event.target.value
         });
-    }
-
-    const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
-      setRecipeFormState({
-        ...recipeForm,
-        [event.target.id]: event.target.value
-      });
     }
 
     const updateSteps = (steps : StepModel[]) => {
@@ -53,22 +57,10 @@ export default function RecipeCreate(){
         <RecipeForm 
           recipe={recipeForm} 
           onTextChange={onTextChange} 
-          onDropDownChange={onDropDownChange} 
           displayError={validated}
           updateSteps={updateSteps}
         />
-        <ButtonLoading text="save" fullWidth={false} />
-
+        <ButtonLoading text="save" fullWidth={false} loading={loading} />
       </form>  
     </LayoutPage>
   }
-
-
-  /*
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-         
-            <Button variant="primary" type="submit">
-                {textValue('save')}
-            </Button>
-        </Form>
-  */

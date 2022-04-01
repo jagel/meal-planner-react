@@ -15,10 +15,19 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'update', value : 'Actualizar' },
     { code: 'view', value : 'Ver' },
     { code: 'create', value : 'Nuevo' },
+    { code: 'update', value : 'Actualizar' },
 
     { code: 'Recipes', value : 'Recetas' },
     { code: 'Create Recipe', value : 'Nueva Receta' },
     { code: 'Update Recipe', value : 'Editar Receta' },
+    { code: 'View Recipe', value : 'Ver Recea' },
+
+
+    { code: 'directions', value:'Instrucciones'},
+    { code: 'add step', value:'Agregar paso'},
+    { code: 'step', value:'Paso'},
+    { code: 'steps', value:'Pasos'},
+    { code: 'step {0}', value:'Paso {0}'},
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },

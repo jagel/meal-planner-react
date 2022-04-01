@@ -4,26 +4,37 @@ import { ILanguageModel } from "../../common/models/lang.model"
 import { useAppContext } from "../../common/app/app-context";
 import { LANG_DATA } from "../../utils/data/languageAvailable";
 
-export const SetLanguageText = (text : string) => {
+export const SetLanguageText = (text : string, params? : string[]) : string => {
     let appContext = useAppContext();
 
-    if(!appContext.language)
-        return text;
-        
-    const findMessage = (data : ILanguageModel[]) => {
-        let displayText = data.find(x=>x.code === text);
-        if(displayText === undefined)
-            console.warn(`Value: ${text} does not have internationalization`);
-        return displayText?.value ?? text;
-    }
-    if(appContext.language === LANG_DATA.EN){
-        return findMessage(LangageDataEn);
-    }
-    if(appContext.language === LANG_DATA.ES){
-        return findMessage(LangageDataEs);
+    let languageSelection : ILanguageModel[];
+
+    switch(appContext.language){
+        case LANG_DATA.EN:
+            languageSelection = LangageDataEn;
+        break;
+        case LANG_DATA.ES:
+            languageSelection = LangageDataEs;
+        break;
+        default:
+            console.warn(`Language: ${appContext.language} does not exist`);
+            return text;
     }
 
-    console.warn(`Language: ${appContext.language} does not exist`);
+    let displayText = languageSelection.find(x=>x.code === text);
+
+    if(displayText === undefined) console.warn(`Value: ${text} does not have translation for langauge ${appContext.language}`);
+    
+    text = interpolateText(displayText?.value??text, params);
+    return text;
+}
+
+export const interpolateText = (text: string, params?: string[]) =>{
+    if(params !== undefined){
+        params.forEach( (param,index) => {
+            text = text.replace(`{${index}}`,param);
+        });
+    }
     return text;
 }
 

@@ -1,41 +1,73 @@
 import { useParams } from "react-router-dom";
-import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
-import { ROUTES } from "../../utils/data/api-routes";
-import { IRecipeModel } from "../../common/models/recipe.form";
+import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
 import { RecipeForm } from "../../components/recipes/recipe.form";
-import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
-import { requestService } from "../../services/api-service";
+import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
+import { LayoutPage } from "../../common/layout/layout-page";
+import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+import { RoutingServices } from "../../services/routing.service";
+import { APP_ROUTES } from "../../utils/routing/app-routes";
+import { useNavigate } from "react-router-dom";
 
 export default function RecipeUpdate(){
-    const textValue = SetLanguageText;
-    let { recipeId } = useParams();
+  const [validated, setValidated] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const { recipeId } = useParams();
 
-    const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
+  const [recipeForm, setRecipeFormState] = useState({} as IRecipeModel);
+  const routingService = RoutingServices;
+  const navigate = useNavigate();
 
-    useEffect(()=>{
-        requestService.httpGetAsync<IRecipeModel>(ROUTES.RECIPE.GETBYRECIPEID, {recipeId})
-            .then(response => {
-                console.log(response);
-                setRecipeFormState(response??recipeForm);
-            });
-    },[])
+  useEffect(()=>{
+      recipeEndpointsService.getRecipeAsync(recipeId??'')
+          .then(response => {
+            setRecipeFormState(response??recipeForm);
+            setInitialLoading(false);
+          });
+  },[])
 
-
-    const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{}
-    const onDropDownChange = (event : React.ChangeEvent<HTMLSelectElement>) =>{}
-  
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     
-    return <div>
-        <BreadcrumbRoutes dynamicParams={{recipeId}}  />
-    </div>
+  const form = event.currentTarget;
+  let isValid = form.checkValidity();
+
+  if (isValid) 
+    recipeEndpointsService.updateRecipeAsync(recipeForm,recipeId??'')
+      .then( response => {
+        let route = routingService.generateRoute(APP_ROUTES.RECIPES_VIEW, {recipeId:response.recipeId});
+        navigate(route);
+      });
+  else
+    setValidated(true);      
+};  
+
+
+const onTextChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
+  setRecipeFormState({
+      ...recipeForm,
+      [event.target.id]: event.target.value
+    });
 }
 
-/*
-<Form>
-            <RecipeForm recipe={recipeForm} onTextChange={onTextChange} onDropDownChange={onDropDownChange} />
-            <Button variant="primary" type="submit">
-                {textValue('save')}
-            </Button>
-        </Form>
- */
+const updateSteps = (steps : StepModel[]) => {
+  setRecipeFormState({
+    ...recipeForm,
+    steps: steps
+  });
+}
+    
+  
+  return  <LayoutPage params={{recipeId}} loadingPage={initialLoading}>
+      <form onSubmit={handleSubmit} noValidate >
+        <RecipeForm 
+          recipe={recipeForm} 
+          onTextChange={onTextChange} 
+          displayError={validated}
+          updateSteps={updateSteps}
+        />
+        <ButtonLoading text="update" fullWidth={false} loading={false} />
+      </form>  
+</LayoutPage>
+}

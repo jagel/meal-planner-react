@@ -28,7 +28,7 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     RECIPES_VIEW:{
         path:"/recipes/view/:recipeId",
         code: ".recipes.view",
-        title: "Update Recipe"
+        title: "View Recipe"
     },
     LOGIN : {
         path:"/login",

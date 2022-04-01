@@ -7,18 +7,21 @@ const endpointService = {
         withCredentials:true,
         baseURL: EnvironmentRequests.APIUrl
     }),
-    getAsync: async <TmodelResponse,>(endpoint:string, params:any) : Promise<ModelResponse<TmodelResponse>> => {
-        let url = endpointService.interpolateParams(endpoint, params);
+    getAsync: async <TmodelResponse,>(getEndpoint:string, params?:any) : Promise<ModelResponse<TmodelResponse>> => {
+        let getEndpointParams = endpointService.interpolateParams(getEndpoint, params);
         
-        let httpResponse = await endpointService.axiosInstance.get<ModelResponse<TmodelResponse>>(url);
+        let httpResponse = await endpointService.axiosInstance.get<ModelResponse<TmodelResponse>>(getEndpointParams);
 
         return httpResponse.data;
     },
-    postAsync: async <TmodelResponse,TmodelRequest>(endpoint:string, data: TmodelRequest, params:any) => {
-        let url = endpointService.interpolateParams(endpoint, params);
-
-        let httpResponse = await endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(url,data);
-
+    postAsync: async <TmodelResponse,TmodelRequest>(postEndpoint:string, data: TmodelRequest) => {
+        let httpResponse = await endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(postEndpoint,data);
+        return httpResponse.data;
+    },
+    putAsync: async <TmodelResponse,TmodelRequest>(putEndpoint:string, data: TmodelRequest, params?:any) => {
+        let putEndpointParams = endpointService.interpolateParams(putEndpoint, params);
+       
+        let httpResponse = await endpointService.axiosInstance.put<ModelResponse<TmodelResponse>>(putEndpointParams,data);
         return httpResponse.data;
     },
     interpolateParams: (endpoint:string, params:any) : string => {
