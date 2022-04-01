@@ -3,7 +3,7 @@ import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
 import { InputRequired } from "../form-items/input.required";
 import { FormDescriptionInput } from "../form-items/form.description.input";
 import { FormValidations } from "../../utils/data/form-defiinions";
-import { RecipeFormSteps } from "../recipe.steps/recipe.form.steps";
+import { RecipeFormSteps } from "../recipe.steps/recipe.steps.form";
 
 import Box from "@mui/material/Box";
 
@@ -29,7 +29,6 @@ export const RecipeForm = (props : {
           displayText="Recipe Description"
           name="description" 
           onTextChange={props.onTextChange} 
-          displayError={props.displayError}
         />
         <RecipeFormSteps 
           steps={props.recipe.steps} 

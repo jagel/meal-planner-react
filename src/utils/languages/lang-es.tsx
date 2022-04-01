@@ -19,6 +19,9 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'Recipes', value : 'Recetas' },
     { code: 'Create Recipe', value : 'Nueva Receta' },
     { code: 'Update Recipe', value : 'Editar Receta' },
+    { code: 'directions', value:'Instrucciones'},
+    { code: 'add step', value:'Agregar paso'},
+    { code: 'step', value:'Paso'},
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },

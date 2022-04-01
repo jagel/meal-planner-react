@@ -6,22 +6,24 @@ import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction"
 import ListItemText from "@mui/material/ListItemText"
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon"
 import { StepModel } from "../../common/models/recipe.form"
+import { SetLanguageText } from "../../services/i18n/languageManager"
 
-export const RecipeFormView = (props:{
+export const RecipeStepsFormView = (props:{
     stepItem:StepModel,
     editMode:boolean,
     enableEditMode:(order:number) => void
 }) =>{
+  const textValue = SetLanguageText;
 
     return  <ListItem >
     <ListItemAvatar>
       <Avatar>{props.stepItem.order}</Avatar>
     </ListItemAvatar>
     <ListItemText
-      primary="Step 1"
+      primary={`${textValue('step')} ${props.stepItem.order}`}
       secondary={props.stepItem.description}
     />
-    {props.editMode ? <ListItemSecondaryAction>
+    {!props.editMode ? <ListItemSecondaryAction>
         <IconButton aria-label={Icons.edit} onClick={() => props.enableEditMode(props.stepItem.order)}>
           <GoogleIconsInheritance iconName={Icons.edit} />
         </IconButton>
