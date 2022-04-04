@@ -1,23 +1,25 @@
 import Button from '@mui/material/Button';
+import { CSSProperties } from 'react';
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import './button.loader.css';
 
-type ButtonLoadingProp = {
-    text:string;
-    fullWidth?:boolean;
-    loading?:boolean;
+export type ButtonLoadingProp = {
+    text:string,
+    loading:boolean,
+    fullWidth?:boolean
 }
 
 const ButtonLoading = (props: ButtonLoadingProp) => {
 
+    const loadingStyle : CSSProperties = { display:'flex', justifyContent:'center'}
     const textValue = SetLanguageText;
-    const loadingItem = <div className="spinner"><div className="double-bounce1"></div><div className="double-bounce2"></div></div>
-
-    return <Button fullWidth={props.fullWidth} disabled={props.loading} variant='contained' type="submit">
-        {props.loading ? loadingItem : null }
-        {textValue(props.text)}
-        {props.loading}
-    </Button>
+    const loadingItem = <div className="spinner"><div className="double-bounce1"></div><div className="double-bounce2"></div></div>;
+    const content = props.loading ? 
+        <div style={loadingStyle}>{loadingItem} {textValue(props.text)}</div>: 
+        textValue(props.text);
+    return <Button disabled={props.loading} fullWidth={props.fullWidth} variant='contained' type="submit">
+            {content}
+        </Button>
 }
 
 export { ButtonLoading };

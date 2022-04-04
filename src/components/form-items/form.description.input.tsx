@@ -3,12 +3,14 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import { FormValidations } from "../../utils/data/form-defiinions";
 
-export const FormDescriptionInput = (props :{
-    value:string,
-    onTextChange(event : React.ChangeEvent<HTMLInputElement>):void,
-    name:string,
-    displayText:string
-  }) => {
+export interface FormDescriptionInputProps {
+  value:string,
+  onTextChange(event : React.ChangeEvent<HTMLInputElement>):void,
+  name:string,
+  displayText:string
+}
+
+export const FormDescriptionInput = (props : FormDescriptionInputProps) => {
     const displayName = SetLanguageText(props.displayText);
   
     return <FormControl fullWidth sx={{ m: 1 }} >

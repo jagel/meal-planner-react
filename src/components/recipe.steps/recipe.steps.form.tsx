@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { StepModel } from "../../common/models/recipe.form";
 import { useState } from 'react';
@@ -12,17 +12,24 @@ import './recipe.steps.form.css';
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { DeleteMessageDialog } from "../../common/elements/message.delete";
 
-export const RecipeFormSteps = (props :{
-    steps:StepModel[],
-    updateSteps(steps:StepModel[]):void,
-    displayError: boolean
-}) =>{
+export interface RecipeFormStepsProps {
+  steps:StepModel[],
+  updateSteps(steps:StepModel[]):void,
+  displayError: boolean,
+  onEditionModel:(edionModelEnabled:boolean)=>void
+};
+
+export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   const [ editOrder, setEditOrder] = useState(0);
   const [ showDeleteMessage, setShowDeleteMessage] = useState(false);
   const steps = props.steps??[];
   
   const editMode = editOrder > 0;
   const textValue = SetLanguageText;
+
+  useEffect(()=>{
+    props.onEditionModel(editMode);
+  },[editOrder])
 
   const editionCompleted = (step:StepModel) => { 
     steps[(step.order-1)] = step;

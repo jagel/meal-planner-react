@@ -25,3 +25,20 @@ export type IRecipeModel = {
     steps:StepModel[]
 }
 
+export class RecipeModel{
+    cuisineId: number;
+    recipeId: number;
+    name: string;
+    description: string;
+    ingredients:IRecipeProduct[];
+    steps:StepModel[]
+
+    constructor() {
+        this.cuisineId = 0;
+        this.recipeId = 0;
+        this.name = '';
+        this.description = '';
+        this.ingredients = [];
+        this.steps = [];
+    }
+}
