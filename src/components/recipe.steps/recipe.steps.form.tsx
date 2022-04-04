@@ -28,7 +28,6 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   const textValue = SetLanguageText;
 
   useEffect(()=>{
-    console.log('effect enabled')
     props.onEditionModel(editMode);
   },[editOrder])
 
