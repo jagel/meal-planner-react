@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IRecipeModel, StepModel } from "../../common/models/recipe.form";
-import { RecipeForm } from "../../components/recipes/recipe.form";
+import { RecipeForm, RecipeFormProps } from "../../components/recipes/recipe.form";
 import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading } from "../../common/buttonLoader/button.loader";
@@ -57,16 +57,22 @@ const updateSteps = (steps : StepModel[]) => {
     steps: steps
   });
 }
-    
+
+// const formPoperties : RecipeFormProps = {
+//   recipeForm,
+//   onTextChange,
+//   updateSteps,
+//   onEditionModel:(demo:boolean) => console.log('edition'),
+// }
   
   return  <LayoutPage params={{recipeId}} loadingPage={initialLoading}>
       <form onSubmit={handleSubmit} noValidate >
-        <RecipeForm 
+        {/* <RecipeForm 
           recipe={recipeForm} 
           onTextChange={onTextChange} 
           displayError={validated}
           updateSteps={updateSteps}
-        />
+        /> */}
         <ButtonLoading text="update" fullWidth={false} loading={false} />
       </form>  
 </LayoutPage>
