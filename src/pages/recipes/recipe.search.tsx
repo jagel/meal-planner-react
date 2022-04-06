@@ -3,6 +3,7 @@ import { RecipeSearchFrom, RecipeSearchFromProps } from "../../components/recipe
 import { RecipeSearchResults, RecipeSearchResultsProps } from "../../components/recipes/recipe.search.results";
 import { useState } from 'react';
 import { RecipeModel } from "../../common/models/recipe.form";
+import Divider from "@mui/material/Divider";
 
 export default function RecipeSearch(){
     const [recipes, setRecipes] = useState([] as RecipeModel[])
@@ -14,6 +15,7 @@ export default function RecipeSearch(){
     return <LayoutPage>
     <div>
         <RecipeSearchFrom {...recipeSearchProps} />
+        <Divider />
         <RecipeSearchResults {...recipeResultProps} />
     </div>
   </LayoutPage>;

@@ -30,8 +30,12 @@ export class RecipeModel{
     recipeId: number;
     name: string;
     description: string;
-    ingredients:IRecipeProduct[];
-    steps:StepModel[]
+    ingredients: IRecipeProduct[];
+    steps: StepModel[];
+    createdBy: string ='';
+    createdDate : Date = new Date();
+    updatedBy: string ='';
+    updatedDate : Date = new Date();
 
     constructor() {
         this.cuisineId = 0;
@@ -40,5 +44,14 @@ export class RecipeModel{
         this.description = '';
         this.ingredients = [];
         this.steps = [];
+    }
+}
+
+
+export class RecipeSearchModel{
+    name: string;
+
+    constructor() {
+        this.name = '';
     }
 }

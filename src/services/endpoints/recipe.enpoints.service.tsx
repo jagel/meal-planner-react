@@ -1,4 +1,4 @@
-import { RecipeModel } from "../../common/models/recipe.form";
+import { RecipeModel, RecipeSearchModel } from "../../common/models/recipe.form";
 import { APIROUTES } from "../../utils/data/api-routes";
 import { endpointService } from "./endpoint.service";
 
@@ -22,7 +22,7 @@ export const recipeEndpointsService = {
 };
 
 export const recipeSearchEndpointsService = {
-  async searchAsync(recipe:RecipeModel) : Promise<RecipeModel[]>{
+  async searchAsync(recipe:RecipeSearchModel) : Promise<RecipeModel[]>{
     let endpoint = APIROUTES.RECIPEEARCH.SEARCH;
     endpoint += endpointService.generateQueryParams(recipe);
     let respone = await endpointService.getAsync<RecipeModel[]>(endpoint,recipe);
