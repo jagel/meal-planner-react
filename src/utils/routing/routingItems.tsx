@@ -5,7 +5,7 @@ import { Login } from "../../pages/auth/login"
 import Dashboard from "../../pages/dashboard/dashboard"
 import RecipeCreate from "../../pages/recipes/recipe.create"
 import RecipeUpdate from "../../pages/recipes/recipe.update"
-import RecipeSearch from '../../pages/recipes/recipe-search';
+import RecipeSearch from '../../pages/recipes/recipe.search';
 import RecipeView from '../../pages/recipes/recipe.view';
 import { APP_ROUTES } from "./app-routes";
 

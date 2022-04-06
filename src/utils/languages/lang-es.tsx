@@ -37,6 +37,7 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'Cuisine', value : 'Cocina' },
     { code: 'Name', value : 'Nombre' },
     { code: 'Recipe Name', value : 'Nombre de la receta' },
+    { code: 'Recipe Search', value : 'Buscar Receta' },
     { code: 'Recipe Description', value : 'Descripcion' },
     { code: 'ingredients', value : 'Ingredientes' },
     { code: 'units', value : 'Unidades' },

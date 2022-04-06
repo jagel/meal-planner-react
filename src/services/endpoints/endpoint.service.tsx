@@ -32,6 +32,15 @@ const endpointService = {
         throw `Parameters no defined correctly in endpoint ${endpoint}`;
         
         return endpoint;
+    },
+    generateQueryParams: (params:any) : string => {
+        let paramsString = '?';
+        for (var prop in params??[]) {
+            paramsString += `${prop}=${params[prop]}&`
+        }
+        if(paramsString.length > 1)
+            paramsString.substring(0,paramsString.length);
+        return paramsString;
     }
 }
 

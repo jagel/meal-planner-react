@@ -9,6 +9,10 @@ export const Icons = {
     delete:'delete',
     // E
     edit:'edit',
+    // F
+    favorite:'favorite',
+    // K
+    keyboard_arrow_down:'keyboard_arrow_down',
     // L
     language:'language',
     // M
@@ -19,6 +23,7 @@ export const Icons = {
     notifications:'notifications',
     // S
     search: 'search',
+    share: 'share',
     // V
     visibility_off : 'visibility_off',
     visibility: 'visibility',
