@@ -18,5 +18,4 @@ return (<Box>
 
 export const LoadingLayoutPage = () => {
     return <label>Loading ...</label>
-
 }

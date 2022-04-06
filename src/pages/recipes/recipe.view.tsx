@@ -30,7 +30,7 @@ export default function RecipeView(){
   const navigate = useNavigate();
   
   useEffect(()=>{
-    recipeEndpointsService.getRecipeAsync(recipeId??'')
+    recipeEndpointsService.getRecipeByIdAsync(recipeId??'')
         .then(response => {
             setRecipeState(response??recipe);
             setInitialLoading(false);

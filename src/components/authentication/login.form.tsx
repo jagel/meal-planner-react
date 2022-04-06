@@ -13,7 +13,7 @@ import { UserRequestType } from "../../common/models/auth-user.types";
 import { UserService } from "../../services/auth/user-service";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { EnvironmentRequests } from "../../utils/data/environment-request";
-import { ButtonLoading } from "../../common/buttonLoader/button.loader";
+import { ButtonLoading } from "../../common/buttons/button.loader";
 
 import './login.form.css';
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
