@@ -11,6 +11,8 @@ export const Icons = {
     edit:'edit',
     // F
     favorite:'favorite',
+    // I
+    inbox:'inbox',
     // K
     keyboard_arrow_down:'keyboard_arrow_down',
     // L
