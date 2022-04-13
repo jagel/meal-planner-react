@@ -69,17 +69,3 @@ const LanguageSelector = () => {
 
 
 export default LanguageSelector;
-
-/*
- <NavDropdown title={<label><span className="lng-icon material-icons">language</span> {language.code}</label>} id="collasible-nav-dropdown">
-      {languagesAvailable.map(lang => 
-        <NavDropdown.Item 
-          key={lang.code} 
-          onClick={() => appContext.changeLanguage(lang.languageCode)}
-          className={lang.languageCode == language.languageCode? "lng-active":""}
-        >
-          {lang.name}
-        </NavDropdown.Item>) 
-      }
-      </NavDropdown>
- */

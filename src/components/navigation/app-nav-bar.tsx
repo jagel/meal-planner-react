@@ -1,4 +1,3 @@
-import './app-nav-bar.css'
 import {GoogleIconsInheritance, Icons} from '../../common/app/google.icon'
 
 import * as React from 'react';
@@ -12,10 +11,6 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import NavDrawer from "./nav-drawer";
-import { useState } from 'react';
-import ResponsiveDrawer from './test';
-
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
