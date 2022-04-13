@@ -164,7 +164,6 @@ export default function AppNavBar(props:AppNavBarProps) {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
       <AppBar 
         position="fixed" //static
         sx={{
@@ -241,9 +240,8 @@ export default function AppNavBar(props:AppNavBarProps) {
             </IconButton>
           </Box>
         </Toolbar>
+        {renderMobileMenu}
+        {renderMenu}
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
   );
 }
