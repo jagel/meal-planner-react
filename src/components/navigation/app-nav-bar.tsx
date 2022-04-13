@@ -1,7 +1,3 @@
-import { NavBarRequest } from "../../utils/data/navigation.collection";
-import { NavLinkItem } from './nav-link';
-import LanguageSelector from './language-selector';
-import { UserDropdown } from './user-dropdown';
 import './app-nav-bar.css'
 import {GoogleIconsInheritance, Icons} from '../../common/app/google.icon'
 
@@ -16,6 +12,9 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import NavDrawer from "./nav-drawer";
+import { useState } from 'react';
+import ResponsiveDrawer from './test';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -58,7 +57,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function AppNavBar() {
+export interface AppNavBarProps {
+  drawerWidth:number,
+  handleDrawerToggle:()=>void
+}
+
+export default function AppNavBar(props:AppNavBarProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -157,18 +161,26 @@ export default function AppNavBar() {
     </Menu>
   );
 
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar 
+        position="fixed" //static
+        sx={{
+          width: { sm: `calc(100% - ${props.drawerWidth}px)` },
+          ml: { sm: `${props.drawerWidth}px` },
+        }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+            onClick={props.handleDrawerToggle}
           >
-          <GoogleIconsInheritance iconName={Icons.menu} />
+            <GoogleIconsInheritance iconName={Icons.menu} />
           </IconButton>
           <Typography
             variant="h6"
@@ -235,49 +247,3 @@ export default function AppNavBar() {
     </Box>
   );
 }
-
-/*
-AppNavBar
- let navRequest = NavBarRequest();
-
-  <Navbar bg="light" variant="light" expand={false}>
-      <Container fluid> 
-
-        <Navbar.Toggle className='me-3' />
-        <Navbar.Brand className='me-auto' href="#home">
-          <img
-            alt=""
-            src="/src/img/logo.svg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
-          Meal planner
-        </Navbar.Brand>
-
-        <Navbar className="justify-content-end">
-          <Nav>
-              <LanguageSelector />
-              <UserDropdown />
-          </Nav>
-        </Navbar>
-
-        <Navbar className='space'></Navbar>
-
-        <Navbar.Offcanvas
-          id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel"
-          placement="start">
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3"> 
-              {navRequest.map((navBarItem)=> <NavLinkItem key={navBarItem.code} linkItem={navBarItem} />)}
-            </Nav>
-          </Offcanvas.Body>
-        </Navbar.Offcanvas>
-
-      </Container>
-    </Navbar>
-*/
