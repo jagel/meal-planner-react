@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import React, { useState } from "react"
 import { Outlet } from "react-router-dom"
+import { AppFooter } from "../../components/navigation/app-footer";
 import AppNavBar, { AppNavBarProps } from "../../components/navigation/app-nav-bar"
 import NavDrawer, { NavDrawerProps } from "../../components/navigation/nav-drawer";
 import { Authentication } from "../app/authentication"
@@ -15,19 +16,7 @@ export const Layout = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const toggleDrawer = (open: boolean, event: React.KeyboardEvent | React.MouseEvent | null) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
-
-    //setNavDrawerSate(open);
-  };
-
+  
   const appNavBarProps : AppNavBarProps = { drawerWidth, handleDrawerToggle}
   const navDrawerProps : NavDrawerProps = { drawerWidth, mobileOpen, handleDrawerToggle}
 return (
@@ -40,10 +29,10 @@ return (
                     component="main"
                     sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
                 >
-                    <Toolbar />
-                    <Outlet />
+                  <Toolbar />
+                  <Outlet />
+                  <AppFooter />
                 </Box>
-                <footer>footer</footer>
             </Box>            
         </React.Suspense>
     </Authentication>
