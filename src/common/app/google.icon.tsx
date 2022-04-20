@@ -11,6 +11,10 @@ export const Icons = {
     edit:'edit',
     // F
     favorite:'favorite',
+    // H
+    home:'home',
+    // I
+    inbox:'inbox',
     // K
     keyboard_arrow_down:'keyboard_arrow_down',
     // L
@@ -23,18 +27,24 @@ export const Icons = {
     notifications:'notifications',
     // S
     search: 'search',
+    settings: 'settings',
     share: 'share',
     // V
     visibility_off : 'visibility_off',
     visibility: 'visibility',
 }
 
-export const GoogleIconsInheritance = (props:{iconName:string, className?:string}) =>{
-    let className = `${props.className} material-icons`;
-    return <span className={className}>{props.iconName}</span>
+export interface GoogleIconsInheritanceProps {
+    iconName:string; 
+    className?:string;
 }
+export const GoogleIconsInheritance = (props:GoogleIconsInheritanceProps) =>
+    <span className={`${props.className} material-icons`}>{props.iconName}</span>
 
-export const GoogleIconComposition = (props : {iconName:string, className?:string, children : React.ReactNode}) =>{
-    let className = `${props.className} material-icons`;
-    return <span className={className}>{props.iconName}{props.children}</span>
+
+export interface GoogleIconCompositionProps extends GoogleIconsInheritanceProps {
+    children : React.ReactNode;
 }
+export const GoogleIconComposition = (props : GoogleIconCompositionProps) =>
+    <span className={`${props.className} material-icons`}>{props.iconName}{props.children}</span>
+

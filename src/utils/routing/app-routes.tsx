@@ -30,6 +30,11 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         code: ".recipes.view",
         title: "View Recipe"
     },
+    PLANNER:{
+        path:"/planner/week-view",
+        code: ".planner",
+        title: "Planner"
+    },
     LOGIN : {
         path:"/login",
         code:"login",

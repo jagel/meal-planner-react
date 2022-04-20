@@ -137,8 +137,8 @@ export const RecipeSearchCard = (props: RecipeSearchCardProps) => {
       />
       <CardMedia
         component="img"
-        height="194"
-        image="https://i.postimg.cc/qBKCL1hv/pasta.jpg"
+        height="130px"
+        image="src/img/vegetables-image.svg"
         alt="Paella dish"
       />
       <CardContent>
