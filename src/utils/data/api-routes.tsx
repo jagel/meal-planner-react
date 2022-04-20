@@ -3,13 +3,15 @@ import { EnvironmentRequests } from "./environment-request";
 
 const CONTROLLERS ={
   AUTHCONTROLLER:'auth',
+  ACCOUNTCONTROLLER:'account',
   RECIPECONTROLLER:'Recipe',
   RECIPESEARCHCONTROLLER:'Recipesearch',
 }
 const AUTHROUTES = {
   LOGIN : `${CONTROLLERS.AUTHCONTROLLER}/login`,
   GOOGLE_LOGIN : `${CONTROLLERS.AUTHCONTROLLER}/signin-google?returnUrl=${EnvironmentRequests.AppUrl}`,
-  GETUSER: `${CONTROLLERS.AUTHCONTROLLER}/getUser`,
+
+  GETUSER: `${CONTROLLERS.ACCOUNTCONTROLLER}/getUser`,
 }
 
 const APIROUTES = {
