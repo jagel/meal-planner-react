@@ -17,6 +17,7 @@ import { ButtonLoading } from "../../common/buttons/button.loader";
 
 import './login.form.css';
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
+import { BtnGoogleLogin } from "./btn-google-login";
 
 const LoginForm = () => {
     const [loginForm, setLoginFormState] = useState({} as UserRequestType);
@@ -33,7 +34,6 @@ const LoginForm = () => {
           [fieldName]: event.target.value
         });
     }
-    
 
     const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -56,46 +56,47 @@ const LoginForm = () => {
       }
     };
 
-    return (<div className="login-form-item">
+    return <div className="login-form-item">
       <div>
         <img src="/src/img/login.svg" className="image-login" />
       </div>
 
       <form onSubmit={handleSubmit} noValidate >
         
-        <FormControl fullWidth>
-            <InputLabel htmlFor="outlined-adornment-amount">{textValue('email')}</InputLabel>
-            <OutlinedInput type="email" required
-              onChange={onTextChange('email')}
-              startAdornment={<InputAdornment position="start"><span className="lng-icon material-icons">mail</span></InputAdornment>}
-              label={textValue('email')}
-            />
-        </FormControl>
-
+        <EmailInput onTextChange={onTextChange("email")} />    
         <PasswordInput onPasswordChange={onTextChange("password")} />
 
         <Box>
           <ButtonLoading fullWidth text='login' loading={loading} />
-        </Box>
+        </Box>        
 
         <Fade in={errorResponse}>
           <Alert severity="error">{textValue('invalid email or password')}</Alert>
-        </Fade>   
-       
+        </Fade>
       </form>
-      
-     
-    </div>
 
-    );
+      <Box>
+        <BtnGoogleLogin />
+      </Box>
+    </div>;
 }
 
-interface State {
-  amount: string;
-  password: string;
-  weight: string;
-  weightRange: string;
-  showPassword: boolean;
+const EmailInput = (props: { 
+  onTextChange: (event : React.ChangeEvent<HTMLInputElement>) => void
+  }) => {
+  const textValue = SetLanguageText;
+  
+  return <FormControl fullWidth variant="outlined">
+  <InputLabel 
+    htmlFor="outlined-adornment-amount"
+  >{textValue('email')}
+  </InputLabel>
+  <OutlinedInput required
+    type="email"
+    onChange={props.onTextChange}
+    label={textValue('email')}
+  />
+</FormControl>
 }
 
 const PasswordInput = (props:{
@@ -109,25 +110,25 @@ const PasswordInput = (props:{
 
   return (
   <FormControl fullWidth variant="outlined">
-  <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-  <OutlinedInput
-    required
-    type={passwordInput.showPassword ? 'text' : 'password'}
-    onChange={props.onPasswordChange}
-    endAdornment={
-      <InputAdornment position="end">
-        <IconButton
-          onClick={handleClickShowPassword}
-          onMouseDown={(evt) => {evt.stopPropagation()}}
-          edge="end"
-        >
-          {passwordInput.showPassword ?  <GoogleIconsInheritance iconName={Icons.visibility} />:   <GoogleIconsInheritance iconName={Icons.visibility_off} />}
-        </IconButton>
-      </InputAdornment>
-    }
-    label="Password"
-  />
-</FormControl>
+    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+    <OutlinedInput
+      required
+      type={passwordInput.showPassword ? 'text' : 'password'}
+      onChange={props.onPasswordChange}
+      endAdornment={
+        <InputAdornment position="end">
+          <IconButton
+            onClick={handleClickShowPassword}
+            onMouseDown={(evt) => {evt.stopPropagation()}}
+            edge="end"
+          >
+            {passwordInput.showPassword ?  <GoogleIconsInheritance iconName={Icons.visibility} />:   <GoogleIconsInheritance iconName={Icons.visibility_off} />}
+          </IconButton>
+        </InputAdornment>
+      }
+      label="Password"
+    />
+  </FormControl>
 );
 }
 

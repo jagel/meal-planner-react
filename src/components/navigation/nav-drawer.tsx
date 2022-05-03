@@ -14,6 +14,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  MemoryRouter,
+} from 'react-router-dom';
+
 export interface NavDrawerProps {
     drawerWidth:number,
     mobileOpen:boolean,
@@ -81,7 +87,7 @@ export function CustomizedList() {
   return (
         <Paper elevation={0} sx={{ maxWidth: 256 }}>
           <FireNav component="nav" disablePadding>
-            <ListItemButton sx={{height:64}} component="a" href="#customized-list">
+            <ListItemButton sx={{height:64}} component={RouterLink} to="/">
               <ListItemIcon sx={{ fontSize: 20 }}>
                 <img alt="" src="/src/img/logo.svg" width="30" height="30" className="d-inline-block align-top"/>{' '}
               </ListItemIcon>
@@ -96,58 +102,9 @@ export function CustomizedList() {
               />
             </ListItemButton>
             <Divider />
-            <ListItem component="div" disablePadding>
-              <ListItemButton sx={{ height: 56 }}>
-                <ListItemIcon>
-                  <GoogleIconsInheritance iconName={Icons.home}  />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Project Overview"
-                  primaryTypographyProps={{
-                    color: 'primary',
-                    fontWeight: 'medium',
-                    variant: 'body2',
-                  }}
-                />
-              </ListItemButton>
-              <Tooltip title="Project Settings">
-                <IconButton
-                  size="large"
-                  sx={{
-                    '& svg': {
-                      color: 'rgba(255,255,255,0.8)',
-                      transition: '0.2s',
-                      transform: 'translateX(0) rotate(0)',
-                    },
-                    '&:hover, &:focus': {
-                      bgcolor: 'unset',
-                      '& svg:first-of-type': {
-                        transform: 'translateX(-4px) rotate(-20deg)',
-                      },
-                      '& svg:last-of-type': {
-                        right: 0,
-                        opacity: 1,
-                      },
-                    },
-                    '&:after': {
-                      content: '""',
-                      position: 'absolute',
-                      height: '80%',
-                      display: 'block',
-                      left: 0,
-                      width: '1px',
-                      bgcolor: 'divider',
-                    },
-                  }}
-                >
-                  <GoogleIconsInheritance iconName={Icons.settings}/>
-                </IconButton>
-              </Tooltip>
-            </ListItem>
-            <Divider />
             <Box
               sx={{
-                bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
+                bgcolor: open ? 'rgba(71, 98, 130, 0.9)' : null,
                 pb: open ? 2 : 0,
               }}
             >
