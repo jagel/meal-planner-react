@@ -1,6 +1,7 @@
 import axios from "axios"
-import { ModelResponse } from "../../common/models/model.response";
+import { ModelErrorResponse, ModelResponse } from "../../common/models/model.response";
 import { EnvironmentRequests } from "../../utils/data/environment-request"
+import { errorHandler, ErrorObject } from "./error.handler";
 
 const endpointService = {
     axiosInstance : axios.create({
@@ -15,8 +16,20 @@ const endpointService = {
         return httpResponse.data;
     },
     postAsync: async <TmodelResponse,TmodelRequest>(postEndpoint:string, data: TmodelRequest) => {
-        let httpResponse = await endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(postEndpoint,data);
-        return httpResponse.data;
+        var postRequest = new Promise<ModelResponse<TmodelResponse>>((resolve,reject) => {
+            endpointService.axiosInstance.post<ModelResponse<TmodelResponse>>(postEndpoint,data)
+            .then(httpResponse =>{
+                if(!httpResponse.data.hasErrors) resolve(httpResponse.data);
+                else{
+                    let errorResponse = endpointService.errorResponseHandler(httpResponse.data.errorResonse);
+                    reject(errorResponse);
+                }
+            }).catch(err => {
+                let errorResponse = endpointService.errorHandler(err);
+                reject(errorResponse);
+            })
+        });
+        return postRequest;
     },
     putAsync: async <TmodelResponse,TmodelRequest>(putEndpoint:string, data: TmodelRequest, params?:any) => {
         let putEndpointParams = endpointService.interpolateParams(putEndpoint, params);
@@ -41,7 +54,27 @@ const endpointService = {
         if(paramsString.length > 1)
             paramsString.substring(0,paramsString.length);
         return paramsString;
+    },
+    errorHandler: (err:any) : ErrorObject | null => {
+        let response: ErrorObject | null = null
+        if (err.response) { 
+            if(err.response.status ===400){
+                response = errorHandler.err400Handler(err.response.data.errors);
+            }
+
+            // client received an error response (5xx, 4xx)
+          } else if (err.request) { 
+            // client never received a response, or request never left 
+          } else { 
+            // anything else 
+          }
+        return response;
+    },
+    errorResponseHandler:(errorResponse:ModelErrorResponse) : ErrorObject | null=> {
+        
+        return null;
     }
 }
+
 
 export { endpointService };

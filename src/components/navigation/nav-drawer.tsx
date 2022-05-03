@@ -88,7 +88,7 @@ const NavigationItems = () => {
           <FireNav component="nav" disablePadding>
             <HeaderDrawer />
             <Divider />
-            {routes.map((routeBox : NavigationRoutesModel) => <BoxRoutes {...routeBox} />)}
+            {routes.map((routeBox : NavigationRoutesModel) => <BoxRoutes key={routeBox.order} {...routeBox} />)}
           </FireNav>
         </Paper>
   );
