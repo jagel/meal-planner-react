@@ -1,5 +1,5 @@
 import { RecipeForm, RecipeFormProps } from "../../components/recipes/recipe.form";
-import { RecipeModel, StepModel } from "../../common/models/recipe.form";
+import { RecipeModel, RecipeProduct, StepModel } from "../../common/models/recipe.form";
 import { useState } from "react";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading, ButtonLoadingProp } from "../../common/buttons/button.loader";
@@ -64,7 +64,12 @@ export default function RecipeCreate(){
       })
     );
 
-
+    const updateIngredients = (ingredients: RecipeProduct[]) => {
+      setRecipeFormState(prevState => ({ ...prevState,
+          model:{ ...prevState.model, ingredients : ingredients }
+        })
+      );
+    }
 
   const setDisplayErrors = (displayError : boolean) => {
     setRecipeFormState(prevState => ({
@@ -74,7 +79,7 @@ export default function RecipeCreate(){
     );
   } 
 
-  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, onEditionModel:setEditionMode };
+  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, updateIngredients, onEditionModel:setEditionMode };
   const buttonProperties : ButtonLoadingProp = { text:"save", fullWidth:false, loading:recipeForm.isLoading||editionModel };
   return <LayoutPage errorObject={errorResponse}>
     <form onSubmit={handleSubmit} noValidate >

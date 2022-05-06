@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RecipeModel, StepModel } from "../../common/models/recipe.form";
+import { RecipeModel, RecipeProduct, StepModel } from "../../common/models/recipe.form";
 import { RecipeForm, RecipeFormProps } from "../../components/recipes/recipe.form";
 import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
 import { LayoutPage } from "../../common/layout/layout-page";
@@ -66,6 +66,12 @@ export default function RecipeUpdate(){
       })
     );
 
+  const updateIngredients = (ingredients: RecipeProduct[]) => {
+    setRecipeFormState(prevState => ({ ...prevState,
+        model:{ ...prevState.model, ingredients : ingredients }
+      })
+    );
+  }
 
 
   const setDisplayErrors = (displayError : boolean) => {
@@ -76,7 +82,7 @@ export default function RecipeUpdate(){
     );
   } 
 
-  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, onEditionModel:setEditionMode };
+  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, updateIngredients, onEditionModel:setEditionMode };
   const buttonProperties : ButtonLoadingProp = { text:"save", fullWidth:false, loading:recipeForm.isLoading||editionModel };
   
   return <LayoutPage params={{recipeId}} loadingPage={initialLoading}>

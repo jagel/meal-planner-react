@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { useEffect, useState } from "react";
-import { IRecipeModel } from "../../common/models/recipe.form";
+import { RecipeModel } from "../../common/models/recipe.form";
 import { BreadcrumbRoutes } from "../../components/navigation/breadcrumb-routes";
 import { RecipeViewer } from "../../components/recipes/recipe.view";
 import { LayoutPage } from "../../common/layout/layout-page";
@@ -22,7 +22,7 @@ import { RecipeStepsView } from "../../components/recipe.steps/recipe.steps.view
 
 export default function RecipeView(){
   const [initialLoading, setInitialLoading] = useState(true);
-  const [recipe, setRecipeState] = useState({} as IRecipeModel);
+  const [recipe, setRecipeState] = useState({} as RecipeModel);
   
   const { recipeId } = useParams();
   

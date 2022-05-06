@@ -96,7 +96,8 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
     <Button 
       onClick={addStep} 
       variant="outlined"
-      disabled={editMode}>
+      disabled={editMode}
+      color={steps.length === 0 ? "error":"primary"}>
       {textValue('add step')}
     </Button>
   </List>

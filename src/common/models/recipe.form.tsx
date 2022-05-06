@@ -3,12 +3,19 @@ export interface CreateRecipe {
     description:string;
 }
 
-export type IRecipeProduct = {
-    productId:number;
+export class RecipeProduct {
+    productId?:number;
     name: string;
     quantity:number;
     fraction:string;
     meassure:string;
+    
+    constructor(){
+        this.name = '';
+        this.quantity = 0;
+        this.fraction = '';
+        this.meassure = '';
+    }
 }
 
 export interface StepModel{
@@ -16,21 +23,12 @@ export interface StepModel{
     description:string;
 }
 
-export type IRecipeModel = {
-    cuisineId: number;
-    recipeId: number;
-    name: string;
-    description: string;
-    ingredients:IRecipeProduct[];
-    steps:StepModel[]
-}
-
 export class RecipeModel{
     cuisineId: number;
     recipeId: number;
     name: string;
     description: string;
-    ingredients: IRecipeProduct[];
+    ingredients: RecipeProduct[];
     steps: StepModel[];
     createdBy: string ='';
     createdDate : Date = new Date();
