@@ -5,7 +5,6 @@ import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
 import { StepModel } from "../../common/models/recipe.form";
-import { SetLanguageText } from "../../services/i18n/languageManager";
 import { FormDescriptionRequiredInput } from "../form-items/form.description.required.input";
 
 export const RecipeStepsEdit = (props:{
@@ -43,6 +42,7 @@ export const RecipeStepsEdit = (props:{
       <IconButton type="button" sx={{ p: '10px' }} aria-label={Icons.arrow_downward} onClick={() =>props.replacePosition(stepEditor,(stepEditor.order+1))} >
       <GoogleIconsInheritance iconName={Icons.arrow_downward} />
     </IconButton> : undefined;
+    
     return (
       <ListItem>
         <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "100%" }}>

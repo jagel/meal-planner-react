@@ -9,12 +9,10 @@ export interface NavigationRoutesModel {
 export const NavigationRoutes : NavigationRoutesModel[] = [
     { 
         order:1,
-        title:APP_ROUTES.RECIPES.title,
-        routes: [APP_ROUTES.RECIPES, APP_ROUTES.RECIPES_CREATE]
-    },
-    { 
-        order:2,
-        title:APP_ROUTES.PLANNER.title,
-        routes: [APP_ROUTES.PLANNER]
+        title: "Recipe",
+        routes:[
+            APP_ROUTES.RECIPES_SEARCH, 
+            APP_ROUTES.RECIPES_CREATE,
+        ]
     },
 ]

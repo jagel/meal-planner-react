@@ -1,5 +1,5 @@
 import { RecipeForm, RecipeFormProps } from "../../components/recipes/recipe.form";
-import { RecipeModel, StepModel } from "../../common/models/recipe.form";
+import { RecipeModel, RecipeProduct, StepModel } from "../../common/models/recipe.form";
 import { useState } from "react";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading, ButtonLoadingProp } from "../../common/buttons/button.loader";
@@ -9,12 +9,14 @@ import { RoutingServices } from "../../services/routing.service";
 import { APP_ROUTES } from "../../utils/routing/app-routes";
 import { FormModel } from "../../common/models/form-model";
 import { FormValidationservice } from "../../services/form.validation.service";
+import { ErrorObject } from "../../services/endpoints/error.handler";
 
 
 export default function RecipeCreate(){
   const [editionModel, setEditionMode] = useState(false);
   const [recipeForm, setRecipeFormState] = useState(new FormModel<RecipeModel>(new RecipeModel()));
-  
+  const [errorResponse, setErrorResponse] = useState<ErrorObject|undefined>();
+
   const routingService = RoutingServices;
   const navigate = useNavigate();
 
@@ -25,8 +27,13 @@ export default function RecipeCreate(){
   const saveRecipe = () => {
     let recipeResponse :RecipeModel;
     setLoading(true);
+    setErrorResponse(undefined);
+
     recipeEndpointsService.createRecipeAsync(recipeForm.model)
-      .then( modelSaved => recipeResponse = modelSaved)
+      .then(modelSaved => recipeResponse = modelSaved)
+      .catch((err) =>{
+        setErrorResponse(err as ErrorObject)
+      })
       .finally(() => {
         setLoading(false);
         if(recipeResponse !== undefined) {
@@ -57,7 +64,12 @@ export default function RecipeCreate(){
       })
     );
 
-
+    const updateIngredients = (ingredients: RecipeProduct[]) => {
+      setRecipeFormState(prevState => ({ ...prevState,
+          model:{ ...prevState.model, ingredients : ingredients }
+        })
+      );
+    }
 
   const setDisplayErrors = (displayError : boolean) => {
     setRecipeFormState(prevState => ({
@@ -67,9 +79,9 @@ export default function RecipeCreate(){
     );
   } 
 
-  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, onEditionModel:setEditionMode };
+  const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, updateIngredients, onEditionModel:setEditionMode };
   const buttonProperties : ButtonLoadingProp = { text:"save", fullWidth:false, loading:recipeForm.isLoading||editionModel };
-  return <LayoutPage>
+  return <LayoutPage errorObject={errorResponse}>
     <form onSubmit={handleSubmit} noValidate >
       <RecipeForm {...formPoperties} />
       <ButtonLoading {...buttonProperties} />

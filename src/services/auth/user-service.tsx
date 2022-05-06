@@ -11,9 +11,21 @@ const UserService = {
     withCredentials:true,
     baseURL:EnvironmentRequests.AuthUrl
   }),
-  async singInAsync(userModel :UserRequestType){
-    let httpResponse = await this.axiosInstance.post<ModelResponse<IUserSessionResponse>>(AUTHROUTES.LOGIN, userModel);
-    return httpResponse.data.hasErrors;
+  async singInAsync(userModel :UserRequestType) : Promise<void>{
+    let promise = new Promise<void>((resolve,reject) => {
+      this.axiosInstance.post<ModelResponse<IUserSessionResponse>>(AUTHROUTES.LOGIN, userModel).then(httpResponse =>{
+        if(!httpResponse.data.hasErrors){
+          resolve();
+        }
+        else{
+          reject();
+        }
+      }).catch(err => {
+        reject();
+        
+      })
+    })
+    return promise;
   },
   signOutAsync(callBack:VoidFunction){
    

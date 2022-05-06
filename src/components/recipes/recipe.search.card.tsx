@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import { GoogleIconsInheritance,Icons } from '../../common/app/google.icon';
 import { RecipeModel } from '../../common/models/recipe.form';
+import { useState } from 'react';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -29,7 +30,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export function RecipeSearchCardTest() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

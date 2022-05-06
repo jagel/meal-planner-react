@@ -15,6 +15,11 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         code: ".recipes",
         title: "recipes"
     },
+    RECIPES_SEARCH:{
+        path: "/recipes",
+        code: ".recipes",
+        title: "Search Recipe"
+    },
     RECIPES_CREATE:{
         path:"/recipes/create",
         code: ".recipes.create",

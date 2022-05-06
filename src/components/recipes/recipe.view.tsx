@@ -1,9 +1,9 @@
-import { IRecipeModel } from "../../common/models/recipe.form";
+import { RecipeModel } from "../../common/models/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 
 export const RecipeViewer = (
     props : {
-        recipe:IRecipeModel, 
+        recipe:RecipeModel, 
     }) => {
    const textValue = SetLanguageText;
    

@@ -22,7 +22,8 @@ export interface RecipeFormStepsProps {
 export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   const [ editOrder, setEditOrder] = useState(0);
   const [ showDeleteMessage, setShowDeleteMessage] = useState(false);
-  const steps = props.steps??[];
+
+  const [ steps, setSteps] = useState<StepModel[]>(JSON.parse(JSON.stringify(props.steps)) as StepModel[])
   
   const editMode = editOrder > 0;
   const textValue = SetLanguageText;
@@ -36,6 +37,7 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
     disableEditMode();
     props.updateSteps(steps);
   }
+
   const addStep = () => {
     let newArrayStep : StepModel = {order:(steps.length +1), description:''};
     steps.push(newArrayStep);
@@ -48,9 +50,11 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   const disableEditMode = () : void => setEditOrder(0);
 
   const replacePosition = (stepItem : StepModel, newOrder: number) : void => {
+    const oldPositionIndex = stepItem.order - 1;
+    const newPositionindex = newOrder - 1;
     const desc = stepItem.description;
-    stepItem.description = steps[(newOrder-1)].description;
-    steps[(newOrder-1)].description = desc;
+    steps[oldPositionIndex].description = steps[newPositionindex].description;
+    steps[newPositionindex].description = desc;
 
     enableEditMode(newOrder);
   }
@@ -70,8 +74,8 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
 
   return <div className="recipe-form-steps">
     <Divider textAlign="left">{textValue('directions')}</Divider>
-  <List>
-    {props.steps?.map(stepItem => 
+    <List>
+      {props.steps?.map(stepItem => 
       stepItem.order == editOrder ?
         <RecipeStepsEdit 
           key={stepItem.order}
@@ -89,13 +93,14 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
           onDeleteItemClick={onDeleteItemClick}
         />
      )}
-  <Button 
-    onClick={addStep} 
-    variant="outlined"
-    disabled={editMode}>
-    {textValue('add step')}
-  </Button>
-</List>
+    <Button 
+      onClick={addStep} 
+      variant="outlined"
+      disabled={editMode}
+      color={steps.length === 0 ? "error":"primary"}>
+      {textValue('add step')}
+    </Button>
+  </List>
   <DeleteMessageDialog 
     open={showDeleteMessage}
     onClose={onDeleteResponseHandle}

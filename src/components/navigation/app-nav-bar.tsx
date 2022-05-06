@@ -22,7 +22,6 @@ export default function AppNavBar(props:AppNavBarProps) {
   const menuId = 'primary-search-account-menu';
 
   const mobileMenuId = 'primary-search-account-menu-mobile';    
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleMobileMenuClose = () => { setMobileMoreAnchorEl(null); };
 

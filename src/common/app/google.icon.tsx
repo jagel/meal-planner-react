@@ -17,6 +17,7 @@ export const Icons = {
     inbox:'inbox',
     // K
     keyboard_arrow_down:'keyboard_arrow_down',
+    keyboard_arrow_up:'keyboard_arrow_up',
     // L
     language:'language',
     // M
