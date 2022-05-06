@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControlLabel, List, ListItem, ListItemText, Radio, RadioGroup } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { recipeIngredientsTypes } from "./recipe.ingredient.types";
+import { SetLanguageText } from "../../services/i18n/languageManager";
 
 
 export interface IngredientMeassureDialogProps {
@@ -15,6 +16,7 @@ export const IngredientMeassureDialog = (props: IngredientMeassureDialogProps) =
     const { onClose, value: valueProp, open, ...other } = props;
     const [value, setValue] = useState(valueProp);
     const radioGroupRef = useRef<HTMLElement>(null);
+    const textValue = SetLanguageText;
 
     useEffect(() => {
         if (!open) {
@@ -26,11 +28,7 @@ export const IngredientMeassureDialog = (props: IngredientMeassureDialogProps) =
         if (radioGroupRef.current != null) {
           radioGroupRef.current.focus();
         }
-      };
-    
-      const handleCancel = () => {
-        onClose();
-      };
+      };       
     
       const handleOk = () => {
         onClose(value);
@@ -48,7 +46,7 @@ export const IngredientMeassureDialog = (props: IngredientMeassureDialogProps) =
           open={open}
           {...other}
         >
-          <DialogTitle>Meassure Type</DialogTitle>
+          <DialogTitle>{textValue('meassure type')}</DialogTitle>
           <DialogContent dividers>
             <RadioGroup
               ref={radioGroupRef}
@@ -68,10 +66,7 @@ export const IngredientMeassureDialog = (props: IngredientMeassureDialogProps) =
             </RadioGroup>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleCancel}>
-              Cancel
-            </Button>
-            <Button onClick={handleOk}>Ok</Button>
+            <Button onClick={handleOk}>{textValue('continue')}</Button>
           </DialogActions>
         </Dialog>
       ); 

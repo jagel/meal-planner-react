@@ -3,7 +3,7 @@ export interface IRecipeType {
     code:string
 }
 
-export const recipeIngredientsTypes : IRecipeType[] = [
+export const recipeIngredientsTypes : Array<IRecipeType> = [
     {display:'Kilogram', code:'Kg'},
     {display: 'Pounds', code:'Pounds'},
     {display: 'Tablespoon',code:'Tbs'},
@@ -12,4 +12,12 @@ export const recipeIngredientsTypes : IRecipeType[] = [
     {display: 'Mililiter', code:'ml'},
     {display: 'Liter',code:'L'},
     {display: 'Gram', code:'g'}
+]
+
+export const fractionsTypes : Array<string> = [
+    '',
+    '1/8',
+    '1/4',
+    '1/3',
+    '1/2'
 ]
