@@ -7,14 +7,14 @@ export class RecipeProduct {
     productId?:number;
     name: string;
     quantity:number;
-    fraction:string;
-    meassure:string;
+    fractionary:string;
+    measureType:string;
     
     constructor(){
         this.name = '';
         this.quantity = 0;
-        this.fraction = '';
-        this.meassure = '';
+        this.fractionary = '';
+        this.measureType = '';
     }
 }
 
@@ -28,7 +28,7 @@ export class RecipeModel{
     recipeId: number;
     name: string;
     description: string;
-    ingredients: RecipeProduct[];
+    recipeProducts: RecipeProduct[];
     steps: StepModel[];
     createdBy: string ='';
     createdDate : Date = new Date();
@@ -40,7 +40,7 @@ export class RecipeModel{
         this.recipeId = 0;
         this.name = '';
         this.description = '';
-        this.ingredients = [];
+        this.recipeProducts = [];
         this.steps = [];
     }
 }

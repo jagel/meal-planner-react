@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Box, DialogActions, DialogContent, DialogTitle, Divider, FormControlLabel, List, ListItem, ListItemText, Radio, RadioGroup } from "@mui/material";
-import { IngredientMeassureDialog } from "./ingredient.meassure.dialog";
+import { ListItem, ListItemText } from "@mui/material";
+import { IngredientMeasureDialog } from "./ingredient.measure.dialog";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 
 export interface IReipeIngredientsFormTypeProps {
   onTextChange: (fieldkey:string, value:string) => void,
-  meassureType:string,
+  measureType:string,
 }
 
 
 export default function ReipeIngredientsFormType(props : IReipeIngredientsFormTypeProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(props.measureType.length <= 0);
   const textValue = SetLanguageText;
 
   const handleClickListItem = () => setOpen(true);
@@ -18,7 +18,7 @@ export default function ReipeIngredientsFormType(props : IReipeIngredientsFormTy
   const handleClose = (newValue?: string) => {
     setOpen(false);
     if (newValue) {
-      props.onTextChange('meassure',newValue);
+      props.onTextChange('measureType',newValue);
     }
   };
 
@@ -28,18 +28,18 @@ export default function ReipeIngredientsFormType(props : IReipeIngredientsFormTy
           divider
           aria-haspopup="true"
           aria-controls="ringtone-menu"
-          aria-label="meassure type"
+          aria-label="measure type"
           onClick={handleClickListItem}
         >
-          <ListItemText  primary={textValue('meassure type')} secondary={props.meassureType??''} />
+          <ListItemText  primary={textValue('measure type')} secondary={props.measureType??''} />
         </ListItem>
   
-        <IngredientMeassureDialog
+        <IngredientMeasureDialog
           id="ringtone-menu"
           keepMounted
           open={open}
           onClose={handleClose}
-          value={props.meassureType}
+          value={props.measureType}
         />
   </>);
 }

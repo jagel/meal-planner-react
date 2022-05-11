@@ -38,7 +38,7 @@ export const RecipeForm = (props : RecipeFormProps) => {
   } 
 
   const recipeFormIngredientsProps : RecipeFormIngredientsProps = {
-    ingredients: props.recipeForm.model.ingredients,
+    ingredients: props.recipeForm.model.recipeProducts,
     updateIngredients: props.updateIngredients
   };
 
