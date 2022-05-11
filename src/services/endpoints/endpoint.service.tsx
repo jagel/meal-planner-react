@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ModelErrorResponse, ModelResponse } from "../../common/models/model.response";
+import { ModelResponse } from "../../common/models/model.response";
 import { EnvironmentRequests } from "../../utils/data/environment-request"
 import { errorHandler, ErrorObject } from "./error.handler";
 
@@ -21,7 +21,7 @@ const endpointService = {
             .then(httpResponse =>{
                 if(!httpResponse.data.hasErrors) resolve(httpResponse.data);
                 else{
-                    let errorResponse = endpointService.errorResponseHandler(httpResponse.data.errorResonse);
+                    let errorResponse = errorHandler.errHandlerException(httpResponse.data.errorResponse);
                     reject(errorResponse);
                 }
             }).catch(err => {
@@ -69,10 +69,6 @@ const endpointService = {
             // anything else 
           }
         return response;
-    },
-    errorResponseHandler:(errorResponse:ModelErrorResponse) : ErrorObject | null=> {
-        
-        return null;
     }
 }
 

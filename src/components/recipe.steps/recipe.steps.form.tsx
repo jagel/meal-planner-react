@@ -85,7 +85,7 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
           replacePosition={replacePosition}
           displayError={props.displayError}
         /> :
-        <RecipeStepsFormView 
+        <RecipeStepsFormView
           key={stepItem.order}
           stepItem={stepItem}
           editMode={editMode}

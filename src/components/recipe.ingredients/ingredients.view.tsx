@@ -1,17 +1,30 @@
-import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControlLabel, Grid, InputAdornment, List, ListItem, ListItemText, OutlinedInput, Radio, RadioGroup, TextField } from "@mui/material";
-import React from "react";
-import { useEffect, useState } from "react";
+import { Avatar,IconButton, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText } from "@mui/material";
+import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
 import { RecipeProduct } from "../../common/models/recipe.form";
-import { SetLanguageText } from "../../services/i18n/languageManager";
-import ReipeIngredientsFormType from "./recipe.ingredients.form.type";
 
 export interface IngredientViewProps {
   index:number;
   ingredientForm:RecipeProduct;
+  onDeleteItemClick:(index:number)=>void
+  onUpdateIngredient:(index:number)=>void
 };
 
 export const IngredientView = (props: IngredientViewProps) => {
-  const textValue = SetLanguageText;
-  
-  return <label>update view</label>
+  return <ListItem>
+    <ListItemAvatar>
+      <Avatar>{props.index+1}</Avatar>
+    </ListItemAvatar>
+    <ListItemText 
+      primary={props.ingredientForm.name} 
+      secondary={`${props.ingredientForm.quantity} ${props.ingredientForm.fractionary} ${props.ingredientForm.measureType}`}>
+    </ListItemText>
+    <ListItemSecondaryAction>
+      <IconButton onClick={()=>props.onUpdateIngredient(props.index)}>
+        <GoogleIconsInheritance iconName={Icons.edit} />
+      </IconButton>
+      <IconButton edge="end" aria-label={Icons.delete} onClick={()=>props.onDeleteItemClick(props.index)}>
+            <GoogleIconsInheritance iconName={Icons.delete} />
+        </IconButton>
+    </ListItemSecondaryAction>
+</ListItem>
 }
