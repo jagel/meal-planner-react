@@ -21,7 +21,7 @@ export default function RecipeUpdate(){
   const { recipeId } = useParams();
 
   useEffect(()=>{
-    recipeEndpointsService.getRecipeByIdAsync(recipeId??'')
+    recipeEndpointsService.getRecipeByIdAsync(recipeId??'', true)
         .then(response => {
           setRecipeFormState(prevState => ({...prevState, model: response??recipeForm.model}) );
           setInitialLoading(false);

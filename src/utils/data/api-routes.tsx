@@ -19,7 +19,7 @@ const APIROUTES = {
   RECIPE : {
     CREATE : `${CONTROLLERS.RECIPECONTROLLER}/CreateRecipe`,
     UPDATE : `${CONTROLLERS.RECIPECONTROLLER}/UpdateRecipe/{recipeId}`,
-    GETBYRECIPEID : `${CONTROLLERS.RECIPECONTROLLER}/getRecipeById/{recipeId}`
+    GETBYRECIPEID : `${CONTROLLERS.RECIPECONTROLLER}/getRecipeById/{recipeId}?includeProducts={includeProducts}`
   },
   RECIPEEARCH : {
     SEARCH : `${CONTROLLERS.RECIPESEARCHCONTROLLER}/search`,

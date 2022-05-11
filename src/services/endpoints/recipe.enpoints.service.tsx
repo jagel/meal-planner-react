@@ -3,9 +3,9 @@ import { APIROUTES } from "../../utils/data/api-routes";
 import { endpointService } from "./endpoint.service";
 
 export const recipeEndpointsService = {
-  async getRecipeByIdAsync(recipeId:string) : Promise<RecipeModel>{
+  async getRecipeByIdAsync(recipeId:string, includeProducts:boolean = false) : Promise<RecipeModel>{
     let endpoint = APIROUTES.RECIPE.GETBYRECIPEID;
-    let respone = await endpointService.getAsync<RecipeModel>(endpoint,{recipeId});
+    let respone = await endpointService.getAsync<RecipeModel>(endpoint,{recipeId, includeProducts});
     return respone.data;
   },
   async createRecipeAsync(recipe:RecipeModel) : Promise<RecipeModel>{
