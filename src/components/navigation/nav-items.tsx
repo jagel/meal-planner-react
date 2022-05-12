@@ -11,6 +11,7 @@ import { NavigationRoutes, NavigationRoutesModel } from "../../utils/routing/nav
 import { styled, SxProps, Theme } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import { RouteItem } from '../../utils/routing/app-routes';
+import { SetLanguageText } from "../../services/i18n/languageManager";
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
   '& .MuiListItemButton-root': {
@@ -54,10 +55,11 @@ export const NavigationItems = () => {
             </FireNav>
           </Paper>
     );
-  }
+}
 
-  const BoxRoutes = (props: NavigationRoutesModel) => {
-    const [open, setOpen] = useState(true);
+const BoxRoutes = (props: NavigationRoutesModel) => {
+  const [open, setOpen] = useState(true);
+  const textValue = SetLanguageText;
   
     const BoxHeader =  <ListItemButton alignItems="flex-start"
       onClick={() => setOpen(!open)}
@@ -87,7 +89,7 @@ export const NavigationItems = () => {
     <ListItemIcon>
       <GoogleIconsInheritance iconName={routeItem.icon??''}></GoogleIconsInheritance>
     </ListItemIcon>
-    <ListItemText primary={routeItem.title} primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}/>
+    <ListItemText primary={textValue(routeItem.title)} primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}/>
   </ListItemButton>
   
    return <Box
