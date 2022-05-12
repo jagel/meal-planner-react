@@ -5,7 +5,7 @@ import { DeleteMessageDialog } from "../../common/elements/message.delete";
 import { RecipeProduct } from "../../common/models/recipe.form";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { IngredientForm, IngredientFormProps } from "./ingredients.form";
-import { IngredientView, IngredientViewProps } from "./ingredients.view";
+import { IngredientViewForm, IngredientViewFormProps } from "./ingredients.view.form";
 
 
 export interface RecipeFormIngredientsProps {
@@ -53,11 +53,11 @@ const RecipeFormIngredients = (props: RecipeFormIngredientsProps) => {
     <List>
       {props.ingredients.map((ingredientForm, index)=>{
         let ingredientFormProps : IngredientFormProps = {index, ingredientForm,  updateIngredient };
-        let ingredientViewProps: IngredientViewProps = {index, ingredientForm,onDeleteItemClick, onUpdateIngredient};
+        let ingredientViewProps: IngredientViewFormProps = {index, ingredientForm,onDeleteItemClick, onUpdateIngredient};
         
         return index == updateIndex ? 
           <IngredientForm key={index} {...ingredientFormProps} /> : 
-          <IngredientView key={index} {...ingredientViewProps} />
+          <IngredientViewForm key={index} {...ingredientViewProps} />
       })}
     </List>
   

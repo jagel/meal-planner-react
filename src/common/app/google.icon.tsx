@@ -26,6 +26,8 @@ export const Icons = {
     morevert:'more_vert',
     // N
     notifications:'notifications',
+    // R
+    restaurant:'restaurant',
     // S
     search: 'search',
     settings: 'settings',
