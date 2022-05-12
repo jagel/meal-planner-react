@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GoogleIconsInheritance, Icons } from '../../common/app/google.icon';
 
-import { styled } from '@mui/material/styles';
+import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -11,9 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
 
-import {
-  Link as RouterLink,
-} from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { NavigationRoutes, NavigationRoutesModel } from '../../utils/routing/navigation-routes';
 import { RouteItem } from '../../utils/routing/app-routes';
 
@@ -22,15 +20,11 @@ export interface NavDrawerProps {
     mobileOpen:boolean,
     handleDrawerToggle:()=>void
 }
-
 export default function NavDrawer(props: NavDrawerProps) {
-    
+  const boxTheme : SxProps<Theme> = { width: { sm: props.drawerWidth }, flexShrink: { sm: 0 } };
+
   return (
-    <Box
-      component="nav"
-      sx={{ width: { sm: props.drawerWidth }, flexShrink: { sm: 0 } }}
-      aria-label="mailbox folders"
-    >
+    <Box component="nav" sx={boxTheme}>
       <PhoneScreenDrawer {...props} />
       <LargeScreenDrawer {...props} />
     </Box>
@@ -38,33 +32,18 @@ export default function NavDrawer(props: NavDrawerProps) {
 }
 
 const PhoneScreenDrawer = (props: NavDrawerProps) => {
-  return <Drawer
-  variant="temporary"
-  open={props.mobileOpen}
-  onClose={props.handleDrawerToggle}
-  ModalProps={{
-    keepMounted: true, // Better open performance on mobile.
-  }}
-  sx={{
-    display: { xs: 'block', sm: 'none' },
-    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
-  }}
->
-  <NavigationItems />
-</Drawer>
+  const drawerTheme : SxProps<Theme> = { display: { xs: 'block', sm: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth }}
+  return <Drawer variant="temporary" open={props.mobileOpen} onClose={props.handleDrawerToggle} ModalProps={{keepMounted: true}} sx={drawerTheme}>
+    <NavigationItems />
+  </Drawer>
 }
 
-const LargeScreenDrawer = (props: NavDrawerProps) =>{
-  return <Drawer
-  variant="permanent"
-  sx={{
-    display: { xs: 'none', sm: 'block' },
-    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
-  }}
-  open
->
-  <NavigationItems />
-</Drawer>
+const LargeScreenDrawer = (props: NavDrawerProps) => {
+  const drawerTheme : SxProps<Theme> = {display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth }}
+
+  return <Drawer variant="permanent" sx={drawerTheme} open>
+    <NavigationItems />
+  </Drawer>
 }
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
@@ -121,13 +100,15 @@ const BoxRoutes = (props: NavigationRoutesModel) => {
   }
 </ListItemButton>
 
-const linkItem = (routeItem:RouteItem) => <ListItemButton component={RouterLink} to={routeItem.path} key={routeItem.code} sx={{ py: 0, minHeight: 32 }} >
+const linkItem = (routeItem:RouteItem) => <ListItemButton component={RouterLink} to={routeItem.path} key={routeItem.code} sx={{ py: 0, minHeight: 32 }}  >
+  <ListItemIcon>
+    <GoogleIconsInheritance iconName={routeItem.icon??''}></GoogleIconsInheritance>
+  </ListItemIcon>
   <ListItemText primary={routeItem.title} primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}/>
 </ListItemButton>
 
  return <Box
  sx={{
-   bgcolor: open ? '#eff7ff' : '#efefef',
    pb: open ? 2 : 0,
  }}
 >
@@ -148,7 +129,7 @@ const HeaderDrawer = () => {
     primaryTypographyProps={{
       fontSize: 20,
       fontWeight: 'medium',
-      letterSpacing: 0,
+      letterSpacing: 0
     }}
   />
 </ListItemButton>

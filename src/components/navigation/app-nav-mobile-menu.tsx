@@ -2,7 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import { GoogleIconsInheritance, Icons} from '../../common/app/google.icon'
+import { GoogleIconsInheritance, Icons } from '../../common/app/google.icon'
 
 export interface AppNavMobileMenuProps {
     handleProfileMenuOpen:(event: React.MouseEvent<HTMLElement>) => void;
@@ -13,7 +13,6 @@ export interface AppNavMobileMenuProps {
 
 export const AppNavMobileMenu = (props:AppNavMobileMenuProps) => {
   const isMobileMenuOpen = Boolean(props.mobileMoreAnchorEl);
-
 
     return  <Menu
     anchorEl={props.mobileMoreAnchorEl}

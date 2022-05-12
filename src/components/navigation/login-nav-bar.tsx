@@ -28,12 +28,12 @@ const LoginNavBar = () => {
             sx={{ mr: 2 }}
           >
             <img
-                    alt=""
-                    src="/src/img/logo-white.svg"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                />{' '}
+              alt=""
+              src="/src/img/logo-white.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Meal Planner
