@@ -10,13 +10,16 @@ export const FormDescriptionRequiredInput = (props :{
     displayError:boolean,
     name:string,
     displayText:string,
-    displayTextParams?:string[]
+    displayTextParams?:string[],
+    maxlength?:number
   }) => {
     const displayName = SetLanguageText(props.displayText, props.displayTextParams);
     const errorMessage = SetLanguageText('required field');
     const displayError =  FormValidationservice.displayRequiredError(props.value, props.displayError);;
     const helperText = displayError ? errorMessage  : '';
-  
+    const maxLength = props.maxlength == undefined ? FormValidations.maxDescriptionLength : (props.maxlength??0);
+
+    
     return <FormControl fullWidth sx={{ m: 1 }} >
        <TextField
           autoFocus
@@ -28,7 +31,7 @@ export const FormDescriptionRequiredInput = (props :{
           rows={3}
           defaultValue={props.value}
           onChange={props.onTextChange}
-          inputProps={{ maxLength: FormValidations.maxDescriptionLength }}
+          inputProps={{ maxLength }}
           helperText={helperText}
           variant="standard"
         />

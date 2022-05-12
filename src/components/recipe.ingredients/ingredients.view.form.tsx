@@ -11,11 +11,11 @@ export interface IngredientViewFormProps {
 };
 
 export const IngredientViewForm = (props: IngredientViewFormProps) => {
-  return <ListItem>
+  return <ListItem style={{paddingRight:'84px'}}>
     <ListItemAvatar>
       <Avatar>{props.index+1}</Avatar>
     </ListItemAvatar>
-    <ListItemText 
+    <ListItemText style={{textAlign:'justify'}}
       primary={props.ingredientForm.name} 
       secondary={PrintMeassureText(props.ingredientForm)}>
     </ListItemText>
