@@ -14,5 +14,12 @@ export const NavigationRoutes : NavigationRoutesModel[] = [
             APP_ROUTES.RECIPES_SEARCH, 
             APP_ROUTES.RECIPES_CREATE,
         ]
-    },
+    },{
+        order:2,
+        title:"Meal planner",
+        routes:[
+            APP_ROUTES.PLANNER_WEEK,
+            APP_ROUTES.PLANNER_DAY
+        ]
+    }
 ]
