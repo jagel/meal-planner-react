@@ -9,11 +9,13 @@ import { APP_ROUTES } from "../../utils/routing/app-routes";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormModel } from "../../common/models/form-model";
 import { FormValidationservice } from "../../services/form.validation.service";
+import { ErrorObject } from "../../services/endpoints/error.handler";
 
 export default function RecipeUpdate(){
   const [initialLoading, setInitialLoading] = useState(true);
   const [editionModel, setEditionMode] = useState(false);
   const [recipeForm, setRecipeFormState] = useState(new FormModel<RecipeModel>(new RecipeModel()));
+  const [errorResponse, setErrorResponse] = useState<ErrorObject|undefined>();
   
   const routingService = RoutingServices;
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ export default function RecipeUpdate(){
   const { recipeId } = useParams();
 
   useEffect(()=>{
-    recipeEndpointsService.getRecipeByIdAsync(recipeId??'')
+    recipeEndpointsService.getRecipeByIdAsync(recipeId??'', true)
         .then(response => {
           setRecipeFormState(prevState => ({...prevState, model: response??recipeForm.model}) );
           setInitialLoading(false);
@@ -36,6 +38,7 @@ export default function RecipeUpdate(){
     setLoading(true);
     recipeEndpointsService.updateRecipeAsync(recipeForm.model , recipeId??'')
       .then( modelSaved => recipeResponse = modelSaved)
+      .catch((err) => setErrorResponse(err as ErrorObject))
       .finally(() => {
         setLoading(false);
         if(recipeResponse !== undefined) {
@@ -85,7 +88,7 @@ export default function RecipeUpdate(){
   const formPoperties : RecipeFormProps = { recipeForm, onTextChange, updateSteps, updateIngredients, onEditionModel:setEditionMode };
   const buttonProperties : ButtonLoadingProp = { text:"save", fullWidth:false, loading:recipeForm.isLoading||editionModel };
   
-  return <LayoutPage params={{recipeId}} loadingPage={initialLoading}>
+  return <LayoutPage params={{recipeId}} loadingPage={initialLoading} errorObject={errorResponse}>
     <form onSubmit={handleSubmit} noValidate >
       <RecipeForm {...formPoperties} />
       <ButtonLoading {...buttonProperties} />

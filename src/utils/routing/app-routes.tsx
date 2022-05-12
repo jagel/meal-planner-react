@@ -1,7 +1,10 @@
+import { Icons } from "../../common/app/google.icon";
+
 export interface RouteItem {
     path:string,
     code:string,
-    title:string
+    title:string,
+    icon?:string
 }
 
 const APP_ROUTES : { [key:string] : RouteItem} = {
@@ -18,12 +21,14 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     RECIPES_SEARCH:{
         path: "/recipes",
         code: ".recipes",
-        title: "Search Recipe"
+        title: "Search Recipe",
+        icon: Icons.search
     },
     RECIPES_CREATE:{
         path:"/recipes/create",
         code: ".recipes.create",
-        title: "Create Recipe"
+        title: "Create Recipe",
+        icon: Icons.restaurant
     },
     RECIPES_UPDATE:{
         path:"/recipes/update/:recipeId",
@@ -35,10 +40,17 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         code: ".recipes.view",
         title: "View Recipe"
     },
-    PLANNER:{
+    PLANNER_WEEK:{
         path:"/planner/week-view",
-        code: ".planner",
-        title: "Planner"
+        code: ".planner-week",
+        title: "week planner",
+        icon: Icons.calendar_month
+    },
+    PLANNER_DAY:{
+        path:"/planner/day-view",
+        code: ".planner-day",
+        title: "today plan",
+        icon: Icons.calendar_today
     },
     LOGIN : {
         path:"/login",

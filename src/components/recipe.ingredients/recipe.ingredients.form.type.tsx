@@ -23,23 +23,23 @@ export default function ReipeIngredientsFormType(props : IReipeIngredientsFormTy
   };
 
   return (<>
-        <ListItem         
-          button
-          divider
-          aria-haspopup="true"
-          aria-controls="ringtone-menu"
-          aria-label="measure type"
-          onClick={handleClickListItem}
-        >
-          <ListItemText  primary={textValue('measure type')} secondary={props.measureType??''} />
-        </ListItem>
-  
-        <IngredientMeasureDialog
-          id="ringtone-menu"
-          keepMounted
-          open={open}
-          onClose={handleClose}
-          value={props.measureType}
-        />
+  <ListItem         
+    button
+    divider
+    aria-haspopup="true"
+    aria-controls="ringtone-menu"
+    aria-label="measure type"
+    onClick={handleClickListItem}
+  >
+    <ListItemText  primary={textValue('measure type')} secondary={props.measureType??''} />
+  </ListItem>
+
+  <IngredientMeasureDialog
+    id="ringtone-menu"
+    keepMounted
+    open={open}
+    onClose={handleClose}
+    value={props.measureType}
+  />
   </>);
 }

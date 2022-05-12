@@ -75,7 +75,7 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   return <div className="recipe-form-steps">
     <Divider textAlign="left">{textValue('directions')}</Divider>
     <List>
-      {props.steps?.map(stepItem => 
+      {steps?.map(stepItem => 
       stepItem.order == editOrder ?
         <RecipeStepsEdit 
           key={stepItem.order}
@@ -93,7 +93,7 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
           onDeleteItemClick={onDeleteItemClick}
         />
      )}
-    <Button 
+    <Button fullWidth
       onClick={addStep} 
       variant="outlined"
       disabled={editMode}

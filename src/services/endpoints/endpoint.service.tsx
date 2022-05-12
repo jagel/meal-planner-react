@@ -34,8 +34,21 @@ const endpointService = {
     putAsync: async <TmodelResponse,TmodelRequest>(putEndpoint:string, data: TmodelRequest, params?:any) => {
         let putEndpointParams = endpointService.interpolateParams(putEndpoint, params);
        
-        let httpResponse = await endpointService.axiosInstance.put<ModelResponse<TmodelResponse>>(putEndpointParams,data);
-        return httpResponse.data;
+        let putRequest = new Promise<ModelResponse<TmodelResponse>>((resolve,reject) => {
+            endpointService.axiosInstance.put<ModelResponse<TmodelResponse>>(putEndpointParams,data)
+            .then(httpResponse => {
+                if(!httpResponse.data.hasErrors) resolve(httpResponse.data);
+                else{
+                    let errorResponse = errorHandler.errHandlerException(httpResponse.data.errorResponse);
+                    reject(errorResponse);
+                }
+            }).catch(err =>{
+                let errorResponse = endpointService.errorHandler(err);
+                reject(errorResponse);
+            })
+        });
+           
+        return putRequest;
     },
     interpolateParams: (endpoint:string, params:any) : string => {
         for (var prop in params??[]) 

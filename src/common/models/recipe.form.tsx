@@ -4,7 +4,7 @@ export interface CreateRecipe {
 }
 
 export class RecipeProduct {
-    productId?:number;
+    recipeProductId?:number;
     name: string;
     quantity:number;
     fractionary:string;

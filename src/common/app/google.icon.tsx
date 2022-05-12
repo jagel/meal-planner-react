@@ -5,6 +5,8 @@ export const Icons = {
     arrow_downward:'arrow_downward',
     // C
     check:'check',
+    calendar_month:'calendar_month',
+    calendar_today:'calendar_today',
     // D
     delete:'delete',
     // E
@@ -26,6 +28,8 @@ export const Icons = {
     morevert:'more_vert',
     // N
     notifications:'notifications',
+    // R
+    restaurant:'restaurant',
     // S
     search: 'search',
     settings: 'settings',

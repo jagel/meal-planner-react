@@ -54,6 +54,7 @@ export const RecipeStepsEdit = (props:{
             name={`step.${stepEditor.order}`}
             onTextChange={onStepTextChanged} 
             displayError={displayError}
+            maxlength={500}
           />
         {downwardButton()}        
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

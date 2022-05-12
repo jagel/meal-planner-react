@@ -16,11 +16,11 @@ export const RecipeStepsFormView = (props:{
 }) =>{
   const textValue = SetLanguageText;
 
-    return  <ListItem >
+    return  <ListItem style={{paddingRight:'84px'}} className="example" >
     <ListItemAvatar>
       <Avatar>{props.stepItem.order}</Avatar>
     </ListItemAvatar>
-    <ListItemText
+    <ListItemText style={{textAlign:'justify'}}
       primary={textValue('step {0}',[`${props.stepItem.order}`])}
       secondary={props.stepItem.description}
     />
