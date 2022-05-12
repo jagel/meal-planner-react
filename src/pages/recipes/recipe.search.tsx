@@ -13,10 +13,10 @@ export default function RecipeSearch(){
     const recipeSearchProps : RecipeSearchFromProps = { setRecipes, setLoading };
 
     return <LayoutPage>
-    <div>
-        <RecipeSearchFrom {...recipeSearchProps} />
-        <Divider />
-        <RecipeSearchResults {...recipeResultProps} />
+    <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
+      <RecipeSearchFrom {...recipeSearchProps} />
+      <Divider />
+      <RecipeSearchResults {...recipeResultProps} />
     </div>
   </LayoutPage>;
 }

@@ -1,3 +1,4 @@
+import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { RecipeModel } from "../../common/models/recipe.form"
 import { SetLanguageText } from "../../services/i18n/languageManager";
@@ -9,10 +10,14 @@ export interface RecipeSearchResultsProps {
 } 
 
 const RecipeSearchResults = (props: RecipeSearchResultsProps) => {
-    const textValue = SetLanguageText;
+const textValue = SetLanguageText;
 
-    return <Paper>
-        {props.recipes.map(recipeItem=><RecipeSearchCard key={recipeItem.recipeId} recipe={recipeItem} />)}
+    return <Paper style={{padding:'10px'}}>
+    <div style={{display:'flex', gap:'10px'}}>
+    {props.recipes.map(recipeItem=>
+        <RecipeSearchCard key={recipeItem.recipeId} recipe={recipeItem} />
+    )}
+    </div>
     </Paper>
 }
 

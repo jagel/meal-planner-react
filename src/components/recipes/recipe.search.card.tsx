@@ -12,6 +12,9 @@ import { red } from '@mui/material/colors';
 import { GoogleIconsInheritance,Icons } from '../../common/app/google.icon';
 import { RecipeModel } from '../../common/models/recipe.form';
 import { useState } from 'react';
+import Menu from '@mui/material/Menu';
+import Fade from '@mui/material/Fade';
+import MenuItem from '@mui/material/MenuItem';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -118,20 +121,42 @@ export interface RecipeSearchCardProps {
 } 
 
 export const RecipeSearchCard = (props: RecipeSearchCardProps) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
   const { recipe } = props;
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{width: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {recipe.createdBy.substring(0,1)}
+          <Avatar sx={{ bgcolor: '#1976d2' }} aria-label="recipe">
+            <GoogleIconsInheritance iconName={Icons.restaurant} />
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
+        action={<div>
+          <IconButton aria-label="settings" onClick={handleClick}>
               <GoogleIconsInheritance iconName={Icons.morevert} />
           </IconButton>
-        }
+          <Menu 
+            MenuListProps={{'aria-labelledby': 'fade-button'}}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            TransitionComponent={Fade}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+        </div>}
         title={recipe.name}
         subheader={new Date(recipe.createdDate).toDateString()}
       />
