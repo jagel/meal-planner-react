@@ -10,7 +10,7 @@ export const LayoutPage = ( props: {
     params?: { [key:string] : string|undefined}
 }) => {
 
-    return (<Box sx={{height:'calc(100vh - 140px)', padding:'0px 20px'}}>
+    return (<Box sx={{minHeight:'calc(100vh - 140px)', padding:'0px 20px'}}>
         <BreadcrumbRoutes dynamicParams={props.params} />
         { !!props.loadingPage ?  
             <LoadingLayoutPage /> :
