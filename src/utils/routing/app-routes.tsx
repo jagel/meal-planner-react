@@ -38,7 +38,7 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         path:"/recipes/create",
         code: ".recipes.create",
         title: "Create Recipe",
-        icon: Icons.restaurant,
+        icon: Icons.add_circle,
         node: <RecipeCreate />
     },
     RECIPES_UPDATE:{
@@ -53,17 +53,12 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         title: "View Recipe",
         node: <RecipeView />
     },
-    PLANNER_WEEK:{
-        path:"/planner/week-view",
-        code: ".planner-week",
-        title: "week planner",
-        icon: Icons.calendar_month
-    },
-    PLANNER_DAY:{
-        path:"/planner/day-view",
-        code: ".planner-day",
-        title: "today plan",
-        icon: Icons.calendar_today
+    AGENDA_MEALPLANNER:{
+        path:"/agenda/meal-planner",
+        code: ".agenda.meal-planner",
+        title: "meal planner",
+        icon:Icons.restaurant,
+        node: <RecipeView />
     },
     LOGIN : {
         path:"/login",
@@ -76,11 +71,12 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         code:".settings",
         title:"settings"
     },
-    MEALPLANNERSETTINGS:{
+    SETTINGS_MEALPLANNER:{
         path:"/settings/meal-planner",
         code:".settings",
-        title:"meal planner settings",
-        node:<MealPlannerSettings />
+        title:"meal planner",
+        node:<MealPlannerSettings />,
+        icon:Icons.restaurant
     }
 }
 

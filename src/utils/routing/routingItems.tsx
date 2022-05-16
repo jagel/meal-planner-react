@@ -23,14 +23,14 @@ export const RoutesItems : RouteObject[] = [{
             { path: APP_ROUTES.RECIPES_VIEW.path, element: APP_ROUTES.RECIPES_VIEW.node}
         ]
     },{
-        path:"/meal-planner",
+        path:"agenda",
         children:[
-            {index:true, element: <RecipeCreate />} //TODO: create nodes <<tmp solution>>
+            {path: 'agenda/meal-planner', element: <RecipeCreate />} //TODO: create nodes <<tmp solution>>
         ]
     },{
         path:APP_ROUTES.SETTINGS.path,
         children:[
-            { path: APP_ROUTES.MEALPLANNERSETTINGS.path, element: APP_ROUTES.MEALPLANNERSETTINGS.node },
+            { path: APP_ROUTES.SETTINGS_MEALPLANNER.path, element: APP_ROUTES.SETTINGS_MEALPLANNER.node },
         ]
     },{
         path:"*", 
