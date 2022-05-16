@@ -1,5 +1,5 @@
 :root {
-  --main-color: #59c0d7;
+  --main-color: #237a99;
   --secondary-color: #ffffff;
 }
 
@@ -84,7 +84,7 @@ ul.calendar-days{
 }
 
 .day-available{
-  background-color: #1976d2;
+  background-color: var(--main-color);
   height: 100%;
   color: white;
   padding: 10px 0px;

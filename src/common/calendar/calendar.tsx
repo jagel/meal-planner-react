@@ -10,6 +10,7 @@ let currentDateData = new Date();
 
 export interface JGLCalendarProps {
   disableDays?:Array<number>
+
 }
 
 export default function JGLCalendar(props:JGLCalendarProps){
@@ -25,7 +26,7 @@ export default function JGLCalendar(props:JGLCalendarProps){
     setDateData({...dateData, current:dateData.current, selected:dateSelected})
   }
 
-  const calendarDaysProps : CalendarDaysProps = {current:dateData.current, selected: dateData.selected, onDayClick, disableDays:[0,6]}
+  const calendarDaysProps : CalendarDaysProps = {current:dateData.current, selected: dateData.selected, onDayClick, disableDays:props.disableDays}
   return <div>
     <div className='calendar-month'>
       <div className='page' onClick={()=>changeMonth(-1)}><label>&#10094;</label></div>
@@ -34,7 +35,7 @@ export default function JGLCalendar(props:JGLCalendarProps){
       </div>
       <div className='page' onClick={()=>changeMonth(1)}><label>&#10095;</label></div>
     </div>
-    <DaysOfWeek disableDays={[0,6]} />
+    <DaysOfWeek disableDays={props.disableDays} />
     <CalendarDays {...calendarDaysProps} />
   </div>
 }
