@@ -31,7 +31,7 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     RECIPES_SEARCH:{
         path: "/recipes",
         code: ".recipes",
-        title: "Search Recipe",
+        title: "search recipe",
         icon: Icons.search
     },
     RECIPES_CREATE:{
@@ -73,12 +73,12 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     },
     SETTINGS:{
         path:"/settings",
-        code:"settings",
+        code:".settings",
         title:"settings"
     },
     MEALPLANNERSETTINGS:{
         path:"/settings/meal-planner",
-        code:"settings",
+        code:".settings",
         title:"meal planner settings",
         node:<MealPlannerSettings />
     }
