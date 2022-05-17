@@ -1,45 +1,27 @@
-interface I18n {
-    lang: string;
+import { DayOfWeekArray, MonthArray } from "./calendar.data";
+
+interface DaysOfWeekProps {
+  disableDays?:Array<number>
 }
 
-interface dateDataI18n extends I18n {
-    date: Date;
+export const DaysOfWeek = (props: DaysOfWeekProps) => {
+  let daysOfWeek = DayOfWeekArray();
+  
+  return  <ul className="calendar-weekdays">
+    {daysOfWeek.map((day,index) => <li key={day} className={props.disableDays?.includes(index)? 'day-disabled': 'day-available'}>{day}</li>)}
+  </ul>
 }
 
-export const I18nSetDaysOfWeek = (props : I18n) => {
-    let daysOfWeek = [];
 
-    switch(props.lang){
-        case 'es':
-            daysOfWeek = ['Do','Lu', 'Ma', 'Mi','Ju','Vi','Sa'];
-        break
-    
-        default:
-            daysOfWeek = ['Su','Mo', 'Tu', 'We','Th','Fr','Sa'];
-        break
-    }
-    
-    return  <ul className="calendar-weekdays">
-                {daysOfWeek.map((day) => <li key={day}>{day}</li>)}
-            </ul>
+interface GetMonthAndYearDataProps {
+  date: Date;
 }
+export const  GetMonthAndYearData = (props : GetMonthAndYearDataProps) => {
+  let month : string[] = MonthArray();
+  let monthNumber : number = props.date.getMonth();
 
-export const  GetMonthAndYearData = (props : dateDataI18n) => {
-    let month : string[] = [];
-    let monthNumber : number = props.date.getMonth();
-
-    switch(props.lang){
-        case 'es':
-          month = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-        break
-        
-        default:
-          month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        break
-      }
-
-    return   <label>
-    {month[monthNumber]}<br/>
-    {props.date.getFullYear()}
-  </label>
+  return <label>
+  {month[monthNumber]}<br/>
+  {props.date.getFullYear()}
+</label>
 }

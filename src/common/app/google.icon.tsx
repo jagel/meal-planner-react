@@ -1,16 +1,19 @@
 export const Icons = {
     // A
     account_circle: 'account_circle',
+    add_circle: 'add_circle',
     arrow_upward:'arrow_upward',
     arrow_downward:'arrow_downward',
     // C
     check:'check',
+    calendar_add_on:'calendar_add_on',//no workging
     calendar_month:'calendar_month',
     calendar_today:'calendar_today',
     // D
     delete:'delete',
     // E
     edit:'edit',
+    edit_calendar:'edit_calendar',
     // F
     favorite:'favorite',
     // H
@@ -52,4 +55,3 @@ export interface GoogleIconCompositionProps extends GoogleIconsInheritanceProps 
 }
 export const GoogleIconComposition = (props : GoogleIconCompositionProps) =>
     <span className={`${props.className} material-icons`}>{props.iconName}{props.children}</span>
-

@@ -24,7 +24,6 @@ export const BreadcrumbRoutes = (props : {
     const location = useLocation();
 
     var pathname = location.pathname;
-    var paths : string = ""
     
     if(props.dynamicParams !== undefined) interpolateParams();
     
@@ -38,13 +37,15 @@ export const BreadcrumbRoutes = (props : {
 
    const printRoute = (pathItem: string, index:number) => {
      let _pathItem = pathItem == '' ? 'home' : pathItem;
+     let _title = _pathItem.replaceAll('-',' ');
 
-     if(index>0) codeValue += `.${pathItem}`;
+     if(index>0)
+      codeValue += `.${pathItem}`;
      let currentItem = RoutesList.filter( x => x.code == codeValue)[0];
 
      return lastItemIndex == index ?
-      <Typography key={index} color="text.primary">{textValue(_pathItem)}</Typography> : 
-      <LinkRouter key={index} underline="hover" color="inherit" to={currentItem.path}>{textValue(_pathItem)}</LinkRouter>;
+      <Typography key={index} color="text.primary">{textValue(_title)}</Typography> : 
+      <LinkRouter key={index} underline="hover" color="inherit" to={currentItem.path}>{textValue(_title)}</LinkRouter>;
    }
 
   return <Box sx={{ m: 2 }}>

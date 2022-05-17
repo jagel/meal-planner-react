@@ -2,6 +2,19 @@ import { ILanguageModel } from "../../common/models/lang.model";
 
 
 export const LanguageData : ILanguageModel[] = [
+    // ---------- A
+    { code: 'agenda', value : 'Agenda' },
+    { code: 'available days', value : 'Días habiles' },
+
+    // ---------- M
+    { code: 'meal planner', value : 'Meal planner' },
+    { code: 'meal planner agenda', value : 'Meal Planner Agenda' },
+    { code: 'meal planner columns', value : 'Meal Planner Columnas' },
+    { code: 'meal planner settings', value : 'Configuración Meal Planner' },
+    
+    // ---------- S
+    { code: 'settings', value : 'Configuración' },
+
     { code: 'email', value : 'Correo Electrónico' },
     { code: 'password', value : 'Contraseña' },
     { code : 'invalid email or password', value : 'Verifique Correo Electrónico o Contraseña' },
@@ -35,6 +48,7 @@ export const LanguageData : ILanguageModel[] = [
 
     { code: 'Home', value : 'Inicio' },
     { code: 'Search', value : 'Busqueda' },
+    { code: 'search recipe', value : 'Buscar Receta' },
     { code: 'New Recipe', value : 'Nueva Receta' },
     { code: 'Manage', value : 'Administrador' },
 

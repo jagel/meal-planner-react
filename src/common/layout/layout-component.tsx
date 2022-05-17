@@ -25,8 +25,7 @@ return (
             <Box sx={{ display: 'flex' }}>
                 <AppNavBar {...appNavBarProps}/>
                 <NavDrawer {...navDrawerProps} />
-                <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
-                  <Toolbar />
+                <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },padding:'75px 0px 0px 0px' }}>
                   <Outlet />
                   <AppFooter />
                 </Box>

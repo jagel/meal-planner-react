@@ -65,21 +65,10 @@ const BoxRoutes = (props: NavigationRoutesModel) => {
       onClick={() => setOpen(!open)}
       sx={{px: 3,pt: 2.5,'&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },}}
     >
-    <ListItemText
-      primary={props.title}
-      primaryTypographyProps={{
-        fontSize: 15,
-        fontWeight: 'medium',
-        lineHeight: '20px',
-        mb: '2px',
-      }}
-      secondaryTypographyProps={{
-        noWrap: true,
-        fontSize: 12,
-        lineHeight: '16px',
-      }}
-      sx={{ my: 0 }}
-    />{ open?
+    <ListItemIcon>
+      <GoogleIconsInheritance iconName={props.icon??''}></GoogleIconsInheritance>
+    </ListItemIcon>
+    <ListItemText primary={textValue(props.title)}/>{ open?
         <GoogleIconsInheritance iconName={Icons.keyboard_arrow_up}/>:
         <GoogleIconsInheritance iconName={Icons.keyboard_arrow_down}/>
     }

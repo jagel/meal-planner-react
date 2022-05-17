@@ -1,5 +1,5 @@
 :root {
-  --main-color: #39CB75;
+  --main-color: #237a99;
   --secondary-color: #ffffff;
 }
 
@@ -45,17 +45,16 @@ ul {list-style-type: none;}
 
 ul.calendar-weekdays{
   display: flex;
-  padding: 10px 0px;
   justify-content: stretch;
   width: 100%;
-  background-color: #ddd;
   margin: 0px;
+  padding: 0px;
 }
 
 .calendar-weekdays li{
   text-align: center;
   width: 100%;
-  flex: 1 0 13%;  
+  flex: 1 0 13%;
 }
 
 ul.calendar-days{
@@ -71,13 +70,30 @@ ul.calendar-days{
   text-align: center;
   width: 100%;
   flex: 1 0 13%;
-  margin-top: 3px;
-  margin-bottom: 3px;
 }
 
 .calendar-days li.active {
   background: var(--main-color);
   color: var(--secondary-color) !important
+}
+
+.day-disabled{
+  background-color: #dedddd;
+  color: rgb(102, 102, 102);
+  padding: 10px 0px;
+}
+
+.day-available{
+  background-color: var(--main-color);
+  height: 100%;
+  color: white;
+  padding: 10px 0px;
+}
+.day{
+  height: 100%;
+  padding: 10px 0px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 /* Add media queries for smaller screens
