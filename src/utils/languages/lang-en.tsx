@@ -10,6 +10,7 @@ export const LanguageData : ILanguageModel[] = [
     { code: 'meal planner', value : 'Meal planner' },
     { code: 'meal planner agenda', value : 'Meal Planner Agenda' },
     { code: 'meal planner columns', value : 'Meal Planner Columns' },
+    { code: 'meal planner settings', value : 'Meal Planner Settings' },
 
     // ---------- S
     { code: 'settings', value : 'Settings' },

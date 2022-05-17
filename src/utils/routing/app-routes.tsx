@@ -81,7 +81,7 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     SETTINGS_MEALPLANNER:{
         path:"/settings/meal-planner",
         code:".meal-planner-settings",
-        title:"meal planner",
+        title:"meal planner settings",
         node:<MealPlannerSettings />,
         icon:Icons.restaurant
     }
