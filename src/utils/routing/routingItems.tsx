@@ -23,9 +23,9 @@ export const RoutesItems : RouteObject[] = [{
             { path: APP_ROUTES.RECIPES_VIEW.path, element: APP_ROUTES.RECIPES_VIEW.node}
         ]
     },{
-        path:"agenda",
+        path:APP_ROUTES.AGENDA.path,
         children:[
-            {path: 'agenda/meal-planner', element: <RecipeCreate />} //TODO: create nodes <<tmp solution>>
+            {path: APP_ROUTES.AGENDA_MEALPLANNER.path, element : APP_ROUTES.AGENDA_MEALPLANNER.node } //TODO: create nodes <<tmp solution>>
         ]
     },{
         path:APP_ROUTES.SETTINGS.path,

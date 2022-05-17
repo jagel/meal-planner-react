@@ -1,4 +1,5 @@
 import { Icons } from "../../common/app/google.icon";
+import { AgendaMealPlanner } from "../../pages/agenda/agenda-meal-planner";
 import { Login } from "../../pages/auth/login";
 import Dashboard from "../../pages/dashboard/dashboard";
 import RecipeCreate from "../../pages/recipes/recipe.create";
@@ -53,12 +54,18 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
         title: "View Recipe",
         node: <RecipeView />
     },
+    AGENDA:{
+        path:"/agenda",
+        code: ".agenda",
+        title: "agenda",
+        icon:Icons.restaurant,
+    },
     AGENDA_MEALPLANNER:{
         path:"/agenda/meal-planner",
         code: ".agenda.meal-planner",
-        title: "meal planner",
+        title: "meal planner agenda",
         icon:Icons.restaurant,
-        node: <RecipeView />
+        node: <AgendaMealPlanner />
     },
     LOGIN : {
         path:"/login",
@@ -73,7 +80,7 @@ const APP_ROUTES : { [key:string] : RouteItem} = {
     },
     SETTINGS_MEALPLANNER:{
         path:"/settings/meal-planner",
-        code:".settings",
+        code:".meal-planner-settings",
         title:"meal planner",
         node:<MealPlannerSettings />,
         icon:Icons.restaurant
