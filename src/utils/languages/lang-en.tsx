@@ -4,9 +4,11 @@ import { ILanguageModel } from "../../common/models/lang.model";
 export const LanguageData : ILanguageModel[] = [
     // ---------- A
     { code: 'agenda', value : 'Agenda' },
+    { code: 'available days', value : 'Available Days' },
 
     // ---------- M
     { code: 'meal planner', value : 'Meal planner' },
+    { code: 'meal planner columns', value : 'Meal Planner Columns' },
 
     // ---------- S
     { code: 'settings', value : 'Settings' },
