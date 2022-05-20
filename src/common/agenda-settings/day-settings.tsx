@@ -1,9 +1,9 @@
-import { ListItem, ListItemText } from "@mui/material";
 import List from "@mui/material/List"
 import React from "react";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { DayOfWeekArray } from "../calendar/calendar.data";
 import { DayListItem, DayListItemProps } from "./day-list-item"
+import { ListItem, ListItemText } from "@mui/material";
 
 export interface DaySettingsProps {
     disableDays:Array<number>,
