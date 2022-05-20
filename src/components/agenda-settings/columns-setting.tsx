@@ -2,7 +2,7 @@ import List from "@mui/material/List"
 import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
 import { SetLanguageText } from "../../services/i18n/languageManager";
-import { ColumnItemModel } from "../models/agenda.settings";
+import { ColumnItemModel } from "../../common/models/agenda.settings";
 import { ColumnsListItemsSettings, ColumnsListItemsSettingsProps } from "./column-listItems-settings";
 
 export interface ColumnsSettingsProps {
