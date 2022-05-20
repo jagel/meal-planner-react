@@ -3,7 +3,7 @@ import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { ColumnItemModel } from "../../common/models/agenda.settings";
-import { ColumnsListItemsSettings, ColumnsListItemsSettingsProps } from "./column-listItems-settings";
+import { ADListItemSettings, ADListItemSettingsProps } from "./ad-listItems-settings";
 
 export interface ColumnsSettingsProps {
     title:string,
@@ -18,8 +18,8 @@ export const ColumnsSettings = (props: ColumnsSettingsProps) => {
             <ListItemText>{textValue(props.title)}</ListItemText>
         </ListItem>
         {props.columns.map((columnItem,index)=> {
-            let columnsListItemsSettingsProps : ColumnsListItemsSettingsProps = { index:index, columnItem}
-            return <ColumnsListItemsSettings key={index} {...columnsListItemsSettingsProps} /> 
+            let columnsListItemsSettingsProps : ADListItemSettingsProps = { index:index, columnItem}
+            return <ADListItemSettings key={index} {...columnsListItemsSettingsProps} /> 
         })}
     </List>
 }

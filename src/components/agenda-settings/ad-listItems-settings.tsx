@@ -6,12 +6,12 @@ import ListItemText from "@mui/material/ListItemText"
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon"
 import { ColumnItemModel } from "../../common/models/agenda.settings"
 
-export interface ColumnsListItemsSettingsProps {
+export interface ADListItemSettingsProps {
     index:number,
     columnItem:ColumnItemModel
 }
 
-export const ColumnsListItemsSettings = (props: ColumnsListItemsSettingsProps) => {
+export const ADListItemSettings = (props: ADListItemSettingsProps) => {
     return <>
     <ListItem key={props.index}>
         <ListItemAvatar>

@@ -2,7 +2,7 @@ import List from "@mui/material/List"
 import React, { useState } from "react";
 import { SetLanguageText } from "../../services/i18n/languageManager";
 import { DayOfWeekArray } from "../../common/calendar/calendar.data";
-import { DayListItem, DayListItemProps } from "./day-list-item"
+import { ADDayListItem, ADDayListItemProps } from "./ad-day-list-item"
 import { Grid, ListItem, ListItemText } from "@mui/material";
 import JGLCalendar, { JGLCalendarProps } from "../../common/calendar/calendar";
 
@@ -30,8 +30,8 @@ export const AvailableDaysSettings = () => {
             <ListItemText>{textValue('available days')}</ListItemText>
         </ListItem>
         {daysArray.map((dayName,index) => {
-            let mealPlannerListDayItemProps : DayListItemProps = {dayName, index, toggleAvailableDays, disableDays:disableDays}
-            return <DayListItem key={index} {...mealPlannerListDayItemProps} />
+            let mealPlannerListDayItemProps : ADDayListItemProps = {dayName, index, toggleAvailableDays, disableDays:disableDays}
+            return <ADDayListItem key={index} {...mealPlannerListDayItemProps} />
         })
         }
         </List>
