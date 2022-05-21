@@ -1,6 +1,7 @@
 export const Icons = {
     // A
     account_circle: 'account_circle',
+    add: 'add',
     add_circle: 'add_circle',
     arrow_upward:'arrow_upward',
     arrow_downward:'arrow_downward',
@@ -37,6 +38,8 @@ export const Icons = {
     search: 'search',
     settings: 'settings',
     share: 'share',
+    // U
+    undo: 'undo',
     // V
     visibility_off : 'visibility_off',
     visibility: 'visibility',
