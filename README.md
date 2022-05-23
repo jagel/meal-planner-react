@@ -8,6 +8,10 @@ ui [MUI](https://mui.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 npm install @mui/material @emotion/react @emotion/styled
+
+## Initial configuration after login
+    - meal planner = add meals (breakfas, lunch, dinner)
+
 ## Available Scripts
 
 In the project directory, you can run:

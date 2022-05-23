@@ -1,7 +1,7 @@
 //https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 
 import './calendar.css'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DaysOfWeek, GetMonthAndYearData } from './calendar.i18n';
 import { CalendarDays, CalendarDaysProps } from './calendarDays';
 

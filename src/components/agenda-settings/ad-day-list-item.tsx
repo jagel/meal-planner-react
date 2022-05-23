@@ -3,16 +3,16 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import { GoogleIconsInheritance, Icons } from "../app/google.icon";
+import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
 
-export interface DayListItemProps {
+export interface ADDayListItemProps {
     dayName:string,
     index:number,
     toggleAvailableDays:(index:number)=>void,
     disableDays:Array<number>
 }
 
-export const DayListItem = (props:DayListItemProps) => {
+export const ADDayListItem = (props:ADDayListItemProps) => {
     const disabled = props.disableDays.includes(props.index);
     const theme : React.CSSProperties = !disabled ?
         {color:'#1976d2',backgroundColor:'white'} : {}
