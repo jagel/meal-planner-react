@@ -3,7 +3,7 @@ import { RecipeModel, RecipeProduct, StepModel } from "../../common/models/recip
 import { InputRequired, InputRequiredProps } from "../form-items/input.required";
 import { FormDescriptionInput, FormDescriptionInputProps } from "../form-items/form.description.input";
 import { FormValidations } from "../../utils/data/form-defiinions";
-import { RecipeFormSteps } from "../recipe.steps/recipe.steps.form";
+import { RecipeFormSteps, RecipeFormStepsProps } from "../recipe.steps/recipe.steps.form";
 
 import Box from "@mui/material/Box";
 
@@ -13,19 +13,22 @@ import { RecipeFormIngredients, RecipeFormIngredientsProps } from "../recipe.ing
 
 export interface RecipeFormProps {
   recipeForm:FormModel<RecipeModel>,
-  onTextChange:(event : React.ChangeEvent<HTMLInputElement>) => void,
+  onModelChange:<TValue>(key:string, value : TValue) => void,
   updateSteps:(steps:StepModel[])=>void,
-  updateIngredients:(recipeProducts:RecipeProduct[])=>void,
-  onEditionModel:(edionModelEnabled:boolean)=>void
+  updateIngredients:(recipeProducts:RecipeProduct[])=>void
 }
 
 export const RecipeForm = (props : RecipeFormProps) => {
+
+  const handleTextChange = (event : React.ChangeEvent<HTMLInputElement>) => 
+    props.onModelChange<string>(event.target.id, event.target.value);
+  
 
   const inputRequiredProps : InputRequiredProps = {
     value:props.recipeForm.model.name,
     displayText:"Name",
     name:"name",
-    onTextChange:props.onTextChange,
+    onTextChange: handleTextChange,
     displayError:props.recipeForm.displayErrors,
     inputProps:{ maxLength: FormValidations.maxNameLength } 
   }
@@ -34,7 +37,7 @@ export const RecipeForm = (props : RecipeFormProps) => {
     value:props.recipeForm.model.description,
     displayText:"Recipe Description",
     name:"description",
-    onTextChange:props.onTextChange
+    onTextChange:handleTextChange
   } 
 
   const recipeFormIngredientsProps : RecipeFormIngredientsProps = {
@@ -42,11 +45,10 @@ export const RecipeForm = (props : RecipeFormProps) => {
     updateIngredients: props.updateIngredients
   };
 
-  const recipeFormStepsProps = {
+  const recipeFormStepsProps : RecipeFormStepsProps = {
     steps: props.recipeForm.model.steps,
     updateSteps: props.updateSteps,
-    displayError: props.recipeForm.displayErrors,
-    onEditionModel: props.onEditionModel
+    displayError: props.recipeForm.displayErrors
   };
 
   return <Box sx={{ display: 'flex', flexWrap: 'wrap' }} >

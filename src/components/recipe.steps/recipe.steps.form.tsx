@@ -15,8 +15,7 @@ import { DeleteMessageDialog } from "../../common/elements/message.delete";
 export interface RecipeFormStepsProps {
   steps:StepModel[],
   updateSteps(steps:StepModel[]):void,
-  displayError: boolean,
-  onEditionModel:(edionModelEnabled:boolean)=>void
+  displayError: boolean
 };
 
 export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
@@ -27,10 +26,6 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   
   const editMode = editOrder > 0;
   const textValue = SetLanguageText;
-
-  useEffect(()=>{
-    props.onEditionModel(editMode);
-  },[editOrder])
 
   const editionCompleted = (step:StepModel) => { 
     steps[(step.order-1)] = step;
