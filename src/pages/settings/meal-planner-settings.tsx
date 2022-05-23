@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material"
+import { Divider, Grid, Paper } from "@mui/material"
 import { AvailableDaysSettings, AvailableDaysSettingsProps } from "../../components/agenda-settings/available-days-settings";
 import { LayoutPage } from "../../common/layout/layout-page"
 import { ColumnsSettings, ColumnsSettingsProps } from "../../components/agenda-settings/columns-setting";
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ISettingsModel, SettingsModel } from "../../common/models/settings.model";
 import { FormModel } from "../../common/models/form-model";
 import { useFormModel } from "../../utils/custom-hooks/FormModelHook";
+import { SX_Properties } from "../../utils/data/jgl-styles";
 
 export const MealPlannerSettings = () => {
     
@@ -36,9 +37,13 @@ export const MealPlannerSettings = () => {
     }
 
     return  <LayoutPage>
-    <Paper>
-        <AvailableDaysSettings {...availableDaysSettingsProps} />
-        <ColumnsSettings {...columnSettingsProps} />
-    </Paper>
+        <Grid container sx={SX_Properties.BoxMainContainer} >
+        <Paper>
+            <AvailableDaysSettings {...availableDaysSettingsProps} />
+        </Paper>
+        <Paper>
+            <ColumnsSettings {...columnSettingsProps} />
+        </Paper>
+    </Grid>
     </LayoutPage>
 }

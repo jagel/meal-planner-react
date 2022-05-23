@@ -9,9 +9,10 @@ import { IPoliciesComponent } from "../../common/models/policies.component";
 import Avatar from "@mui/material/Avatar";
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import { ListItemButton } from "@mui/material";
+import { Grid, ListItemButton } from "@mui/material";
 import { useState } from "react";
 import { CSListItemUpdate, CSListItemUpdateProps } from "./cs-list-item-update";
+import { AgendaViewer } from "../agenda-viewer/agenda-viewer";
 
 export interface ColumnsSettingsProps extends IPoliciesComponent {
     title:string;
@@ -46,13 +47,20 @@ export const ColumnsSettings = (props: ColumnsSettingsProps) => {
         }
     }
         
-    
+    return <Grid container spacing={{xs:2, md:3}}>
+    <Grid item md={6} sm={12} xs={12}>
+       <List>
+           {titleColumnSettings}
+           {props.columns.map(columnListItem)}
+           <NewColumn />
+       </List>
+   </Grid>
 
-    return <List>
-        {titleColumnSettings}
-        {props.columns.map(columnListItem)}
-        <NewColumn />
-    </List>
+  <Grid item md={6} sm={12}  sx={{ display: { md:'inherit', xs: 'none'} }}  >
+       <AgendaViewer />
+  </Grid>
+
+</Grid>
 }
 
 
