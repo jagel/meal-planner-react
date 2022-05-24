@@ -25,7 +25,7 @@ export default function RecipeView(){
   const navigate = useNavigate();
   
   useEffect(()=>{
-    recipeEndpointsService.getRecipeByIdAsync(recipeId??'',true)
+    recipeEndpointsService.getRecipeByIdAsync({recipeId:recipeId??'', includeProducts: true})
         .then(response => {
             setRecipeState(response??recipe);
             setInitialLoading(false);
