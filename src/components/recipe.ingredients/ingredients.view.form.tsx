@@ -6,8 +6,9 @@ import { PrintMeassureText } from "./ingredients.view";
 export interface IngredientViewFormProps {
   index:number;
   ingredientForm:RecipeProduct;
-  onDeleteItemClick:(index:number)=>void
-  onUpdateIngredient:(index:number)=>void
+  disableEdition?:boolean;
+  onDeleteItemClick:(index:number)=>void;
+  onUpdateIngredient:(index:number)=>void;
 };
 
 export const IngredientViewForm = (props: IngredientViewFormProps) => {
@@ -19,13 +20,17 @@ export const IngredientViewForm = (props: IngredientViewFormProps) => {
       primary={props.ingredientForm.name} 
       secondary={PrintMeassureText(props.ingredientForm)}>
     </ListItemText>
-    <ListItemSecondaryAction>
-      <IconButton onClick={()=>props.onUpdateIngredient(props.index)}>
-        <GoogleIconsInheritance iconName={Icons.edit} />
-      </IconButton>
-      <IconButton edge="end" aria-label={Icons.delete} onClick={()=>props.onDeleteItemClick(props.index)}>
-            <GoogleIconsInheritance iconName={Icons.delete} />
-        </IconButton>
-    </ListItemSecondaryAction>
+    {!props.disableEdition && <EditionElements {...props}/>}
 </ListItem>
+}
+
+const EditionElements = (props:IngredientViewFormProps) => {
+  return <ListItemSecondaryAction>
+  <IconButton onClick={()=>props.onUpdateIngredient(props.index)}>
+    <GoogleIconsInheritance iconName={Icons.edit} />
+  </IconButton>
+  <IconButton edge="end" aria-label={Icons.delete} onClick={()=>props.onDeleteItemClick(props.index)}>
+        <GoogleIconsInheritance iconName={Icons.delete} />
+    </IconButton>
+  </ListItemSecondaryAction>
 }

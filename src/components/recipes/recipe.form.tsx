@@ -12,10 +12,12 @@ import { FormModel } from "../../common/models/form-model";
 import { RecipeFormIngredients, RecipeFormIngredientsProps } from "../recipe.ingredients/recipe.form.ingredients";
 
 export interface RecipeFormProps {
-  recipeForm:FormModel<RecipeModel>,
-  onModelChange:<TValue>(key:string, value : TValue) => void,
-  updateSteps:(steps:StepModel[])=>void,
-  updateIngredients:(recipeProducts:RecipeProduct[])=>void
+  recipeForm:FormModel<RecipeModel>;
+  isOnSubTask:boolean;
+  setIsOnSubTask:(isOnSubTask:boolean)=>void;
+  onModelChange:<TValue>(key:string, value : TValue) => void;
+  updateSteps:(steps:StepModel[])=>void;
+  updateIngredients:(recipeProducts:RecipeProduct[])=>void;
 }
 
 export const RecipeForm = (props : RecipeFormProps) => {
@@ -42,7 +44,9 @@ export const RecipeForm = (props : RecipeFormProps) => {
 
   const recipeFormIngredientsProps : RecipeFormIngredientsProps = {
     ingredients: props.recipeForm.model.recipeProducts,
-    updateIngredients: props.updateIngredients
+    updateIngredients: props.updateIngredients,
+    isOnSubTask:props.isOnSubTask,
+    setIsOnSubTask:props.setIsOnSubTask
   };
 
   const recipeFormStepsProps : RecipeFormStepsProps = {

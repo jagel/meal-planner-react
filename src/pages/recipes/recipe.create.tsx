@@ -1,12 +1,12 @@
 import { RecipeForm, RecipeFormProps } from "../../components/recipes/recipe.form";
-import { RecipeModel, RecipeProduct, StepModel } from "../../common/models/recipe.form";
+import { RecipeModel } from "../../common/models/recipe.form";
 import { LayoutPage } from "../../common/layout/layout-page";
 import { ButtonLoading, ButtonLoadingProp } from "../../common/buttons/button.loader";
-import { recipeEndpointsService } from "../../services/endpoints/recipe.enpoints.service";
 import { useNavigate } from "react-router-dom";
 import { RoutingServices } from "../../services/routing.service";
 import { APP_ROUTES } from "../../utils/routing/app-routes";
-import { useFormHandle } from "../../utils/custom-hooks/useFormHandle";
+import { useCreateRecipe } from "../../utils/custom-hooks/useCreateRecipe";
+import { useState } from "react";
 
 export default function RecipeCreate(){
   const routingService = RoutingServices;
@@ -17,22 +17,24 @@ export default function RecipeCreate(){
     navigate(route);
   }
 
-  const [recipeForm, errorResponse, formEvents ] =
-    useFormHandle(
-      new RecipeModel(),
-      recipeEndpointsService.createRecipeAsync,
-      afterSave
-    )
+  const [recipeForm, errorResponse, formEvents ] = useCreateRecipe(afterSave);
+  const [isOnSubTask, setIsOnSubtask] = useState(false);
 
-  const updateSteps = (steps : Array<StepModel> = []) =>
-    formEvents.onModelChange<Array<StepModel>>('steps', steps);
+  const formPoperties : RecipeFormProps = {
+    recipeForm,
+    isOnSubTask,
+    setIsOnSubTask: (isOnSubtask:boolean) => setIsOnSubtask(isOnSubtask),
+    onModelChange : formEvents.onModelChange,
+    updateSteps: formEvents.updateSteps,
+    updateIngredients: formEvents.updateIngredients,
+  };
 
-  const updateIngredients = (ingredients: Array<RecipeProduct>) => 
-    formEvents.onModelChange<Array<RecipeProduct>>('ingredients', ingredients);
-    
-
-  const formPoperties : RecipeFormProps = { recipeForm, onModelChange : formEvents.onModelChange, updateSteps, updateIngredients };
-  const buttonProperties : ButtonLoadingProp = { text:"save", fullWidth:false, loading:recipeForm.isLoading };
+  const buttonProperties : ButtonLoadingProp = { 
+    text:"save", 
+    fullWidth:false, 
+    loading:recipeForm.isLoading,
+    disabled:isOnSubTask
+  };
 
   return <LayoutPage errorObject={errorResponse}>
     <form onSubmit={formEvents.handleSubmit} noValidate >
