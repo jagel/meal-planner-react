@@ -13,7 +13,7 @@ export interface FormEvents{
 }
 
 export function useCreateRecipe(
-    afterSucces:(modelSaved:RecipeModel) =>void)
+    afterSuccess:(modelSaved:RecipeModel) =>void)
     : [
         FormModel<RecipeModel>,
         ErrorObject|undefined,
@@ -46,7 +46,7 @@ export function useCreateRecipe(
             .finally(() =>{
                 loading(false);
                 if(savedSuccesfully)
-                    afterSucces(recipeSaved);
+                    afterSuccess(recipeSaved);
             });
     }
 
