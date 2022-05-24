@@ -52,7 +52,9 @@ export const RecipeForm = (props : RecipeFormProps) => {
   const recipeFormStepsProps : RecipeFormStepsProps = {
     steps: props.recipeForm.model.steps,
     updateSteps: props.updateSteps,
-    displayError: props.recipeForm.displayErrors
+    displayError: props.recipeForm.displayErrors,
+    isOnSubTask:props.isOnSubTask,
+    setIsOnSubTask:props.setIsOnSubTask
   };
 
   return <Box sx={{ display: 'flex', flexWrap: 'wrap' }} >
