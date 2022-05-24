@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormModel } from "../../common/models/form-model";
 import { ErrorObject } from "../../services/endpoints/error.handler";
 
@@ -8,18 +8,18 @@ export interface FormEvents{
     setLoading:(isLoading:boolean)=>void
 }
 
-export function useFormHandle<TModel>(
-    modelForm: TModel, 
-    callback: (model:TModel)=> Promise<TModel>,
-    afterSucces:(modelSaved:TModel) =>void)
-    
-    : [
+export function useUpdateFormHandle<TModel>(
+    modelForm:TModel,
+    modelRequest:any,
+    modelRequestCallBack:(props:any)=>Promise<TModel>,
+    callback: (props:any)=> Promise<TModel>,
+    afterSucces:(modelSaved:TModel) =>void
+    ) : [
         FormModel<TModel>,
         ErrorObject|undefined,
         FormEvents,
     ] {
-
-    const [formModel, setFormModel] = useState<FormModel<TModel>>(new FormModel(modelForm));
+    const [formModel, setFormModel] = useState<FormModel<TModel>>(new FormModel(modelForm, {isLoading:true}));
     const [errorResponse, setErrorResponse] = useState<ErrorObject|undefined>();
 
     const loading = (isLoading:boolean=true) => setFormModel(prevState=>({...prevState, isLoading:isLoading }));
@@ -28,6 +28,12 @@ export function useFormHandle<TModel>(
     const onModelChange = function<TValue>(key:string, value:TValue){
         setFormModel(prevState=>({...prevState, model:{...prevState.model ,[key]: value} }));
     }
+
+    useEffect(()=>{
+        modelRequestCallBack(modelRequest).then(response => {
+            setFormModel(prevState => ({...prevState, isLoading: false, model: response??formModel.model}) );
+        });
+      },[])
 
     const handleCallback = () => {
         let modelSaved : TModel;
