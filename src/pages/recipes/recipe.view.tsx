@@ -36,7 +36,7 @@ export default function RecipeView(){
         let route = routingService.generateRoute(APP_ROUTES.RECIPES_UPDATE, {recipeId});
         navigate(route);
     }
-  return <LayoutPage params={{recipeId}} loadingPage={initialLoading} >
+  return <LayoutPage params={{recipeId}} skeletonLoading={initialLoading} >
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">

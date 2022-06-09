@@ -1,3 +1,5 @@
+import { AuditFields } from "./form-models";
+
 export interface CreateRecipe {
     name:string;
     description:string;
@@ -23,19 +25,15 @@ export interface StepModel{
     description:string;
 }
 
-export class RecipeModel{
+export class RecipeModel extends AuditFields{
     cuisineId: number;
     recipeId: number;
     name: string;
     description: string;
     recipeProducts: RecipeProduct[];
     steps: StepModel[];
-    createdBy: string ='';
-    createdDate : Date = new Date();
-    updatedBy: string ='';
-    updatedDate : Date = new Date();
-
     constructor() {
+        super()
         this.cuisineId = 0;
         this.recipeId = 0;
         this.name = '';

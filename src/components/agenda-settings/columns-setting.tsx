@@ -2,7 +2,6 @@ import List from "@mui/material/List"
 import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
 import { SetLanguageText } from "../../services/i18n/languageManager";
-import { ColumnItemModel } from "../../common/models/agenda.settings";
 import { CSListItem, CSListItemProps } from "./cs-listI-tem";
 import { Planner_Colors } from "../../utils/data/jgl-styles";
 import { IPoliciesComponent } from "../../common/models/policies.component";
@@ -13,11 +12,12 @@ import { Grid, ListItemButton } from "@mui/material";
 import { useState } from "react";
 import { CSListItemUpdate, CSListItemUpdateProps } from "./cs-list-item-update";
 import { AgendaViewer } from "../agenda-viewer/agenda-viewer";
+import { CustomColumnsModel } from "../../common/models/agenda.settings";
 
 export interface ColumnsSettingsProps extends IPoliciesComponent {
     title:string;
-    columns:Array<ColumnItemModel>;
-    updateColumns:(columns:Array<ColumnItemModel>) => void
+    columns:Array<CustomColumnsModel>;
+    updateColumns:(columns:Array<CustomColumnsModel>) => void
 }
 
 export const ColumnsSettings = (props: ColumnsSettingsProps) => {
@@ -37,7 +37,7 @@ export const ColumnsSettings = (props: ColumnsSettingsProps) => {
         <ListItemText>{textValue(props.title)}</ListItemText>
     </ListItem>    
 
-    const columnListItem = (columnItem:ColumnItemModel, index: number) => {
+    const columnListItem = (columnItem:CustomColumnsModel, index: number) => {
         if(indexOnUpdate === index){
             let listItemUpdateProps : CSListItemUpdateProps = {columnItem, index, cancelUpdate}
             return <CSListItemUpdate {...listItemUpdateProps} />

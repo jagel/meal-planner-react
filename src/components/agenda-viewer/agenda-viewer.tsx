@@ -1,5 +1,3 @@
-import { ColumnItemModel } from "../../common/models/agenda.settings";
-
 export interface AgendaElement{
     agendaElementId:number;
     name:string;
@@ -19,7 +17,7 @@ export const AgendaViewer = () => {
 
     const dateToday = new Date();
     const rowHeader :{date:Date} = {date:dateToday};
-    const columns : Array<ColumnItemModel> = [{columntItemId:1, name:'breakfast'}, {columntItemId:2, name:'lunch'}, {columntItemId:3, name:'dinner'}];
+ //   const columns : Array<ColumnItemModel> = [{columntItemId:1, name:'breakfast'}, {columntItemId:2, name:'lunch'}, {columntItemId:3, name:'dinner'}];
     const book : Array<AgendaBook> = [{
         agendaBookId:1,
         columnItemId:3,
@@ -57,6 +55,14 @@ export const AgendaViewer = () => {
             </tr>
         </thead>
         <tbody>
+           
+        </tbody>
+        </table>
+
+    </div>
+}
+/*
+ 
             {columns.map(columnItem => 
                 <tr key={columnItem.columntItemId}>
                     <td>{columnItem.name}</td>
@@ -65,8 +71,4 @@ export const AgendaViewer = () => {
                     }
                 </tr>
             )}
-        </tbody>
-        </table>
-
-    </div>
-}
+*/
