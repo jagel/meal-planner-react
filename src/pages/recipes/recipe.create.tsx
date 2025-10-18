@@ -25,21 +25,18 @@ export default function RecipeCreate(){
   
 
   const saveRecipe = () => {
-    let recipeResponse :RecipeModel;
     setLoading(true);
     setErrorResponse(undefined);
 
     recipeEndpointsService.createRecipeAsync(recipeForm.model)
-      .then(modelSaved => recipeResponse = modelSaved)
-      .catch((err) =>{
-        setErrorResponse(err as ErrorObject)
-      })
-      .finally(() => {
+      .then(modelSaved => {
         setLoading(false);
-        if(recipeResponse !== undefined) {
-          let route = routingService.generateRoute(APP_ROUTES.RECIPES_VIEW, {recipeId:recipeResponse.recipeId});
-          navigate(route);
-        }
+        let route = routingService.generateRoute(APP_ROUTES.RECIPES_VIEW, {recipeId:modelSaved.recipeId});
+        navigate(route);
+      })
+      .catch((err) =>{
+        setLoading(false);
+        setErrorResponse(err as ErrorObject);
       });
   }
 
