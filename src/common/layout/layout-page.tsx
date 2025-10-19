@@ -5,14 +5,14 @@ import { ErrorMessage } from "../app/error-message";
 
 export const LayoutPage = ( props: { 
     children: JSX.Element,
-    loadingPage?: boolean,
+    skeletonLoading?: boolean,
     errorObject?: ErrorObject,
     params?: { [key:string] : string|undefined}
 }) => {
 
     return (<Box sx={{minHeight:'calc(100vh - 140px)', padding:'0px 20px'}}>
         <BreadcrumbRoutes dynamicParams={props.params} />
-        { !!props.loadingPage ?  
+        { !!props.skeletonLoading ?  
             <LoadingLayoutPage /> :
             props.children
         }

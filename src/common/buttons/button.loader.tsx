@@ -6,6 +6,7 @@ import './button.loader.css';
 export type ButtonLoadingProp = {
     text:string,
     loading:boolean,
+    disabled?:boolean
     fullWidth?:boolean
 }
 
@@ -17,7 +18,7 @@ const ButtonLoading = (props: ButtonLoadingProp) => {
     const content = props.loading ? 
         <div style={loadingStyle}>{loadingItem} {textValue(props.text)}</div>: 
         textValue(props.text);
-    return <Button disabled={props.loading} fullWidth={props.fullWidth} variant='contained' type="submit">
+    return <Button disabled={props.disabled||props.loading} fullWidth={props.fullWidth} variant='contained' type="submit">
             {content}
         </Button>
 }

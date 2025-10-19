@@ -4,11 +4,11 @@ import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
 import { useState } from "react"
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon"
-import { ColumnItemModel } from "../../common/models/agenda.settings"
+import { CustomColumnsModel } from "../../common/models/agenda.settings"
 import { SetLanguageText } from "../../services/i18n/languageManager"
 
 export interface CSListItemUpdateProps{
-    columnItem:ColumnItemModel;
+    columnItem:CustomColumnsModel;
     index:number;
     cancelUpdate:()=>void;
 }

@@ -1,13 +1,11 @@
-version: "3.7"
-
 services:
   react-meal-planner:
     container_name: react-meal-planner
     build: .
     ports:
       - 8085:3000
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
+    stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+    command: npm start
+# https://github.com/dockersamples/compose-dev-env/blob/main/docker-compose.yaml

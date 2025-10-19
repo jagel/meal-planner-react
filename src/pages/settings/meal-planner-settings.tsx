@@ -2,41 +2,32 @@ import { Divider, Grid, Paper } from "@mui/material"
 import { AvailableDaysSettings, AvailableDaysSettingsProps } from "../../components/agenda-settings/available-days-settings";
 import { LayoutPage } from "../../common/layout/layout-page"
 import { ColumnsSettings, ColumnsSettingsProps } from "../../components/agenda-settings/columns-setting";
-import { ColumnItemModel } from "../../common/models/agenda.settings";
 import { Policies } from "../../common/models/policies.component";
 import { useEffect, useState } from "react";
-import { ISettingsModel, SettingsModel } from "../../common/models/settings.model";
-import { FormModel } from "../../common/models/form-model";
-import { useFormModel } from "../../utils/custom-hooks/FormModelHook";
 import { SX_Properties } from "../../utils/data/jgl-styles";
+import { AgendaCodes, agendaSettingsEndpointsService } from "../../services/endpoints/agenda.settings.service";
+import { useUpdateAgendaSettings } from "../../utils/custom-hooks/useUpdateAgendaSettings";
+import { AgendaSettingsModel } from "../../common/models/agenda.settings";
 
-export const MealPlannerSettings = () => {
+export const MealPlannerSettings = () =>
+{
+    const afterUpdate = (agendaSettingsUdpdated:AgendaSettingsModel) => console.log('completed', agendaSettingsUdpdated)
     
-    const [model, setModelState, formEvents] = useFormModel<SettingsModel>({columnItems:[{columntItemId:1, name:'demo'},{columntItemId:2,name:'second'}], 
-    disabledDays:[{catalogId:1,name:'mo',code:'1'}, {catalogId:2,name:'sa',code:'6'}] });
+    const [modelForm, errorObjects, events] = useUpdateAgendaSettings('MealPlanner', afterUpdate);
 
-   
-    useEffect(()=>{
-        console.log('ho');
-    //    setModelState({columnItems:[{columntItemId:1, name:'demo'},{columntItemId:2,name:'second'}], 
-        //disabledDays:[{catalogId:1,name:'mo',code:'1'}, {catalogId:2,name:'sa',code:'6'}] })
-    },[])
+    const availableDaysSettingsProps: AvailableDaysSettingsProps = {
+        disabledDays:modelForm.model.disabledDays.map(x=>Number(x))
+    };
 
-    const updateColumns = ( columnItems: Array<ColumnItemModel>) =>{
-        let _settingModel : ISettingsModel = {...model, columnItems: columnItems};
-        setModelState(_settingModel);
-    }
-
-    const availableDaysSettingsProps: AvailableDaysSettingsProps = {disabledDays:model.disabledDays.map(x=>Number(x.code))};
     const columnSettingsPolicies = new Policies({modified:true});
     const columnSettingsProps : ColumnsSettingsProps = { 
-        updateColumns,
+        updateColumns: events.updateCustomColumns,
         title:'meal planner columns', 
-        columns: model.columnItems, 
+        columns: modelForm.model.customColumns, 
         policies: columnSettingsPolicies
     }
 
-    return  <LayoutPage>
+    return  <LayoutPage errorObject={errorObjects} skeletonLoading={modelForm.skeletonLoading}>
         <Grid container sx={SX_Properties.BoxMainContainer} >
         <Paper>
             <AvailableDaysSettings {...availableDaysSettingsProps} />

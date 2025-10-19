@@ -13,7 +13,6 @@ export function Login(){
     <LoginNavBar />
 
     <div className='form-page'>
-      
       <div className='descriptive-container'>      
         <div className='descriptive-item'>
           {/* <CarouselMain carouselData={carouselData} /> */}

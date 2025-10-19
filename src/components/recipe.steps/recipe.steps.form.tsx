@@ -13,24 +13,20 @@ import { SetLanguageText } from "../../services/i18n/languageManager";
 import { DeleteMessageDialog } from "../../common/elements/message.delete";
 
 export interface RecipeFormStepsProps {
-  steps:StepModel[],
-  updateSteps(steps:StepModel[]):void,
-  displayError: boolean,
-  onEditionModel:(edionModelEnabled:boolean)=>void
+  steps:Array<StepModel>;
+  updateSteps(steps:Array<StepModel>):void;
+  displayError: boolean;
+  isOnSubTask:boolean;
+  setIsOnSubTask:(isOnSubTask:boolean)=>void;
 };
 
 export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
   const [ editOrder, setEditOrder] = useState(0);
   const [ showDeleteMessage, setShowDeleteMessage] = useState(false);
 
-  const [ steps, setSteps] = useState<StepModel[]>(JSON.parse(JSON.stringify(props.steps)) as StepModel[])
+  const steps = JSON.parse(JSON.stringify(props.steps)) as StepModel[];
   
-  const editMode = editOrder > 0;
   const textValue = SetLanguageText;
-
-  useEffect(()=>{
-    props.onEditionModel(editMode);
-  },[editOrder])
 
   const editionCompleted = (step:StepModel) => { 
     steps[(step.order-1)] = step;
@@ -45,9 +41,14 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
     props.updateSteps(steps);
   }
 
-  const enableEditMode = (order:number) : void => setEditOrder(order);
-
-  const disableEditMode = () : void => setEditOrder(0);
+  const disableEditMode = () : void => {
+    props.setIsOnSubTask(false);
+    setEditOrder(0)
+  };
+  const enableEditMode = (order :number) => {
+    props.setIsOnSubTask(true);
+    setEditOrder(order);
+  }
 
   const replacePosition = (stepItem : StepModel, newOrder: number) : void => {
     const oldPositionIndex = stepItem.order - 1;
@@ -88,15 +89,15 @@ export const RecipeFormSteps = (props : RecipeFormStepsProps) =>{
         <RecipeStepsFormView
           key={stepItem.order}
           stepItem={stepItem}
-          editMode={editMode}
           enableEditMode={enableEditMode}
           onDeleteItemClick={onDeleteItemClick}
+          disabledEdition={props.isOnSubTask}
         />
      )}
     <Button fullWidth
       onClick={addStep} 
       variant="outlined"
-      disabled={editMode}
+      disabled={props.isOnSubTask}
       color={steps.length === 0 ? "error":"primary"}>
       {textValue('add step')}
     </Button>

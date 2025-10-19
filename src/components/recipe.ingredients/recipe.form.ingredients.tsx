@@ -11,6 +11,8 @@ import { IngredientViewForm, IngredientViewFormProps } from "./ingredients.view.
 export interface RecipeFormIngredientsProps {
     ingredients:RecipeProduct[];
     updateIngredients(recipeProducts:RecipeProduct[]):void;
+    isOnSubTask:boolean;
+    setIsOnSubTask:(isOnSubTask:boolean)=>void;
 };
 
 const mainDivStyle : CSSProperties = {display:'flex',flexDirection:'column',gap:'15px'};
@@ -22,15 +24,21 @@ const RecipeFormIngredients = (props: RecipeFormIngredientsProps) => {
   const textValue = SetLanguageText;
 
   const onAddIngredientClick = (evt:any) => {
+    props.setIsOnSubTask(true);
     setUpdateIndex(props.ingredients.length)
     props.ingredients.push(new RecipeProduct());
     props.updateIngredients(props.ingredients);
   }
 
+  const disableEditionMode = () => {
+    props.setIsOnSubTask(false);
+    setUpdateIndex(-1);
+  }
+
   const updateIngredient = (updateRecipeProduct:RecipeProduct, index:number) => {
     props.ingredients[index] = updateRecipeProduct;
     props.updateIngredients(props.ingredients);
-    setUpdateIndex(-1);
+    disableEditionMode();
   }
 
   const onDeleteItemClick = (index: number) => {
@@ -43,28 +51,32 @@ const RecipeFormIngredients = (props: RecipeFormIngredientsProps) => {
     if(deleteStep){
       props.ingredients.splice(updateIndex,1);
     }
-    setUpdateIndex(-1);
+    disableEditionMode();
   }
 
-  const onUpdateIngredient = (index:number) => setUpdateIndex(index);
+  const onUpdateIngredient = (index:number) => {
+    props.setIsOnSubTask(true);
+    setUpdateIndex(index);
+  }
+
+  const displayIngredientComponent = (ingredientForm: RecipeProduct, index:number) => {
+    if(index === updateIndex){
+      let ingredientFormProps : IngredientFormProps = { index, ingredientForm, updateIngredient };
+      return <IngredientForm key={index} {...ingredientFormProps} />;
+    }else{
+      let ingredientViewProps: IngredientViewFormProps = { index, ingredientForm, onDeleteItemClick, onUpdateIngredient, disableEdition: props.isOnSubTask};
+      return <IngredientViewForm key={index} {...ingredientViewProps} />
+    }
+  }
 
   return (<Box  className="recipe-form-steps" style={mainDivStyle}>
     <Divider textAlign="left">{textValue('ingredients')}</Divider>
-    <List>
-      {props.ingredients.map((ingredientForm, index)=>{
-        let ingredientFormProps : IngredientFormProps = {index, ingredientForm,  updateIngredient };
-        let ingredientViewProps: IngredientViewFormProps = {index, ingredientForm,onDeleteItemClick, onUpdateIngredient};
-        
-        return index == updateIndex ? 
-          <IngredientForm key={index} {...ingredientFormProps} /> : 
-          <IngredientViewForm key={index} {...ingredientViewProps} />
-      })}
-    </List>
+    <List>{props.ingredients.map(displayIngredientComponent)}</List>
   
-
     <Button 
       variant="outlined" 
       color={props.ingredients?.length === 0 ? "error":"primary"}
+      disabled={props.isOnSubTask}
       onClick={onAddIngredientClick}
     >{textValue('add ingredient')}
     </Button>

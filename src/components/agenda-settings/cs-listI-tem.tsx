@@ -4,10 +4,10 @@ import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
 import { useState } from "react"
 import { GoogleIconsInheritance, Icons } from "../../common/app/google.icon"
-import { ColumnItemModel } from "../../common/models/agenda.settings"
+import { CustomColumnsModel } from "../../common/models/agenda.settings"
 
 export interface CSListItemProps {
-    columnItem:ColumnItemModel;
+    columnItem:CustomColumnsModel;
     index:number;
     removeItem:(index:number)=>void;
     enableUpdate:(index:number)=>void;
